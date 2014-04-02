@@ -1,0 +1,6 @@
+#surefire
+#Wed Apr 02 16:18:03 BRT 2014
+maven.ext.class.path=C\:\\Program Files (x86)\\NetBeans 7.4\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\Luciano Pucci\\Documents\\GitHub\\barter\\barterserver
+localRepository=C\:\\Users\\Luciano Pucci\\.m2\\repository
+basedir=C\:\\Users\\Luciano Pucci\\Documents\\GitHub\\barter\\barterserver

@@ -60,88 +60,90 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write('\r');
       out.write('\n');
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <title>Barterserver</title>\n");
-      out.write("        <meta charset=\"utf-8\">\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <title>Barterserver</title>\r\n");
+      out.write("        <meta charset=\"utf-8\">\r\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"");
       if (_jspx_meth_c_url_0(_jspx_page_context))
         return;
-      out.write("\"/>\n");
+      out.write("\"/>\r\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"");
       if (_jspx_meth_c_url_1(_jspx_page_context))
         return;
-      out.write("\"/>\n");
+      out.write("\"/>\r\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"");
       if (_jspx_meth_c_url_2(_jspx_page_context))
         return;
-      out.write("\"/>\n");
+      out.write("\"/>\r\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"");
       if (_jspx_meth_c_url_3(_jspx_page_context))
         return;
-      out.write("\"/>\n");
+      out.write("\"/>\r\n");
       out.write("        <script type=\"text/javascript\" src=\"");
       if (_jspx_meth_c_url_4(_jspx_page_context))
         return;
-      out.write("\"></script>\n");
+      out.write("\"></script>\r\n");
       out.write("        <script type=\"text/javascript\" src=\"");
       if (_jspx_meth_c_url_5(_jspx_page_context))
         return;
-      out.write("\"></script>\n");
+      out.write("\"></script>\r\n");
       out.write("        <script type=\"text/javascript\" src=\"");
       if (_jspx_meth_c_url_6(_jspx_page_context))
         return;
-      out.write("\"></script>\n");
+      out.write("\"></script>\r\n");
       out.write("        <script type=\"text/javascript\" src=\"");
       if (_jspx_meth_c_url_7(_jspx_page_context))
         return;
-      out.write("\"></script>\n");
-      out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <div class=\"content\">\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<script>\n");
-      out.write("\n");
-      out.write("    $(document).ready(function(){\n");
-      out.write("    \n");
-      out.write("    $.ajax({\n");
-      out.write("        type: \"POST\",\n");
-      out.write("        url: \"/barterserver/user/post/save\",\n");
-      out.write("        data: {'user.name':\"Guilherme\",'user.email':\"gnmfcastro@gmail.com\",'user.password':\"123456\",'user.age':22},\n");
-      out.write("        dataType: \"json\", \n");
-      out.write("        success: null\n");
-      out.write("      });\n");
-      out.write("      \n");
-      out.write("    });\n");
-      out.write("    \n");
-      out.write("</script>\n");
-      out.write("\n");
-      out.write("<h1>Users</h1>\n");
-      out.write("\n");
-      out.write("<table>\n");
-      out.write("    <tr>\n");
-      out.write("        <th>ID</th>\n");
-      out.write("        <th>Name</th>\n");
-      out.write("        <th>Email</th>\n");
-      out.write("        <th>Age</th>\n");
-      out.write("    </tr>\n");
+      out.write("\"></script>\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <div class=\"content\">\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!--<script>\r\n");
+      out.write("\r\n");
+      out.write("    $(document).ready(function(){\r\n");
+      out.write("    \r\n");
+      out.write("    $.ajax({\r\n");
+      out.write("        type: \"POST\",\r\n");
+      out.write("        url: \"/barterserver/user/post/save\",\r\n");
+      out.write("        data: {'user.name':\"Guilherme\",'user.email':\"gnmfcastro@gmail.com\",'user.password':\"123456\",'user.age':22},\r\n");
+      out.write("        dataType: \"json\", \r\n");
+      out.write("        success: null\r\n");
+      out.write("      });\r\n");
+      out.write("      \r\n");
+      out.write("    });\r\n");
+      out.write("    \r\n");
+      out.write("</script>-->\r\n");
+      out.write("\r\n");
+      out.write("<h1>Users</h1>\r\n");
+      out.write("\r\n");
+      out.write("<table>\r\n");
+      out.write("    <tr>\r\n");
+      out.write("        <th>ID</th>\r\n");
+      out.write("        <th>Name</th>\r\n");
+      out.write("        <th>Email</th>\r\n");
+      out.write("        <th>Age</th>\r\n");
+      out.write("    </tr>\r\n");
       out.write("    ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
-      out.write("\n");
-      out.write("    \n");
-      out.write("</table>\n");
-      out.write("\n");
-      out.write("    <!-- #content-->\n");
-      out.write("        </div>\n");
-      out.write("      </body>\n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("    \r\n");
+      out.write("</table>\r\n");
+      out.write("\r\n");
+      out.write("    <!-- #content-->\r\n");
+      out.write("        </div>\r\n");
+      out.write("      </body>\r\n");
+      out.write("</html>\r\n");
+      out.write('\r');
       out.write('\n');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
@@ -315,21 +317,21 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
-          out.write("\n");
-          out.write("        <tr>\n");
+          out.write("\r\n");
+          out.write("        <tr>\r\n");
           out.write("           <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\n");
+          out.write("</td>\r\n");
           out.write("           <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\n");
+          out.write("</td>\r\n");
           out.write("           <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.email}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\n");
+          out.write("</td>\r\n");
           out.write("           <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.age}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\n");
-          out.write("        </tr>\n");
+          out.write("</td>\r\n");
+          out.write("        </tr>\r\n");
           out.write("    ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)

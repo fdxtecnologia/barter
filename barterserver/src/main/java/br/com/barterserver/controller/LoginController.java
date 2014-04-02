@@ -40,7 +40,7 @@ public class LoginController {
             userSession.setUser(u);
             result.use(Results.http()).body("User signed in");
         } else {
-            result.redirectTo(UsersController.class).save(user);
+            result.forwardTo(UsersController.class).save(user);
             result.use(Results.http()).body("User signed in");
         }
     }

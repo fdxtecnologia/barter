@@ -54,7 +54,6 @@ public class UsersController {
         result.include("user",dao.findById(id));
     }
     
-    @Post
     public void save(User user){
         if(isValid(user)){
             dao.saveOrUpdate(user);
