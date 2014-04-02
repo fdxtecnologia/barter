@@ -6,6 +6,8 @@
 
 package br.com.barterserver.dao;
 
+import br.com.barterserver.login.Permission;
+import br.com.barterserver.model.Role;
 import br.com.barterserver.model.User;
 import br.com.caelum.vraptor.ioc.Component;
 import org.hibernate.Query;

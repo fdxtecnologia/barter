@@ -9,6 +9,7 @@ package br.com.barterserver.controller;
 import br.com.barterserver.dao.UserDAO;
 import br.com.barterserver.login.Public;
 import br.com.barterserver.login.UserSession;
+import br.com.barterserver.model.Role;
 import br.com.barterserver.model.User;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
@@ -33,14 +34,23 @@ public class LoginController {
         this.userSession = userSession;
     }
     
+    @Post("user/login")
+    public void doLogin(String email, String password){
+        User u = userDAO.getUserByCredentials(email, password);
+        if(u !=null && u.getUserRole()==Role.ADMIN){
+            userSession.setUser(u);
+            
+        }
+    }
+    
     @Post("/user/post/save")
     public void doFacebookLogin(User user) {
         User u = userDAO.getUserByCredentials(user.getEmail(), user.getPassword());
-        if (u != null) {
+        if (u != null && u.getUserRole() == Role.USER) {
             userSession.setUser(u);
             result.use(Results.http()).body("User signed in");
         } else {
-            result.redirectTo(UsersController.class).save(user);
+            result.forwardTo(UsersController.class).save(user);
             result.use(Results.http()).body("User signed in");
         }
     }

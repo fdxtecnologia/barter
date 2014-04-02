@@ -40,8 +40,6 @@ public class LoginInterceptor implements Interceptor {
         boolean isMethodPublic = accepts(rm);
         if (userSession.isLogged() || isMethodPublic) {
             is.next(rm, o);
-        } else {
-            result.redirectTo("/");
         }
     }
 

@@ -7,14 +7,17 @@
 package br.com.barterserver.controller;
 
 import br.com.barterserver.dao.UserDAO;
+import br.com.barterserver.login.UserSession;
+import br.com.barterserver.model.Picture;
+import br.com.barterserver.model.Role;
 import br.com.barterserver.model.User;
-import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 import com.google.gson.Gson;
+import java.util.List;
 
 /**
  *
@@ -25,13 +28,13 @@ public class UsersController {
     
     private UserDAO dao;
     private Result result;
-    private Gson gson;
+    private UserSession userSession;
     
-    public UsersController(Result result, UserDAO dao){
+    public UsersController(Result result, UserDAO dao, UserSession userSession){
         
         this.result = result;
         this.dao = dao;
-        this.gson = new Gson();
+        this.userSession = userSession;
         
     }
     
@@ -56,10 +59,20 @@ public class UsersController {
     
     @Post
     public void save(User user){
+        user.setUserRole(Role.USER);
         if(isValid(user)){
             dao.saveOrUpdate(user);
         }else{
             result.include("errors","Not able to sign up the user");
+        }
+    }
+    
+    @Post("user/post/pictures")
+    public void listPictures(){
+        if (userSession.isLogged()){
+            User user = userSession.getUser();
+            List<Picture> userPics = user.getPictures();
+            result.use(Results.json()).withoutRoot().from(userPics).serialize();
         }
     }
     
