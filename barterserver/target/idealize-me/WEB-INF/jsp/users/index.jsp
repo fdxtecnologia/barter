@@ -7,8 +7,8 @@
     
     $.ajax({
         type: "POST",
-        url: "/barterserver/user/post/save",
-        data: {'user.name':"Guilherme",'user.email':"gnmfcastro@gmail.com",'user.password':"123456",'user.age':22},
+        url: "/barterserver/user/post/picture/add",
+        data: {'picture.title':"Guilherme",'picture.photoURL':"gnmfcastro@gmail.com"},
         dataType: "json", 
         success: null
       });

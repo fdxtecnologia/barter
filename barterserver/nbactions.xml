@@ -24,7 +24,6 @@
             </packagings>
             <goals>
                 <goal>package</goal>
-                <goal>jetty:run</goal>
             </goals>
             <properties>
                 <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>

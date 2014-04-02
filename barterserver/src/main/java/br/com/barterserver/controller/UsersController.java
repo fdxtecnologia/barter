@@ -7,6 +7,7 @@
 package br.com.barterserver.controller;
 
 import br.com.barterserver.dao.UserDAO;
+import br.com.barterserver.login.Public;
 import br.com.barterserver.login.UserSession;
 import br.com.barterserver.model.Picture;
 import br.com.barterserver.model.Role;
@@ -57,7 +58,6 @@ public class UsersController {
         result.include("user",dao.findById(id));
     }
     
-    @Post
     public void save(User user){
         user.setUserRole(Role.USER);
         if(isValid(user)){
@@ -73,6 +73,17 @@ public class UsersController {
             User user = userSession.getUser();
             List<Picture> userPics = user.getPictures();
             result.use(Results.json()).withoutRoot().from(userPics).serialize();
+        }
+    }
+    
+    @Post("user/post/picture/add")
+    public void addPicture(Picture picture){
+        if(userSession.isLogged()){
+            User u = userSession.getUser();
+            List<Picture> pictures = u.getPictures();
+            pictures.add(picture);
+            u.setPictures(pictures);
+            dao.saveOrUpdate(u);
         }
     }
     
