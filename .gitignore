@@ -24,3 +24,17 @@ barterserver/target/maven-archiver/pom.properties
 barterserver/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 
 barterserver/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+
+barterserver/target/classes/br/com/barterserver/controller/UsersController.class
+
+barterserver/target/idealize-me.war
+
+barterserver/target/idealize-me/WEB-INF/classes/br/com/barterserver/controller/UsersController.class
+
+barterserver/target/idealize-me/WEB-INF/classes/br/com/barterserver/dao/UserDAO.class
+
+barterserver/target/idealize-me/WEB-INF/classes/br/com/barterserver/dao/UserDAO.class
+
+barterserver/target/classes/br/com/barterserver/login/LoginInterceptor.class
+
+barterserver/target/classes/br/com/barterserver/login/LoginInterceptor.class
