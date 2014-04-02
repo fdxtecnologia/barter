@@ -13,6 +13,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 import com.google.gson.Gson;
 
 /**
@@ -62,16 +63,16 @@ public class UsersController {
         }
     }
     
-    @Post("/user/post/save")
+    @Post
     public void postSave(User user){
         if(isValid(user)){
             dao.saveOrUpdate(user);
         }else{
-            result.include("errors","Not able to sign up the user");
+            result.use(Results.http()).sendError(500, "Unable to create user!");
         }
     }
     
-    public boolean isValid(User user){
+    private boolean isValid(User user){
         boolean isUnique = true;
         for(User u: dao.findAll()){
             if(u.getEmail().equals(user.getEmail())){
