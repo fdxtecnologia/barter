@@ -7,7 +7,10 @@
 package br.com.barterserver.dao;
 
 import br.com.barterserver.model.Trade;
+import br.com.barterserver.model.User;
 import br.com.caelum.vraptor.ioc.Component;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -21,5 +24,20 @@ public class TradeDAO extends GenericDAO<Trade>{
         super(session);
     }
     
+    public Trade saveOrUpdateAndReturn(Trade trade){
+         
+        session.saveOrUpdate(trade);
+        session.flush();
+        
+        return trade;
+    }
+
+    public List<Trade> listMyTrades(User user) {
+       Query q = session.createQuery("from Trade t where user_offering = :user_offering or user_requiring = :user_requiring");
+       q.setParameter("user_offering", user);
+       q.setParameter("user_requiring", user);
+       
+       return q.list();
+    }
     
 }

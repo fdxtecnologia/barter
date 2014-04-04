@@ -47,7 +47,6 @@ public class LoginController {
     public void doFacebookLogin(User user) {
         User u = userDAO.getUserByCredentials(user.getEmail(), user.getPassword());
         if (u != null && u.getUserRole() == Role.USER) {
-            userSession.setUser(u);
             result.use(Results.http()).body("User signed in");
         } else {
             result.forwardTo(UsersController.class).save(user);

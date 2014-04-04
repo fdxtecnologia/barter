@@ -33,4 +33,13 @@ public class UserDAO extends GenericDAO<User>{
         return (User) q.uniqueResult();
     }
     
+    public User getUserByEmail(String email){
+        
+        Query q = session.createQuery("from User where u.email = :email");
+        q.setParameter("email", email);
+        
+        return (User) q.uniqueResult();
+        
+    }
+    
 }

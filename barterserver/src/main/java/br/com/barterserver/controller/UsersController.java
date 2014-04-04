@@ -6,6 +6,7 @@
 
 package br.com.barterserver.controller;
 
+import br.com.barterserver.dao.PictureDAO;
 import br.com.barterserver.dao.UserDAO;
 import br.com.barterserver.login.Public;
 import br.com.barterserver.login.UserSession;
@@ -28,14 +29,13 @@ import java.util.List;
 public class UsersController {
     
     private UserDAO dao;
+    private PictureDAO picDAO;
     private Result result;
-    private UserSession userSession;
     
-    public UsersController(Result result, UserDAO dao, UserSession userSession){
+    public UsersController(Result result, UserDAO dao, PictureDAO picDAO){
         
         this.result = result;
         this.dao = dao;
-        this.userSession = userSession;
         
     }
     
@@ -67,30 +67,35 @@ public class UsersController {
         }
     }
     
-    @Post("user/post/pictures")
-    public void listPictures(){
-        if (userSession.isLogged()){
-            User user = userSession.getUser();
-            List<Picture> userPics = user.getPictures();
-            result.use(Results.json()).withoutRoot().from(userPics).serialize();
-        }
+    @Post("user/post/mypictures")
+    public void listMyPictures(User user){
+       List<Picture> myPics = user.getPictures();
+       result.use(Results.json()).withoutRoot().from(myPics).serialize();
     }
     
     @Post("user/post/picture/add")
-    public void addPicture(Picture picture){
-        if(userSession.isLogged()){
-            User u = userSession.getUser();
-            List<Picture> pictures = u.getPictures();
-            pictures.add(picture);
-            u.setPictures(pictures);
-            dao.saveOrUpdate(u);
-        }
+    public void addPicture(Picture picture, User user){
+            if(picture.getId() != null){
+                List<Picture> pictures = user.getPictures();
+                pictures.add(picture);
+                user.setPictures(pictures);
+                dao.saveOrUpdate(user);
+                int pictureIndex = user.getPictures().lastIndexOf(picture);
+                Long pictureId = user.getPictures().get(pictureIndex).getId();
+                result.use(Results.json()).withoutRoot().from(pictureId).serialize();
+            }else{
+               Picture updatePic = picDAO.findById(picture.getId());
+               picDAO.saveOrUpdate(picture);
+               result.use(Results.http()).body("Pictures saved");
+            }
     }
     
     @Post
     public void postSave(User user){
         if(isValid(user)){
             dao.saveOrUpdate(user);
+            User u = dao.getUserByEmail(user.getEmail());
+            result.use(Results.json()).withoutRoot().from(u).serialize();
         }else{
             result.use(Results.http()).sendError(500, "Unable to create user!");
         }
