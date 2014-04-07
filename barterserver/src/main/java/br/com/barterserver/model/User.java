@@ -36,6 +36,8 @@ public class User implements Serializable{
     private List<Picture> pictures;
     @Enumerated(EnumType.STRING)
     private Role userRole;
+    private Double loc_lat;
+    private Double loc_long;
 
     public Long getId() {
         return id;
@@ -92,5 +94,23 @@ public class User implements Serializable{
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
     }
+
+    public Double getLoc_lat() {
+        return loc_lat;
+    }
+
+    public void setLoc_lat(Double loc_lat) {
+        this.loc_lat = loc_lat;
+    }
+
+    public Double getLoc_long() {
+        return loc_long;
+    }
+
+    public void setLoc_long(Double loc_long) {
+        this.loc_long = loc_long;
+    }
+    
+    
     
 }

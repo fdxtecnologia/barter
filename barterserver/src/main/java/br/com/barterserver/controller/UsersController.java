@@ -8,8 +8,6 @@ package br.com.barterserver.controller;
 
 import br.com.barterserver.dao.PictureDAO;
 import br.com.barterserver.dao.UserDAO;
-import br.com.barterserver.login.Public;
-import br.com.barterserver.login.UserSession;
 import br.com.barterserver.model.Picture;
 import br.com.barterserver.model.Role;
 import br.com.barterserver.model.User;
@@ -18,7 +16,6 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
-import com.google.gson.Gson;
 import java.util.List;
 
 /**
