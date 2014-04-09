@@ -1,21 +1,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file= "../templates/header.jsp" %>
 
-<!--<script>
+<script>
 
     $(document).ready(function(){
     
     $.ajax({
         type: "POST",
-        url: "/barterserver/user/post/picture/add",
-        data: {'picture.title':"Guilherme",'picture.photoURL':"gnmfcastro@gmail.com"},
+        url: "/barterserver/search",
+        data: {'title':"Guilherme"},
         dataType: "json", 
         success: null
       });
       
     });
     
-</script>-->
+</script>
 
 <h1>Users</h1>
 

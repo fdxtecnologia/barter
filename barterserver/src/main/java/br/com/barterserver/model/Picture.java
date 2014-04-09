@@ -7,9 +7,12 @@
 package br.com.barterserver.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,6 +28,8 @@ public class Picture implements Serializable{
     private Long id;
     private String title;
     private String photoURL;
+    @ManyToOne
+    private User owner;
 
     public Long getId() {
         return id;
@@ -49,7 +54,14 @@ public class Picture implements Serializable{
     public void setPhotoURL(String photoURL) {
         this.photoURL = photoURL;
     }
-    
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
     
     
 }
