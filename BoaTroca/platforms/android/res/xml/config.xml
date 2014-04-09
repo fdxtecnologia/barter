@@ -4,19 +4,19 @@
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
-    <name>BoaTroca</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
+    <name>BoaTroca</name>
+    <description>
+        BoaTroca App.
+    </description>
+    <author email="diogo.matos@fdxtecnologia.com.br" href="http://www.fdxtecnologia.com.boatroca">
+        FDX Develop Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
 </widget>

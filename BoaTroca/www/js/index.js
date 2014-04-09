@@ -3,7 +3,12 @@
     /* ---------------------------------- Local Variables ---------------------------------- */
     var content = $( '#mainContent' );
     var leftPanel = $( '#left-panel' );
+    var rightPanel = $('#right-panel');
     var home = $('#div2');
+    var myPictures = $('#div3');
+    var addPictures = $('#div4');
+    var config = $('#div5')
+
 
     /* --------------------------------- Event Registration -------------------------------- */
     document.addEventListener('deviceready', function () {
@@ -57,9 +62,9 @@
     function hideDivs () {
         $('#div1').hide();
         home.hide();
-        $('#div3').hide();
-        $('#div4').hide();
-        $('#div5').hide();
+        myPictures.hide();
+        addPictures.hide();
+        config.hide();
         $('#div6').hide();
         $('#div7').hide();
         $('#div8').hide();
@@ -73,37 +78,47 @@
             // Procurar Figurinhas!
             alert("Bu!");
         });
+        leftPanel.panel( "close" );
+        rightPanel.panel("close");
     };
 
     function offlineDevice () {
-        // body...
         alert("Sem acesso à internet!");
         //methods if device is offline
     };
 
 
     /* ---------------------------------- Buttons Behavior ---------------------------------- */
-    $('#config').on("click", function () {
+    $('#Home').on('click', function(){
+        hideDivs();
+        loadHome();
+        leftPanel.panel("close");
+    })
+
+    $('#config').on('click', function () {
         // Comportamento ao se clicar no menu Configurações
+        hideDivs();
+        config.show();
         leftPanel.panel( "close" );
     });
 
     $('#myImages').on('click', function () {
         // Comportamento ao se clicar no menu Minhas Figurinhas
         hideDivs();
-        $('#div3').show();
+        myPictures.show();
         leftPanel.panel( "close" );
     });
 
     $('#upImages').on('click', function () {
         hideDivs();
-        $('#div4').show();
+        addPictures.show();
         leftPanel.panel( "close" );
     });
 
     $('#takePicture').on('click', takePicture);
     $('#selectPicture').on('click', selectPicture);
     $('#uploadPicture').on('click', uploadPicture);
+
 
 
 
@@ -135,6 +150,7 @@
 
     /** * Upload current picture */
     function uploadPicture() {       // Get URI of picture to upload
+        /*
         var img = document.getElementById('camera_image');
         var imageURI = img.src;
         if (!imageURI || (img.style.display == "none")) {
@@ -160,7 +176,7 @@
                     document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
                 }, options
             );
-        }
+        }*/
     };
 
     /*
