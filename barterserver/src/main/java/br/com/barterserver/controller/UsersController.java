@@ -9,18 +9,23 @@ package br.com.barterserver.controller;
 import br.com.barterserver.dao.PictureDAO;
 import br.com.barterserver.dao.UserDAO;
 import br.com.barterserver.model.Picture;
-import br.com.barterserver.model.Role;
 import br.com.barterserver.model.SearchJSON;
 import br.com.barterserver.model.User;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.core.RequestInfo;
+import br.com.caelum.vraptor.http.route.Router;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.caelum.vraptor.resource.HttpMethod;
 import br.com.caelum.vraptor.view.Results;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -32,11 +37,16 @@ public class UsersController {
     private UserDAO dao;
     private PictureDAO picDAO;
     private Result result;
+    private Router router;
+    private RequestInfo requestInfo;
     
-    public UsersController(Result result, UserDAO dao, PictureDAO picDAO){
+    public UsersController(Result result, UserDAO dao, PictureDAO picDAO, Router router, RequestInfo requestInfo){
         
         this.result = result;
         this.dao = dao;
+        this.requestInfo = requestInfo;
+        this.router = router;
+        this.picDAO = picDAO;
         
     }
     
@@ -59,8 +69,17 @@ public class UsersController {
         result.include("user",dao.findById(id));
     }
     
-    @Post("/search")
+    @Path("/search")
     public void findTrades(String title, User currentUser){
+        
+        //----------------HTTP HEADER NEVER CHANGE----------------------//
+        Set<HttpMethod> allowed = router.allowedMethodsFor(requestInfo.getRequestedUri());
+        result.use(Results.status()).header("Allow", allowed.toString().replaceAll("\\[|\\]", ""));  
+        result.use(Results.status()).header("Access-Control-Allow-Origin", "*");           
+        result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
+        result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
+        //----------------HTTP HEADER NEVER CHANGE----------------------//         
+        
         List<Picture> pics = dao.searchPictures(title);
         List<SearchJSON> searchs = new ArrayList<SearchJSON>();
         
@@ -92,14 +111,32 @@ public class UsersController {
         return distance;
     }
     
-    @Post("/user/post/mypictures")
+    @Path("/user/post/mypictures")
     public void listMyPictures(User user){
+        
+        //----------------HTTP HEADER NEVER CHANGE----------------------//
+        Set<HttpMethod> allowed = router.allowedMethodsFor(requestInfo.getRequestedUri());
+        result.use(Results.status()).header("Allow", allowed.toString().replaceAll("\\[|\\]", ""));  
+        result.use(Results.status()).header("Access-Control-Allow-Origin", "*");           
+        result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
+        result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
+        //----------------HTTP HEADER NEVER CHANGE----------------------// 
+        
        List<Picture> myPics = user.getPictures();
        result.use(Results.json()).withoutRoot().from(myPics).serialize();
     }
     
-    @Post("/user/post/picture/add")
-    public void addPicture(Picture picture, User user){
+    @Path("/user/post/picture/add")
+    public void addPicture(Picture picture, User user, UploadedFile image) throws IOException{
+        
+        //----------------HTTP HEADER NEVER CHANGE----------------------//
+        Set<HttpMethod> allowed = router.allowedMethodsFor(requestInfo.getRequestedUri());
+        result.use(Results.status()).header("Allow", allowed.toString().replaceAll("\\[|\\]", ""));  
+        result.use(Results.status()).header("Access-Control-Allow-Origin", "*");           
+        result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
+        result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
+        //----------------HTTP HEADER NEVER CHANGE----------------------//
+        
             if(picture.getId() == null){
                 user = dao.findById(user.getId());
                 List<Picture> pictures = user.getPictures();
@@ -112,8 +149,14 @@ public class UsersController {
                 result.use(Results.json()).withoutRoot().from(pictureId).serialize();
             }else{
                Picture updatePic = picDAO.findById(picture.getId());
-               picDAO.saveOrUpdate(picture);
-               result.use(Results.http()).body("Pictures saved");
+               String fileName = dao.uploadPictureToServer(image);
+               if(fileName != null){
+                    updatePic.setPhotoURL(fileName);
+                    picDAO.saveOrUpdate(updatePic);
+                    result.use(Results.http()).body("Pictures saved");
+               }else{
+                   result.use(Results.http()).body("Pictures wasn't able to save");
+               }
             }
     }
     

@@ -5,13 +5,16 @@
  */
 
 package br.com.barterserver.dao;
-
-import br.com.barterserver.login.Permission;
 import br.com.barterserver.model.Picture;
-import br.com.barterserver.model.Role;
 import br.com.barterserver.model.User;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.Component;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+import org.apache.commons.io.IOUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -21,6 +24,8 @@ import org.hibernate.Session;
  */
 @Component
 public class UserDAO extends GenericDAO<User>{
+    
+    public static String PATH_PHOTO;
 
     public UserDAO(Session session) {
         super(session);
@@ -57,6 +62,30 @@ public class UserDAO extends GenericDAO<User>{
         
         return (User) q.uniqueResult();
         
+    }
+    
+    public String uploadPictureToServer(UploadedFile image) throws IOException{
+        
+        String fileName = null;
+        
+        if(image!=null){
+            
+            fileName = image.getFileName();
+            
+            try {
+                
+                IOUtils.copy(image.getFile(), new FileOutputStream(new File(PATH_PHOTO)));
+                
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                throw new FileNotFoundException("File wasn't found");
+            } catch (IOException e){
+                e.printStackTrace();
+                throw new IOException("Not possible to send the file");
+            }
+        }
+        
+        return fileName;
     }
     
 }
