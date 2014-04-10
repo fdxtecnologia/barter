@@ -28,7 +28,6 @@ public class UserDAO extends GenericDAO<User>{
     
     public User saveOrUpdateAndReturn(User user){
         this.saveOrUpdate(user);
-                
         return user;
     }
     
