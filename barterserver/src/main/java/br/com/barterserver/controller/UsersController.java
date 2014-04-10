@@ -61,11 +61,16 @@ public class UsersController {
     
     public void save(User user){
         user.setUserRole(Role.USER);
-        User u = dao.saveOrUpdateAndReturn(user);
-        if(u == null){
-            result.use(Results.http()).body("ERROR");
+        if(user.getId() == null){
+            if(isValid(user)){
+                User u = dao.saveOrUpdateAndReturn(user);
+                result.use(Results.json()).withoutRoot().from(u).serialize();
+            }else{
+               result.use(Results.http()).body("ERROR"); 
+            }
         }else{
-            result.use(Results.json()).withoutRoot().from(u).serialize();
+           User u = dao.saveOrUpdateAndReturn(user);
+           result.use(Results.json()).withoutRoot().from(u).serialize();
         }
     }
     
