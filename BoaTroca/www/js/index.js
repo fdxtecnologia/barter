@@ -141,10 +141,12 @@
                 
                 return checkLogin(function() {
 
-                   
-                    // Here we specify what we do with the response anytime this event occurs. 
-                   
-                    FB.api("/me?fields=name,email,id,birthday", function(response) {
+                    FB.getLoginStatus(function(response) {
+                      if (response.status === 'connected') {
+            
+                        var accessToken = response.authResponse.accessToken;
+
+                        FB.api("/me?fields=name,email,id,birthday", function(response) {
                 
                         var params = {
                           usuario: {
@@ -156,7 +158,7 @@
                           }
                         };
                         
-                        var accessToken = "asdfasfafasfasfdafas";
+                        //var accessToken = "asdfasfafasfasfdafas";
                         //console.log(response);
                         //console.log("User ID: "+params.usuario.id);
                         //console.log("User Name: "+params.usuario.name);
@@ -213,6 +215,12 @@
                         });*/
                         
                       }, {scope: "email, publish_stream, user_birthday, user_location, user_work_history user_about_me, user_hometown, user_friends, read_stream"})
+
+                      }
+                    });
+                    // Here we specify what we do with the response anytime this event occurs. 
+                   
+                    
                 
                 });
             });
