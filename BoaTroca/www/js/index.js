@@ -7,8 +7,10 @@
     var home = $('#div2');
     var myPictures = $('#div3');
     var addPictures = $('#div4');
-    var config = $('#div5')
+    var config = $('#div5');
+    var login = $('#div1');
 
+    var baseUrl = "http://localhost:8080/barterserver/";
 
     /* --------------------------------- Event Registration -------------------------------- */
     document.addEventListener('deviceready', function () {
@@ -38,14 +40,15 @@
     }, false );
 
     /* ---------------------------------- Local Functions ---------------------------------- */
-    function init() {
+    
+          
+    function init(sessao) {
         console.log("app initialized");
 
         //login verification
         //if localStorage has login info then open aplication - if not, opens login page
-        var a = 1;
-        var b = 1;
-        if (a == b) { //login invalid
+        sessao == NULL;
+        if (sessao != NULL) { //login invalid
             //call login page
             $('#div1').on("click", "button", function () {
                 loadHome();
@@ -53,11 +56,152 @@
                 $(this).remove();
                 delete init;
             });
-        } else{
-            //call loadHome();
+        } else {
+            loadLogin();
+            $(this).remove();
             delete init;
         };
     };
+
+
+      window.fbAsyncInit = function() {
+                // init the FB JS SDK
+                FB.init({
+                    appId: '489987941127071', // App ID from the app dashboard
+                    status     : true, // check login status
+                    cookie     : true, // enable cookies to allow the server to access the session
+                    xfbml      : true  // parse XFBML
+                });
+            };
+
+            // Load the SDK asynchronously
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+
+            function checkLogin(callback) {
+                FB.getLoginStatus(function(response) {
+                    if (response.status === 'connected') {
+                        console.log("connected");
+                        var uid = response.authResponse.userID;
+                        var accessToken = response.authResponse.accessToken;
+                        callback(accessToken);
+                        return true;
+                    } else if (response.status === 'not_authorized') {
+                        console.log("Not authorized");
+                        return false;
+                    } else {
+                        console.log("Tentando Login");
+                        FB.login(function(response) {
+                            if(response.authResponse) {
+                                callback();
+                                return true;
+                            } else {
+                                alert("Não foi possivel efetuar o login no facebook");
+                                return false;
+                            }
+                        }, {scope: "email, publish_stream, user_birthday, user_location, user_work_history user_about_me, user_hometown, user_friends, read_stream"});
+                    }
+                });
+            }
+
+
+
+
+        $(document).ready(function() {
+            $("#btn_login").click(function() {
+                              
+                
+                return checkLogin(function() {
+
+                   
+
+                    FB.api("/me?fields=name,email,id,birthday", function(response) {
+                
+                        var params = {
+                          usuario: {
+                            id: response.id,
+                            email: response.email,
+                            name: response.name,
+                            birthday: response.birthday,
+
+                          }
+                        };
+                        //var accessToken = response.authResponse.accessToken;
+                        var accessToken = "asdfasfafasfasfdafas";
+                        //console.log(response);
+                        //console.log("User ID: "+params.usuario.id);
+                        //console.log("User Name: "+params.usuario.name);
+                        //console.log("User Email: "+params.usuario.email);
+                        //console.log("User birthday: "+params.usuario.birthday);
+                        //console.log("User Token: "+accessToken);
+                        buscaLocalizacao();
+                        var latitude = 44.91;
+                        var longitude = -81.12;
+
+                        Hoje = new Date();
+                        Mes = Hoje.getMonth();
+                        Mes++;
+                        Ano = Hoje.getFullYear();
+
+                        mesBirthday = params.usuario.birthday.substr(0,2);
+                        anoBirthday = params.usuario.birthday.substr(6,4);
+
+                        month = Mes - mesBirthday;
+
+                        if(month >= 0){
+                          age = Ano - anoBirthday;
+                        }else{
+                          age = Ano - anoBirthday;
+                          age--;
+                        }
+
+                        //console.log("Idade: "+age);
+                        //console.log(month);
+
+                        $.ajax({
+                          type: "POST",
+                          url: "http://localhost:8080/barterserver/user/post/save",
+                          data: {'user.name':params.usuario.name,'user.email':params.usuario.email,'user.password':accessToken,'user.age':age, 'user.loc_lat':latitude, 'user.loc_long':longitude},
+                          dataType: "json", 
+                          success: function(response) {
+                              alert(response);
+                              loadHome();
+                          }
+                        });
+                        
+                      }, {scope: "email, publish_stream, user_birthday, user_location, user_work_history user_about_me, user_hometown, user_friends, read_stream"})
+                });
+            });
+        });
+
+
+    function buscaLocalizacao(){
+
+        var onSuccess = function(position) {
+            $("#hdnlatitude").append(position.coords.latitude);
+            $("#hdnlongitude").append(position.coords.longitude);
+        };
+
+        // onError Callback receives a PositionError object
+        //
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
+
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+    }
+
 
     function hideDivs () {
         $('#div1').hide();
@@ -70,6 +214,13 @@
         $('#div8').hide();
         $('#div9').hide();
     };
+
+    function loadLogin(){
+        hideDivs();
+        login.show();
+        leftPanel.panel("close");
+        rightPanel.panel("close");
+    }
 
     function loadHome(){
         hideDivs();

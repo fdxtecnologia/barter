@@ -38,3 +38,4 @@ barterserver/target/idealize-me/WEB-INF/classes/br/com/barterserver/dao/UserDAO.
 barterserver/target/classes/br/com/barterserver/login/LoginInterceptor.class
 
 barterserver/target/classes/br/com/barterserver/login/LoginInterceptor.class
+/barterserver/target/
