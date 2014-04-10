@@ -61,11 +61,11 @@ public class UsersController {
     
     public void save(User user){
         user.setUserRole(Role.USER);
-        if(isValid(user)){
-            User u = dao.saveOrUpdateAndReturn(user);
-            result.use(Results.json()).withoutRoot().from(u).serialize();
+        User u = dao.saveOrUpdateAndReturn(user);
+        if(u == null){
+            result.use(Results.http()).body("ERROR");
         }else{
-            result.include("errors","Not able to sign up the user");
+            result.use(Results.json()).withoutRoot().from(u).serialize();
         }
     }
     

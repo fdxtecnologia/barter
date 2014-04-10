@@ -26,10 +26,21 @@ public class UserDAO extends GenericDAO<User>{
         super(session);
     }
     
-   public User saveOrUpdateAndReturn(User user){
-         
-        session.saveOrUpdate(user);
-        session.flush();
+    public User saveOrUpdateAndReturn(User user){
+        boolean isUnique = true;
+        for(User u: this.findAll()){
+            if(u.getEmail().equals(user.getEmail())){
+                isUnique = false;
+            }
+        }
+        if(isUnique){
+            session.saveOrUpdate(user);
+            session.flush();
+        }else{
+            
+            user = null;
+            
+        }
         
         return user;
     }
