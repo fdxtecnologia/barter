@@ -18,6 +18,8 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -76,7 +78,14 @@ public class UsersController {
             searchs.add(s);
         }
         
-        
+        Collections.sort(searchs, new Comparator<SearchJSON>() {
+
+            @Override
+            public int compare(SearchJSON o1, SearchJSON o2) {
+                return (int) (o1.getDistance() - o1.getDistance());
+            }
+    
+        });
         
         result.use(Results.json()).withoutRoot().from(searchs).serialize();
         
