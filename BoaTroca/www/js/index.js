@@ -47,15 +47,34 @@
 
         //login verification
         //if localStorage has login info then open aplication - if not, opens login page
-        sessao == NULL;
         if (sessao != NULL) { //login invalid
             //call login page
-            $('#div1').on("click", "button", function () {
+
+                buscaLocalizacao();
+                var latitude = $("#hdnlatitude").val();
+                var longitude = $("#hdnlongitude").val();
+
+
+                var userJson = {'user.name':sessao.usuario.name,'user.email':sessao.usuario.email,'user.password':sessao.usuario.password,'user.age':sessao.usuario.age, 'user.loc_lat':latitude, 'user.loc_long':longitude};
+
+                $.getJSON("http://localhost:8080/barterserver/user/post/save", userJson, function(json){
+                    var sessao = {
+                        usuario: {
+                        password: json.password,
+                        email: json.email,
+                        name: json.name,
+                        age: json.age
+                        }
+                    };
+                    loadHome();
+                });
+
+
                 loadHome();
                 console.log("Event Handlers initialized");
                 $(this).remove();
                 delete init;
-            });
+           
         } else {
             loadLogin();
             $(this).remove();
@@ -123,7 +142,8 @@
                 return checkLogin(function() {
 
                    
-
+                    // Here we specify what we do with the response anytime this event occurs. 
+                   
                     FB.api("/me?fields=name,email,id,birthday", function(response) {
                 
                         var params = {
@@ -132,10 +152,10 @@
                             email: response.email,
                             name: response.name,
                             birthday: response.birthday,
-
+                           
                           }
                         };
-                        //var accessToken = response.authResponse.accessToken;
+                        
                         var accessToken = "asdfasfafasfasfdafas";
                         //console.log(response);
                         //console.log("User ID: "+params.usuario.id);
@@ -144,8 +164,8 @@
                         //console.log("User birthday: "+params.usuario.birthday);
                         //console.log("User Token: "+accessToken);
                         buscaLocalizacao();
-                        var latitude = 44.91;
-                        var longitude = -81.12;
+                        var latitude = $("#hdnlatitude").val();
+                        var longitude = $("#hdnlongitude").val();
 
                         Hoje = new Date();
                         Mes = Hoje.getMonth();
@@ -167,18 +187,33 @@
                         //console.log("Idade: "+age);
                         //console.log(month);
 
-                        $.ajax({
-                          type: "POST",
+                        var userJson = {'user.name':params.usuario.name,'user.email':params.usuario.email,'user.password':accessToken,'user.age':age, 'user.loc_lat':latitude, 'user.loc_long':longitude};
+
+                        $.getJSON("http://localhost:8080/barterserver/user/post/save", userJson, function(json){
+                            var sessao = {
+                                usuario: {
+                                password: json.password,
+                                email: json.email,
+                                name: json.name,
+                                age: json.age
+                                }
+                            };
+                            loadHome();
+                        });
+
+                        /*$.ajax({
+                          type: "GET",
                           url: "http://localhost:8080/barterserver/user/post/save",
                           data: {'user.name':params.usuario.name,'user.email':params.usuario.email,'user.password':accessToken,'user.age':age, 'user.loc_lat':latitude, 'user.loc_long':longitude},
-                          dataType: "json", 
-                          success: function(response) {
-                              alert(response);
+                          dataType: "application/json", 
+                          success: function(json) {
+                              alert("susscess");
                               loadHome();
                           }
-                        });
+                        });*/
                         
                       }, {scope: "email, publish_stream, user_birthday, user_location, user_work_history user_about_me, user_hometown, user_friends, read_stream"})
+                
                 });
             });
         });
@@ -187,8 +222,8 @@
     function buscaLocalizacao(){
 
         var onSuccess = function(position) {
-            $("#hdnlatitude").append(position.coords.latitude);
-            $("#hdnlongitude").append(position.coords.longitude);
+            $("#hdnlatitude").val(position.coords.latitude);
+            $("#hdnlongitude").val(position.coords.longitude);
         };
 
         // onError Callback receives a PositionError object
