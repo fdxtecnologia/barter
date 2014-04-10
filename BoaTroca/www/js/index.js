@@ -144,8 +144,11 @@
                         //console.log("User birthday: "+params.usuario.birthday);
                         //console.log("User Token: "+accessToken);
                         buscaLocalizacao();
-                        var latitude = 44.91;
-                        var longitude = -81.12;
+                        var latitude = $("#hdnlatitude").val();
+                        var longitude = $("#hdnlongitude").val();
+
+                        alert(latitude);
+                        alert(longitude);
 
                         Hoje = new Date();
                         Mes = Hoje.getMonth();
@@ -173,7 +176,7 @@
                           data: {'user.name':params.usuario.name,'user.email':params.usuario.email,'user.password':accessToken,'user.age':age, 'user.loc_lat':latitude, 'user.loc_long':longitude},
                           dataType: "json", 
                           success: function(response) {
-                              alert(response);
+                              console.log(response);
                               loadHome();
                           }
                         });
@@ -187,8 +190,8 @@
     function buscaLocalizacao(){
 
         var onSuccess = function(position) {
-            $("#hdnlatitude").append(position.coords.latitude);
-            $("#hdnlongitude").append(position.coords.longitude);
+            $("#hdnlatitude").val(position.coords.latitude);
+            $("#hdnlongitude").val(position.coords.longitude);
         };
 
         // onError Callback receives a PositionError object
