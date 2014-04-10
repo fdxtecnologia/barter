@@ -48,10 +48,12 @@ public class LoginController {
         User u = userDAO.getUserByCredentials(user.getEmail(), user.getPassword());
         if (u != null && u.getUserRole() == Role.USER) {
             result.use(Results.http()).body("User signed in");
+            result.forwardTo(UsersController.class).save(u);
         } else {
+            result.use(Results.http()).body("User signed in and signed up!");
             result.forwardTo(UsersController.class).save(user);
-            result.use(Results.http()).body("User signed in");
         }
+        
     }
     
 }

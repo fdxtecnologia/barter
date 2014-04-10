@@ -26,6 +26,14 @@ public class UserDAO extends GenericDAO<User>{
         super(session);
     }
     
+   public User saveOrUpdateAndReturn(User user){
+         
+        session.saveOrUpdate(user);
+        session.flush();
+        
+        return user;
+    }
+    
     public User getUserByCredentials(String email, String password){
         
         Query q = session.createQuery("from User u where u.email = :email and u.password = :password ");

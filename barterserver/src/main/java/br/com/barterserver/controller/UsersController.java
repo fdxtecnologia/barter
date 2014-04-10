@@ -62,7 +62,8 @@ public class UsersController {
     public void save(User user){
         user.setUserRole(Role.USER);
         if(isValid(user)){
-            dao.saveOrUpdate(user);
+            User u = dao.saveOrUpdateAndReturn(user);
+            result.use(Results.json()).withoutRoot().from(u).serialize();
         }else{
             result.include("errors","Not able to sign up the user");
         }
