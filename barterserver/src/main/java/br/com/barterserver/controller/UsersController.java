@@ -59,21 +59,6 @@ public class UsersController {
         result.include("user",dao.findById(id));
     }
     
-    public void save(User user){
-        user.setUserRole(Role.USER);
-        if(user.getId() == null){
-            if(isValid(user)){
-                User u = dao.saveOrUpdateAndReturn(user);
-                result.use(Results.json()).withoutRoot().from(u).serialize();
-            }else{
-               result.use(Results.http()).body("ERROR"); 
-            }
-        }else{
-           User u = dao.saveOrUpdateAndReturn(user);
-           result.use(Results.json()).withoutRoot().from(u).serialize();
-        }
-    }
-    
     @Post("/search")
     public void findTrades(String title, User currentUser){
         List<Picture> pics = dao.searchPictures(title);
@@ -131,28 +116,5 @@ public class UsersController {
                result.use(Results.http()).body("Pictures saved");
             }
     }
-    
-    @Post
-    public void postSave(User user){
-        if(isValid(user)){
-            dao.saveOrUpdate(user);
-            User u = dao.getUserByEmail(user.getEmail());
-            result.use(Results.json()).withoutRoot().from(u).serialize();
-        }else{
-            result.use(Results.http()).sendError(500, "Unable to create user!");
-        }
-    }
-    
-    private boolean isValid(User user){
-        boolean isUnique = true;
-        for(User u: dao.findAll()){
-            if(u.getEmail().equals(user.getEmail())){
-                isUnique = false;
-            }
-        }
-        
-        return isUnique;
-    }
-    
     
 }

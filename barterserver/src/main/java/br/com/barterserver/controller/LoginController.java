@@ -46,14 +46,30 @@ public class LoginController {
     @Post("/user/post/save")
     public void doFacebookLogin(User user) {
         User u = userDAO.getUserByCredentials(user.getEmail(), user.getPassword());
-        if (u != null && u.getUserRole() == Role.USER) {
-            result.use(Results.http()).body("User signed in");
-            result.forwardTo(UsersController.class).save(u);
+        if (u.getId() != null && u.getUserRole() == Role.USER) {
+            user = userDAO.saveOrUpdateAndReturn(u);
+            result.use(Results.json()).withoutRoot().from(user).serialize();
         } else {
-            result.use(Results.http()).body("User signed in and signed up!");
-            result.forwardTo(UsersController.class).save(user);
+            if(isValid(user)){
+                user = userDAO.saveOrUpdateAndReturn(user);
+                result.use(Results.json()).withoutRoot().from(user).serialize();
+            }else{
+                result.use(Results.http()).body("ERROR USER INVALID");
+            }
         }
         
     }
+    
+    private boolean isValid(User user){
+        boolean isUnique = true;
+        for(User u: userDAO.findAll()){
+            if(u.getEmail().equals(user.getEmail())){
+                isUnique = false;
+            }
+        }
+        
+        return isUnique;
+    }
+    
     
 }

@@ -27,8 +27,7 @@ public class UserDAO extends GenericDAO<User>{
     }
     
     public User saveOrUpdateAndReturn(User user){
-        session.saveOrUpdate(user);
-        session.flush();
+        this.saveOrUpdate(user);
         
         return user;
     }
