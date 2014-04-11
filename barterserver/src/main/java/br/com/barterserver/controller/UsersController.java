@@ -143,7 +143,6 @@ public class UsersController {
                 picture.setOwner(user);
                 pictures.add(picture);
                 user.setPictures(pictures);
-                dao.saveOrUpdate(user);
                 String fileName = dao.uploadPictureToServer(image, picture.getId());
                 if(fileName != null){
                     picture.setPhotoURL(fileName);

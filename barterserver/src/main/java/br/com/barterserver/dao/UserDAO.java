@@ -72,7 +72,9 @@ public class UserDAO extends GenericDAO<User>{
             
             try {
                 
-                IOUtils.copy(image.getFile(), new FileOutputStream(new File( PATH_PHOTO + pictureId + ".jpg")));
+                fileName = PATH_PHOTO + pictureId + ".jpg";
+                
+                IOUtils.copy(image.getFile(), new FileOutputStream(new File(fileName)));
                 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
