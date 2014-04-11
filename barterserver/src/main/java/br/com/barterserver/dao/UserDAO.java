@@ -25,7 +25,7 @@ import org.hibernate.Session;
 @Component
 public class UserDAO extends GenericDAO<User>{
     
-    public static String PATH_PHOTO;
+    public static String PATH_PHOTO="http://localhost:8080/users/userpicsid/";
 
     public UserDAO(Session session) {
         super(session);
@@ -64,17 +64,15 @@ public class UserDAO extends GenericDAO<User>{
         
     }
     
-    public String uploadPictureToServer(UploadedFile image) throws IOException{
+    public String uploadPictureToServer(UploadedFile image, Long pictureId) throws IOException{
         
         String fileName = null;
         
         if(image!=null){
             
-            fileName = image.getFileName();
-            
             try {
                 
-                IOUtils.copy(image.getFile(), new FileOutputStream(new File(PATH_PHOTO)));
+                IOUtils.copy(image.getFile(), new FileOutputStream(new File( PATH_PHOTO + pictureId + ".jpg")));
                 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

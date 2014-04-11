@@ -126,7 +126,7 @@ public class UsersController {
        result.use(Results.json()).withoutRoot().from(myPics).serialize();
     }
     
-    @Path("/user/post/picture/add")
+    @Post("/user/post/picture/add")
     public void addPicture(Picture picture, User user, UploadedFile image) throws IOException{
         
         //----------------HTTP HEADER NEVER CHANGE----------------------//
@@ -144,19 +144,14 @@ public class UsersController {
                 pictures.add(picture);
                 user.setPictures(pictures);
                 dao.saveOrUpdate(user);
-                int pictureIndex = user.getPictures().lastIndexOf(picture);
-                Long pictureId = user.getPictures().get(pictureIndex).getId();
-                result.use(Results.json()).withoutRoot().from(pictureId).serialize();
-            }else{
-               Picture updatePic = picDAO.findById(picture.getId());
-               String fileName = dao.uploadPictureToServer(image);
-               if(fileName != null){
-                    updatePic.setPhotoURL(fileName);
-                    picDAO.saveOrUpdate(updatePic);
+                String fileName = dao.uploadPictureToServer(image, picture.getId());
+                if(fileName != null){
+                    picture.setPhotoURL(fileName);
+                    picDAO.saveOrUpdate(picture);
                     result.use(Results.http()).body("Pictures saved");
-               }else{
+                }else{
                    result.use(Results.http()).body("Pictures wasn't able to save");
-               }
+                }
             }
     }
     
