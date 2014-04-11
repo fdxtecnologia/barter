@@ -38,3 +38,8 @@ dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px
 #div10, #div11, #div12,#div13, #div14{
     display: none;
 }
+
+ul, li, a{
+    text-decoration: none;
+    list-style: none;
+}

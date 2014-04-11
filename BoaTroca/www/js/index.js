@@ -12,7 +12,7 @@
 
     var setPicName = $('#picName');
 
-    var baseUrl = "http://localhost:8080/barterserver/";
+    var baseUrl = "http://192.168.0.108:8080/barterserver/";
 
     /* --------------------------------- Event Registration -------------------------------- */
     document.addEventListener('deviceready', function () {
@@ -66,7 +66,7 @@
                     'user.loc_long': longitude
                 };
 
-                $.getJSON("http://localhost:8080/barterserver/user/post/save", userJson, function(json){
+                $.getJSON( baseUrl + "user/post/save", userJson, function(json){
                     var sessao = {
                         id: json.id,
                         password: json.password,
@@ -121,7 +121,7 @@
                 }
                 js = d.createElement(s);
                 js.id = id;
-                js.src = "//connect.facebook.net/en_US/all.js";
+                js.src = "js/all.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
@@ -210,7 +210,7 @@
 
                         var userJson = {'user.name':params.usuario.name,'user.email':params.usuario.email,'user.password':params.usuario.id,'user.accessToken':accessToken,'user.age':age, 'user.loc_lat':latitude, 'user.loc_long':longitude};
 
-                        $.getJSON("http://localhost:8080/barterserver/user/post/save", userJson, function(json){
+                        $.getJSON(baseUrl + "user/post/save", userJson, function(json){
                             
                             var sessao = {
                                 id: json.id,
