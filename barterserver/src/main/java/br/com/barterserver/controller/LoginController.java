@@ -64,11 +64,13 @@ public class LoginController {
         //----------------HTTP HEADER NEVER CHANGE----------------------//
         
         User u = userDAO.getUserByCredentials(user.getEmail(), user.getPassword());
-        if (u.getId() != null && u.getUserRole() == Role.USER) {
-            u.setLoc_lat(user.getLoc_lat());
-            u.setLoc_long(user.getLoc_long());
-            user = userDAO.saveOrUpdateAndReturn(u);
-            result.use(Results.json()).withoutRoot().from(user).serialize();
+        if (u != null ) {
+            if (u.getUserRole() == Role.USER){
+                u.setLoc_lat(user.getLoc_lat());
+                u.setLoc_long(user.getLoc_long());
+                user = userDAO.saveOrUpdateAndReturn(u);
+                result.use(Results.json()).withoutRoot().from(user).serialize();
+            }
         } else {
             if(isValid(user)){
                 user.setUserRole(Role.USER);

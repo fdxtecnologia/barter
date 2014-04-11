@@ -6,9 +6,11 @@
 
 package br.com.barterserver.model;
 
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 /**
  *
@@ -30,14 +33,24 @@ public class User implements Serializable{
     private Long id;
     private String name;
     private String email;
-    private String password;
+    @Column(columnDefinition = "text")
+    private String accessToken;
     private int age;
+    private String password;
     @OneToMany(cascade = CascadeType.ALL) 
     private List<Picture> pictures;
     @Enumerated(EnumType.STRING)
     private Role userRole;
     private Double loc_lat;
     private Double loc_long;
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 
     public Long getId() {
         return id;
