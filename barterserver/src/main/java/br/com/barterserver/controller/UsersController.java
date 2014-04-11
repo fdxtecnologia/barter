@@ -80,6 +80,8 @@ public class UsersController {
         result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
         //----------------HTTP HEADER NEVER CHANGE----------------------//         
         
+        currentUser = dao.findById(currentUser.getId());
+        
         List<Picture> pics = dao.searchPictures(title);
         List<SearchJSON> searchs = new ArrayList<SearchJSON>();
         
