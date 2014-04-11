@@ -10,6 +10,8 @@
     var config = $('#div5');
     var login = $('#div1');
 
+    var setPicName = $('#picName');
+
     var baseUrl = "http://localhost:8080/barterserver/";
 
     /* --------------------------------- Event Registration -------------------------------- */
@@ -293,7 +295,7 @@
         home.show();
         home.on("click", "#search", function () {
             // Procurar Figurinhas!
-            alert("Bu!");
+            
         });
         leftPanel.panel( "close" );
         rightPanel.panel("close");
@@ -332,87 +334,8 @@
         leftPanel.panel( "close" );
     });
 
-    $('#takePicture').on('click', takePicture);
+    $('#takePicture').on('click', captureImage);
     $('#selectPicture').on('click', selectPicture);
-    $('#uploadPicture').on('click', uploadPicture);
-
-
-
-
-    /* ---------------------------------- Camera Function ---------------------------------- */
-    
-    /** * Take picture with camera */
-    function takePicture() {
-        navigator.camera.getPicture(function(uri) {
-            var img = document.getElementById('camera_image');
-            img.style.visibility = "visible";
-            img.style.display = "block";
-            img.src = uri;
-            document.getElementById('camera_status').innerHTML = "Success";
-        },
-        function(e) {
-            console.log("Error getting picture: " + e);
-            document.getElementById('camera_status').innerHTML = "Error getting picture.";
-        },
-        { quality: 50, destinationType: navigator.camera.DestinationType.FILE_URI});
-    };
-
-    /** * Select picture from library */
-    function selectPicture() {
-        navigator.camera.getPicture( { 
-            quality: 50, destinationType: navigator.camera.DestinationType.FILE_URI,
-            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-        });
-    };
-
-    /** * Upload current picture */
-    function uploadPicture() {       // Get URI of picture to upload
-        /*
-        var img = document.getElementById('camera_image');
-        var imageURI = img.src;
-        if (!imageURI || (img.style.display == "none")) {
-            //document.getElementById('camera_status').innerHTML = "Take picture or select picture from library first.";
-            alert("Tire uma foto ou escolha do album prmeiro!");
-            return;
-        }
-        // Verify server has been entered
-        server = document.getElementById('serverUrl').value;
-        if (server) {
-            // Specify transfer options
-            var options = new FileUploadOptions();
-            options.fileKey="file";
-            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-            options.mimeType="image/jpeg";
-            options.chunkedMode = false;
-            // Transfer picture to server
-            var ft = new FileTransfer();
-            ft.upload(imageURI, server, function(r) {
-                document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
-                },
-                function(error) {
-                    document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-                }, options
-            );
-        }*/
-    };
-
-    /*
-    function checkPreAuth(){
-        var form = $("#loginForm");
-        if (window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
-            $("username", form).val(window.localStorage["username"]);
-            $("password", form).val(window.localStorage["password"]);
-            return false;
-        }else{
-            return true;
-        };
-    };
-
-    function handleLogin () {
-        var form = $("#loginForm");
-        var u = $("#username", form).val();
-        var p = $("#password", form).val();
-    };
-    */
+    $('#uploadPicture').on('click', uploadFile);
 
 }());

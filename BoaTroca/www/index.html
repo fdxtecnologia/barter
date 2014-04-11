@@ -56,20 +56,21 @@
 
 
         <!--  Cadastrar figurinha -->
-        <div id="div4" class="row">
+        <div id="div4" class="row" style="margin: 8px;">
             <!-- Camera -->
-            <div>
+            <div class="row" >
                 <h3>Camera:</h3>
                 <b>Status:</b>
                 <span id="camera_status"></span><br>
-                <b>Image:</b>
-                <img style="width:120px;visibility:hidden;display:none;" id="camera_image" src="" />
+                <br/>
+                <img style="display:none;width:260px;height:260px;" id="smallImage" src="" />
             </div>
             <!-- Actions -->
-            <div>
-                <input id="takePicture" type="button" value="Take Picture" />
-                <input id="selectPicture" type="button" value="Select from Library" />
-                <input id="uploadPicture" type="button" value="Upload Picture" />
+            <div class="row">
+                <input id="takePicture" type="button" value="Tirar foto" />
+                <input id="selectPicture" type="button" value="Selecionar do Album" />
+                <input id="picName" style="display: none;" type="text" placeholder="Numero"/>
+                <input id="uploadPicture" style="display: none;" type="button" value="Upload" />
             </div>
         </div>
         
@@ -130,7 +131,7 @@ $( document ).on( "pageinit", "#demo-page", function() {
     });
 });
 </script>
-<script type="text/javascript" src="js/eventHandlers.js"></script>
+<script type="text/javascript" src="js/camera.js"></script>
 <script type="text/javascript" src="js/adapters/memory-adapter.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 </body>
