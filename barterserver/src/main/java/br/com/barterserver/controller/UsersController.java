@@ -102,11 +102,19 @@ public class UsersController {
     }
      
    public Double distance(Double targetLat, Double targetLong, Double userLat, Double userLong){
+       
+        Double R = 6371d;
         
-        Double xx = (targetLat - userLat) * (targetLat - userLat);
-        Double yy = (targetLong - userLong) * (targetLong - userLong);
+        Double dLat = Math.toRadians(targetLat-userLat);
+        Double dLon = Math.toRadians(targetLong-userLong);
+        Double targetLatr = Math.toRadians(targetLat);
+        Double userLatr = Math.toRadians(userLat);
         
-        Double distance = Math.sqrt(xx + yy);
+        Double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(targetLatr) * Math.cos(userLatr);
+        
+        Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        
+        Double distance = R * c;
         
         return distance;
     }
