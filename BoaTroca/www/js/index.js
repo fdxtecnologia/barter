@@ -9,6 +9,7 @@
     var addPictures = $('#div4');
     var config = $('#div5');
     var login = $('#div1');
+    var results = $('#div6');
 
     var setPicName = $('#picName');
 
@@ -277,6 +278,42 @@
 
     }
 
+    $( document ).on( "pageinit", "#results", function() {
+        $( document ).on( "swipeleft swiperight", "#results", function( e ) {
+
+                if ( e.type === "swipeleft"  ) {
+                    $( "#right-panel" ).panel( "open" );
+                } else if ( e.type === "swiperight" ) {
+                    $( "#left-panel" ).panel( "open" );
+                }
+
+        });
+    });
+
+    function buscaFigurinha(numero){
+        var search = {'title':numero, 'currentUser.id': window.localStorage.getItem("userId")};
+
+            $.getJSON("http://localhost:8080/barterserver/search", search, function(json){
+               
+                loadResults();
+
+               var tamJson = json.lenght;
+               //var tamJson = numero;
+               var tamScroller = tamJson*330;
+               $("#scroller").css("width",tamScroller+"px");
+               for(i = 0; i<tamJson; i++) {
+                    $("<div id='result"+i+"' class='results'></div>").appendTo("#thelist");
+
+                    $("<div class='tituloFigurinha'>Titulo "+i+"</div>").appendTo("#result"+i);
+                    
+                    $("<div class='bodyFigurinha'></div>").appendTo("#result"+i);
+                    
+                    $("<div class='nomeUser'>Nome User</div>").appendTo("#result"+i);
+                   
+                }
+        });
+    }
+
 
     function hideDivs () {
         $('#div1').hide();
@@ -301,12 +338,28 @@
         hideDivs();
         home.show();
         home.on("click", "#search", function () {
-            // Procurar Figurinhas!
-            
+            $("#thelist").empty();
+            if($("#txtNumFigurinha").val() != ""){
+                buscaFigurinha($("#txtNumFigurinha").val());
+            } else {
+                navigator.notification.alert(
+                  'Entre com um número de Figurinha!',
+                  function(){},
+                  'Atenção',
+                  'Ok'
+                );
+            }
         });
         leftPanel.panel( "close" );
         rightPanel.panel("close");
     };
+
+    function loadResults(){
+        hideDivs();
+        results.show();
+        leftPanel.panel("close");
+        rightPanel.panel("close");
+    }
 
     function offlineDevice () {
         alert("Sem acesso à internet!");
