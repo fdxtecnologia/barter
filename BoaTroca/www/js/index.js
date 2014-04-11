@@ -13,7 +13,7 @@
 
     var setPicName = $('#picName');
 
-    var baseUrl = "http://192.168.0.108:8080/barterserver/";
+    var baseUrl = "http://localhost:8080/barterserver/";
 
     /* --------------------------------- Event Registration -------------------------------- */
     document.addEventListener('deviceready', function () {
@@ -293,24 +293,35 @@
     function buscaFigurinha(numero){
         var search = {'title':numero, 'currentUser.id': window.localStorage.getItem("userId")};
 
-            $.getJSON("http://localhost:8080/barterserver/search", search, function(json){
-               
-                loadResults();
+        $.getJSON("http://localhost:8080/barterserver/search", search, function(json){
+           
+            
+            loadResults();
+            
+           
+            /*$.each(json, function(){
+                console.log("ID: " + this.ownerId);
+                console.log("First Name: " + this.ownerName);
+                console.log("PID: " + this.pictureId);
+                console.log(" ");
+            });*/
 
-               var tamJson = json.lenght;
-               //var tamJson = numero;
-               var tamScroller = tamJson*330;
-               $("#scroller").css("width",tamScroller+"px");
-               for(i = 0; i<tamJson; i++) {
-                    $("<div id='result"+i+"' class='results'></div>").appendTo("#thelist");
+           var tamJson;
+           //var tamJson = numero;
+           
+           
+           $.each(json, function(){
+                $("<div id='result"+this.pictureId+"' class='results'></div>").appendTo("#thelist");
 
-                    $("<div class='tituloFigurinha'>Titulo "+i+"</div>").appendTo("#result"+i);
-                    
-                    $("<div class='bodyFigurinha'></div>").appendTo("#result"+i);
-                    
-                    $("<div class='nomeUser'>Nome User</div>").appendTo("#result"+i);
-                   
-                }
+                $("<div class='tituloFigurinha'>"+this.pictureTitle+"</div>").appendTo("#result"+this.pictureId);
+                
+                $("<div class='bodyFigurinha'>"+this.picturePhotoURL+"</div>").appendTo("#result"+this.pictureId);
+                
+                $("<div class='nomeUser'>"+this.ownerName+"</div>").appendTo("#result"+this.pictureId);
+               tamJson++
+            });
+           var tamScroller = tamJson*330;
+           $("#scroller").css("width",tamScroller+"px");
         });
     }
 
@@ -356,6 +367,7 @@
 
     function loadResults(){
         hideDivs();
+        $("#thelist").empty();
         results.show();
         leftPanel.panel("close");
         rightPanel.panel("close");
