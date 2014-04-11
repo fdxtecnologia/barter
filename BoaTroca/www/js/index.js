@@ -55,7 +55,14 @@
                 var longitude = $("#hdnlongitude").val();
 
 
-                var userJson = {'user.name':sessao.usuario.name,'user.email':sessao.usuario.email,'user.password':sessao.usuario.password,'user.age':sessao.usuario.age, 'user.loc_lat':latitude, 'user.loc_long':longitude};
+                var userJson = {
+                    'user.name': window.localStorage.getItem("name"),
+                    'user.email': window.localStorage.getItem("email"),
+                    'user.password': window.localStorage.getItem("password"),
+                    'user.age': window.localStorage.getItem("age"),
+                    'user.loc_lat': latitude,
+                    'user.loc_long': longitude
+                };
 
                 $.getJSON("http://localhost:8080/barterserver/user/post/save", userJson, function(json){
                     var sessao = {
@@ -82,6 +89,21 @@
         };
     };
 
+
+    function criarSessao(sessao){
+        var sessao = {
+                                usuario: {
+                                password: json.password,
+                                email: json.email,
+                                name: json.name,
+                                age: json.age
+                                }
+                            };
+        window.localStorage.setItem("name", sessao.usuario.name);
+        window.localStorage.setItem("email", sessao.usuario.email);
+        window.localStorage.setItem("password", sessao.usuario.password);
+        window.localStorage.setItem("age", sessao.usuario.age);
+    }
 
       window.fbAsyncInit = function() {
                 // init the FB JS SDK
@@ -200,6 +222,7 @@
                                 age: json.age
                                 }
                             };
+                            criarSessao(sessao);
                             loadHome();
                         });
 
