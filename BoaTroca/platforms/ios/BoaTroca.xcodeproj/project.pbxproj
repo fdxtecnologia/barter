@@ -5,14 +5,11 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
-		0E6B3B4D74324FB3B4560A53 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48687096E7A24E7390F65D00 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		11BD31FA9C9146899854901E /* CDVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6608BF75E0F24454BE0EAD2B /* CDVConnection.m */; };
 		193D00A7C120473EB8354C5A /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2FD233B3946819DBD7755 /* CDVReachability.m */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		1F2E6A8E93024559BFDE903D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 97334D4FDE9842A8BD6B4C32 /* libsqlite3.dylib */; };
 		1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDC13BBADB100FB74C0 /* Localizable.strings */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
@@ -31,12 +28,9 @@
 		30A0434814DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434314DC770100060A13 /* Localizable.strings */; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
 		359C766299004E9096980C9F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A484FBEFFB7460F9E9010E3 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		4796ACD111A04B7A991AB821 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EBD1856FAB4CCFA36BA7F2 /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4F4B821C9FA64E788EC5BF77 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF07AC414C714BE3B9CC3C2F /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		585C277E200447858D64A01B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D323BD9C1E4CD0B9719AB6 /* FacebookSDK.framework */; };
 		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
-		6DCC628606894C6A84E029D8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5FA0BA86CD46C6AFB45016 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
 		7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D51810823500FA85AD /* icon-40@2x.png */; };
 		7E7966E01810823500FA85AD /* icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D61810823500FA85AD /* icon-50.png */; };
@@ -52,8 +46,6 @@
 		C43714AC504B4BBCAD515C26 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A834F7B14C0841889A80AF16 /* CDVLogger.m */; };
 		C6622A0933924A6EB4FF53CD /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5172F0153F4EE693432B4D /* CDVJpegHeaderWriter.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		E4976E8F20DC493AA06985BC /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F006A7CB39754A21B6DF513C /* FacebookConnectPlugin.m */; };
-		FC3971369A86445DB70E9506 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CFFC0554D54519A03C8D0D /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,12 +147,6 @@
 				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
 				359C766299004E9096980C9F /* SystemConfiguration.framework in Frameworks */,
 				4F4B821C9FA64E788EC5BF77 /* ImageIO.framework in Frameworks */,
-				585C277E200447858D64A01B /* FacebookSDK.framework in Frameworks */,
-				1F2E6A8E93024559BFDE903D /* libsqlite3.dylib in Frameworks */,
-				FC3971369A86445DB70E9506 /* Social.framework in Frameworks */,
-				6DCC628606894C6A84E029D8 /* Accounts.framework in Frameworks */,
-				0E6B3B4D74324FB3B4560A53 /* AdSupport.framework in Frameworks */,
-				4796ACD111A04B7A991AB821 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,7 +486,6 @@
 				977896C3EF184B2A9DE4CB38 /* CDVKeyboard.m in Sources */,
 				11BD31FA9C9146899854901E /* CDVConnection.m in Sources */,
 				193D00A7C120473EB8354C5A /* CDVReachability.m in Sources */,
-				E4976E8F20DC493AA06985BC /* FacebookConnectPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

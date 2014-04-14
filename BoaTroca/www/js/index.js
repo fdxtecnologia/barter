@@ -13,12 +13,12 @@
 
     var setPicName = $('#picName');
 
-    var baseUrl = "http://localhost:8080/barterserver/";
+    var baseUrl = "http://192.168.0.108:8080/barterserver/";
 
     /* --------------------------------- Event Registration -------------------------------- */
     document.addEventListener('deviceready', function () {
         console.log("device is ready");
-        openFB.init('489987941127071', 'http://localhost/BoaTroca/www/oauthcallback.html',window.localStorage);
+        openFB.init('489987941127071', 'http://192.168.0.108/oauthcallback.html',window.localStorage);
     }, false),
 
     //document.addEventListener("offline", offlineDevice, false),
