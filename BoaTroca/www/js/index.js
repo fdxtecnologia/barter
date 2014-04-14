@@ -16,29 +16,15 @@
     var baseUrl = "http://localhost:8080/barterserver/";
 
     /* --------------------------------- Event Registration -------------------------------- */
-    document.addEventListener('deviceready', function () {
-        console.log("device is ready");
+    document.addEventListener('deviceready', function() {
         try {
-            FB.init({
-            appId: "489987941127071",
-            nativeInterface: CDV.FB,
-            useCachedDialogs: false
-            });
+            alert('Device is ready! Make sure you set your app_id below this alert.');
+            FB.init({ appId: "appid", nativeInterface: CDV.FB, useCachedDialogs: false });
+            document.getElementById('data').innerHTML = "";
         } catch (e) {
             alert(e);
         }
-        if (navigator.notification) { // Override default HTML alert with native dialog
-            window.alert = function (message) {
-                navigator.notification.alert(
-                    message,    // message
-                    null,       // callback
-                    "Boa Troca", // title
-                    'OK'        // buttonName
-                );
-            };
-        }
-
-    }, false),
+    }, false);
 
     //document.addEventListener("offline", offlineDevice, false),
     document.addEventListener('backbutton', loadHome , false),
@@ -116,7 +102,8 @@
       window.fbAsyncInit = function() {
                 // init the FB JS SDK
                 FB.init({
-                    appId: '489987941127071', // App ID from the app dashboard
+                    appId: '489987941127071',
+                    nativeInterface: CDV.FB, // App ID from the app dashboard
                     status     : true, // check login status
                     cookie     : true, // enable cookies to allow the server to access the session
                     xfbml      : true  // parse XFBML
@@ -134,7 +121,6 @@
                 js.src = "js/all.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
-
 
             function checkLogin(callback) {
                 FB.getLoginStatus(function(response) {
@@ -164,8 +150,8 @@
 
 
         $(document).ready(function() {
-            $("#btn_login").click(function() {
-                              
+            $("#btn_login").click(function(e) {
+                e.preventDefault();              
                 
                 return checkLogin(function() {
 

@@ -17,15 +17,6 @@
     /* --------------------------------- Event Registration -------------------------------- */
     document.addEventListener('deviceready', function () {
         console.log("device is ready");
-        try {
-            FB.init({
-            appId: "489987941127071",
-            nativeInterface: CDV.FB,
-            useCachedDialogs: false
-            });
-        } catch (e) {
-            alert(e);
-        }
         if (navigator.notification) { // Override default HTML alert with native dialog
             window.alert = function (message) {
                 navigator.notification.alert(
@@ -115,7 +106,8 @@
       window.fbAsyncInit = function() {
                 // init the FB JS SDK
                 FB.init({
-                    appId: '489987941127071', // App ID from the app dashboard
+                    appId: '489987941127071',
+                    nativeInterface: CDV.FB, // App ID from the app dashboard
                     status     : true, // check login status
                     cookie     : true, // enable cookies to allow the server to access the session
                     xfbml      : true  // parse XFBML
@@ -163,8 +155,8 @@
 
 
         $(document).ready(function() {
-            $("#btn_login").click(function() {
-                              
+            $("#btn_login").click(function(e) {
+                e.preventDefault();              
                 
                 return checkLogin(function() {
 
