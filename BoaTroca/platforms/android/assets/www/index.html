@@ -8,7 +8,65 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.2.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/facebook-js-sdk.js"></script>
+    <script type="text/javascript" src="js/cdv-plugin-fb-connect.js"></script>
+
+
     <title>Boa Troca</title>
+    <style type="text/css" media="all">
+body,ul,li {
+    padding:0;
+    margin:0;
+}
+
+body {
+    font-size:12px;
+    -webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+/*  -webkit-box-sizing:border-box;*/
+    font-family:helvetica;
+/*  padding-bottom:45px;    /*  This prevents the scroller to lock if the user swipes down outside of the screen.
+                                NOT needed if in home screen mode. */
+}
+
+#wrapper {
+    position:absolute; z-index:1;
+    top:45px; bottom:0; left:0;
+    width:100%;
+    overflow:auto;
+}
+
+#scroller {
+    width:2040px;
+    height:100%;
+    float:left;
+    padding:0;
+}
+
+#scroller ul {
+    list-style:none;
+    display:block;
+    float:left;
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    text-align:left;
+}
+
+#scroller li {
+    display:block;
+    vertical-align:middle;
+    float:left;
+    padding:0 10px;
+    width:80px;
+    height:100%;
+    border-left:1px solid #ccc;
+    border-right:1px solid #fff;
+    background-color:#fafafa;
+    font-size:14px;
+}
+</style>
 </head>
 <body>
 
@@ -42,7 +100,7 @@
         <div id="div2" class="row">
             <h3>Qual figurinha você procura?</h3>
             <div class="input-group">
-                <input type="test" class="form-control" placeholder="Numero">
+                <input type="test" class="form-control" placeholder="Numero" id="txtNumFigurinha">
                 <span id="search" class="input-group-addon">GO!</span>
             </div>
         </div>
@@ -82,7 +140,15 @@
         
         <!--  -->
         <div id="div6" class="row">
-            <p>lorem ipsum</p>
+            <h3>Resultado da pesquisa</h3>
+            <div id="wrapper">
+                <div id="scroller">
+                        <ul id="thelist">
+
+                        </ul>
+                </div>
+            </div>
+            <div id="results"></div>
         </div>
 
         <!--  -->
@@ -119,7 +185,7 @@
 <script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="lib/fastclick.js"></script>
 <script>
-$( document ).on( "pageinit", "#demo-page", function() {
+/*$( document ).on( "pageinit", "#demo-page", function() {
     $( document ).on( "swipeleft swiperight", "#demo-page", function( e ) {
         if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
             if ( e.type === "swipeleft"  ) {
@@ -129,11 +195,19 @@ $( document ).on( "pageinit", "#demo-page", function() {
             }
         }
     });
-});
+});*/
+var myScroll;
+function loaded() {
+    myScroll = new iScroll('wrapper');
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+document.addEventListener('DOMContentLoaded', loaded, false);
 </script>
 <script type="text/javascript" src="js/camera.js"></script>
-<script type="text/javascript" src="js/adapters/memory-adapter.js"></script>
 <script type="text/javascript" src="js/md5.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
 </body>
 </html>

@@ -16,15 +16,10 @@
     var baseUrl = "http://localhost:8080/barterserver/";
 
     /* --------------------------------- Event Registration -------------------------------- */
-    document.addEventListener('deviceready', function() {
-        try {
-            alert('Device is ready! Make sure you set your app_id below this alert.');
-            FB.init({ appId: "appid", nativeInterface: CDV.FB, useCachedDialogs: false });
-            document.getElementById('data').innerHTML = "";
-        } catch (e) {
-            alert(e);
-        }
-    }, false);
+    document.addEventListener('deviceready', function () {
+        console.log("device is ready");
+        openFB.init('489987941127071', 'http://localhost/BoaTroca/www/oauthcallback.html',window.localStorage);
+    }, false),
 
     //document.addEventListener("offline", offlineDevice, false),
     document.addEventListener('backbutton', loadHome , false),
@@ -99,87 +94,26 @@
         window.localStorage.setItem("accessToken", sessao.accessToken);
     }
 
-      window.fbAsyncInit = function() {
-                // init the FB JS SDK
-                FB.init({
-                    appId: '489987941127071',
-                    nativeInterface: CDV.FB, // App ID from the app dashboard
-                    status     : true, // check login status
-                    cookie     : true, // enable cookies to allow the server to access the session
-                    xfbml      : true  // parse XFBML
-                });
-            };
+    // Load the SDK asynchronously
 
-            // Load the SDK asynchronously
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {
-                    return;
-                }
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "js/all.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-
-            function checkLogin(callback) {
-                FB.getLoginStatus(function(response) {
-                    if (response.status === 'connected') {
-                        console.log("connected");
-                        callback();
-                        return true;
-                    } else if (response.status === 'not_authorized') {
-                        console.log("Not authorized");
-                        return false;
-                    } else {
-                        console.log("Tentando Login");
-                        FB.login(function(response) {
-                            if(response.authResponse) {
-                                callback();
-                                return true;
-                            } else {
-                                alert("Não foi possivel efetuar o login no facebook");
-                                return false;
-                            }
-                        }, {scope: "email, publish_stream, user_birthday, user_location, user_work_history user_about_me, user_hometown, user_friends, read_stream"});
-                    }
-                });
-            }
-
-
-
-
-        $(document).ready(function() {
-            $("#btn_login").click(function(e) {
-                e.preventDefault();              
-                
-                return checkLogin(function() {
-
-                    FB.getLoginStatus(function(response) {
-                      if (response.status === 'connected') {
+    $("#btn_login").on('click', function(response) {
             
-                        var accessToken = response.authResponse.accessToken;
-                        
+        openFB.login('email,user_birthday',
+            function(response) {
+                console.log('logged in');
+                openFB.api({
+                    path:'/me',
+                    success: function(data){
 
-                        FB.api("/me?fields=name,email,id,birthday", function(response) {
-                
                         var params = {
-                          usuario: {
-                            id: hex_md5(response.id),
-                            email: response.email,
-                            name: response.name,
-                            birthday: response.birthday,
-                           
-                          }
+                            usuario:{
+                                id: hex_md5(data.id),
+                                email: data.email,
+                                name: data.name,
+                                birthday: data.birthday
+                            }
                         };
-                        
-                        //var accessToken = "asdfasfafasfasfdafas";
-                        //console.log(response);
-                        //console.log("User ID: "+params.usuario.id);
-                        //console.log("User Name: "+params.usuario.name);
-                        //console.log("User Email: "+params.usuario.email);
-                        //console.log("User birthday: "+params.usuario.birthday);
-                        //console.log("User Token: "+accessToken);
+
                         buscaLocalizacao();
                         var latitude = $("#hdnlatitude").val();
                         var longitude = $("#hdnlongitude").val();
@@ -201,10 +135,7 @@
                           age--;
                         }
 
-                        //console.log("Idade: "+age);
-                        //console.log(month);
-
-                        var userJson = {'user.name':params.usuario.name,'user.email':params.usuario.email,'user.password':params.usuario.id,'user.accessToken':accessToken,'user.age':age, 'user.loc_lat':latitude, 'user.loc_long':longitude};
+                        var userJson = {'user.name':params.usuario.name,'user.email':params.usuario.email,'user.password':params.usuario.id,'user.age':age, 'user.loc_lat':latitude, 'user.loc_long':longitude};
 
                         $.getJSON(baseUrl + "user/post/save", userJson, function(json){
                             
@@ -220,30 +151,15 @@
                             };
                             criarSessao(sessao);
                             loadHome();
-                        });
-
-                        /*$.ajax({
-                          type: "GET",
-                          url: "http://localhost:8080/barterserver/user/post/save",
-                          data: {'user.name':params.usuario.name,'user.email':params.usuario.email,'user.password':accessToken,'user.age':age, 'user.loc_lat':latitude, 'user.loc_long':longitude},
-                          dataType: "application/json", 
-                          success: function(json) {
-                              alert("susscess");
-                              loadHome();
-                          }
-                        });*/
+                        });                                
                         
-                      }, {scope: "email, publish_stream, user_birthday, user_location, user_work_history user_about_me, user_hometown, user_friends, read_stream"})
-
-                      }
-                    });
-                    // Here we specify what we do with the response anytime this event occurs. 
-                   
-                    
-                
+                    }
                 });
+            },
+            function(error) {
+                alert('Facebook login failed: ' + error.error_description);
             });
-        });
+    });      
 
 
     function buscaLocalizacao(){

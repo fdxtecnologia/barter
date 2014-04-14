@@ -9,25 +9,35 @@
     var addPictures = $('#div4');
     var config = $('#div5');
     var login = $('#div1');
+    var results = $('#div6');
 
     var setPicName = $('#picName');
 
-    var baseUrl = "http://192.168.0.108:8080/barterserver/";
+    var baseUrl = "http://localhost:8080/barterserver/";
 
     /* --------------------------------- Event Registration -------------------------------- */
     document.addEventListener('deviceready', function () {
-        console.log("device is ready");
-        if (navigator.notification) { // Override default HTML alert with native dialog
-            window.alert = function (message) {
-                navigator.notification.alert(
-                    message,    // message
-                    null,       // callback
-                    "Boa Troca", // title
-                    'OK'        // buttonName
-                );
-            };
-        }
-
+    /*console.log("device is ready");
+    try {
+        FB.init({
+        appId: "489987941127071",
+        nativeInterface: CDV.FB,
+        useCachedDialogs: false
+        });
+    } catch (e) {
+        alert(e);
+    }
+    if (navigator.notification) { // Override default HTML alert with native dialog
+        window.alert = function (message) {
+            navigator.notification.alert(
+                message,    // message
+                null,       // callback
+                "Boa Troca", // title
+                'OK'        // buttonName
+            );
+        };
+    }
+*/
     }, false),
 
     //document.addEventListener("offline", offlineDevice, false),
@@ -38,6 +48,13 @@
     window.addEventListener('load', function(){
         new FastClick(document.body);
         console.log("FastClick loaded");
+        FB.init({
+            appId: '489987941127071', // App ID from the app dashboard
+            nativeInterface: CDV.FB,
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+        });
         init();
     }, false );
 
@@ -103,18 +120,18 @@
         window.localStorage.setItem("accessToken", sessao.accessToken);
     }
 
-      window.fbAsyncInit = function() {
-                // init the FB JS SDK
-                FB.init({
-                    appId: '489987941127071', // App ID from the app dashboard
-                    status     : true, // check login status
-                    cookie     : true, // enable cookies to allow the server to access the session
-                    xfbml      : true  // parse XFBML
-                });
-            };
+  /*window.fbAsyncInit = function() {
+        // init the FB JS SDK
+        FB.init({
+            appId: '489987941127071', // App ID from the app dashboard
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+        });
+    };*/
 
             // Load the SDK asynchronously
-            (function(d, s, id) {
+/*            (function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) {
                     return;
@@ -148,16 +165,32 @@
                         }, {scope: "email, publish_stream, user_birthday, user_location, user_work_history user_about_me, user_hometown, user_friends, read_stream"});
                     }
                 });
-            }
+            }*/
 
+
+    var fbLoginSuccess = function (userData) {
+        alert("UserInfo: " + JSON.stringify(userData));
+        FB.getAccessToken(function(token) {
+            alert("Token: " + token);
+        }, function(err) {
+            alert("Could not get access token: " + err);
+        });
+    }
 
 
 
         $(document).ready(function() {
-            $("#btn_login").click(function() {
-                              
-                
-                return checkLogin(function() {
+            $("#btn_login").on('click', function() {
+
+
+
+                FB.login(["basic_info"], 
+                    fbLoginSuccess, 
+                    function (error) { alert("" + error) }
+                );
+
+
+              /*  return checkLogin(function() {
 
                     FB.getLoginStatus(function(response) {
                       if (response.status === 'connected') {
@@ -235,7 +268,7 @@
                               alert("susscess");
                               loadHome();
                           }
-                        });*/
+                        });*//*
                         
                       }, {scope: "email, publish_stream, user_birthday, user_location, user_work_history user_about_me, user_hometown, user_friends, read_stream"})
 
@@ -245,7 +278,7 @@
                    
                     
                 
-                });
+                });*/
             });
         });
 
@@ -266,6 +299,53 @@
 
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
+    }
+
+    $( document ).on( "pageinit", "#results", function() {
+        $( document ).on( "swipeleft swiperight", "#results", function( e ) {
+
+                if ( e.type === "swipeleft"  ) {
+                    $( "#right-panel" ).panel( "open" );
+                } else if ( e.type === "swiperight" ) {
+                    $( "#left-panel" ).panel( "open" );
+                }
+
+        });
+    });
+
+    function buscaFigurinha(numero){
+        var search = {'title':numero, 'currentUser.id': window.localStorage.getItem("userId")};
+
+        $.getJSON("http://localhost:8080/barterserver/search", search, function(json){
+           
+            
+            loadResults();
+            
+           
+            /*$.each(json, function(){
+                console.log("ID: " + this.ownerId);
+                console.log("First Name: " + this.ownerName);
+                console.log("PID: " + this.pictureId);
+                console.log(" ");
+            });*/
+
+           var tamJson;
+           //var tamJson = numero;
+           
+           
+           $.each(json, function(){
+                $("<div id='result"+this.pictureId+"' class='results'></div>").appendTo("#thelist");
+
+                $("<div class='tituloFigurinha'>"+this.pictureTitle+"</div>").appendTo("#result"+this.pictureId);
+                
+                $("<div class='bodyFigurinha'>"+this.picturePhotoURL+"</div>").appendTo("#result"+this.pictureId);
+                
+                $("<div class='nomeUser'>"+this.ownerName+"</div>").appendTo("#result"+this.pictureId);
+               tamJson++
+            });
+           var tamScroller = tamJson*330;
+           $("#scroller").css("width",tamScroller+"px");
+        });
     }
 
 
@@ -292,12 +372,29 @@
         hideDivs();
         home.show();
         home.on("click", "#search", function () {
-            // Procurar Figurinhas!
-            
+            $("#thelist").empty();
+            if($("#txtNumFigurinha").val() != ""){
+                buscaFigurinha($("#txtNumFigurinha").val());
+            } else {
+                navigator.notification.alert(
+                  'Entre com um número de Figurinha!',
+                  function(){},
+                  'Atenção',
+                  'Ok'
+                );
+            }
         });
         leftPanel.panel( "close" );
         rightPanel.panel("close");
     };
+
+    function loadResults(){
+        hideDivs();
+        $("#thelist").empty();
+        results.show();
+        leftPanel.panel("close");
+        rightPanel.panel("close");
+    }
 
     function offlineDevice () {
         alert("Sem acesso à internet!");
