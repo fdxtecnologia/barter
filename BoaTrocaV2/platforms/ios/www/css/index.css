@@ -1,0 +1,78 @@
+/************************* side menu css **************************/
+/* Swipe works with mouse as well but often causes text selection. */
+#demo-page * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+/* Arrow only buttons in the header. */
+#demo-page .ui-header .ui-btn {
+    background: none;
+    border: none;
+    top: 9px;
+}
+
+#demo-page .ui-header .ui-btn-inner {
+    border: none;
+}
+
+/* Content styling. */
+dl { font-family: "Times New Roman", Times, serif; padding: 1em; }
+dt { font-size: 2em; font-weight: bold; }
+dt span { font-size: .5em; color: #777; margin-left: .5em; }
+dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
+.back-btn { float: right; margin: 0 2em 1em 0; }
+
+.ui-responsive-panel .ui-panel-dismiss-display-reveal {
+    display: none;
+}
+
+
+/*********************************************************************/
+
+#div2, #div3, #div4, #div5,
+#div6, #div7, #div8, #div9,
+#div10, #div11, #div12,#div13, #div14{
+    display: none;
+}
+
+ul, li, a{
+    text-decoration: none;
+    list-style: none;
+}
+
+.results{
+    height: 300px;
+    width: 250px;
+    vertical-align: middle;
+    float: left;
+    margin: 30px;
+    background-color: #000000;
+}
+
+.tituloFigurinha{
+    height: 25px;
+    width: 200px;
+    margin-left: 25px;
+    margin-right: 25px;
+    color: #ffffff;
+}
+
+.bodyFigurinha{
+    height: 250px;
+    width: 200px;
+    margin-left: 25px;
+    margin-right: 25px;
+    background-color: #ffffff;
+}
+
+.nomeUser{
+    height: 25px;
+    width: 200px;
+    margin-left: 25px;
+    margin-right: 25px;
+    color: #ffffff;
+}
