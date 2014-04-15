@@ -89,26 +89,13 @@
             }
         },
         "config.xml": {
-            "/*": {
-                "<access origin=\"https://m.facebook.com\" />": 1,
-                "<access origin=\"https://graph.facebook.com\" />": 1,
-                "<access origin=\"https://api.facebook.com\" />": 1,
-                "<access origin=\"https://*.fbcdn.net\" />": 1,
-                "<access origin=\"https://*.akamaihd.net\" />": 1,
-                "<feature name=\"FacebookConnectPlugin\"><param name=\"android-package\" value=\"org.apache.cordova.facebook.ConnectPlugin\" /></feature>": 1
-            }
+            "/*": {}
         },
         "res/values/facebookconnect.xml": {
-            "/*": {
-                "<string name=\"fb_app_id\">489987941127071</string>": 1,
-                "<string name=\"fb_app_name\">Figurinhas</string>": 1
-            }
+            "/*": {}
         },
         "AndroidManifest.xml": {
-            "application": {
-                "<meta-data android:name=\"com.facebook.sdk.ApplicationId\" android:value=\"@string/fb_app_id\" />": 1,
-                "<activity android:label=\"@string/fb_app_name\" android:name=\"com.facebook.LoginActivity\" />": 1
-            }
+            "application": {}
         }
     },
     "installed_plugins": {
@@ -119,11 +106,6 @@
             "PACKAGE_NAME": "br.com.fdxtecnologia.boatroca"
         },
         "org.apache.cordova.network-information": {
-            "PACKAGE_NAME": "br.com.fdxtecnologia.boatroca"
-        },
-        "com.phonegap.plugins.facebookconnect": {
-            "APP_ID": "489987941127071",
-            "APP_NAME": "Figurinhas",
             "PACKAGE_NAME": "br.com.fdxtecnologia.boatroca"
         }
     },

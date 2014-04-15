@@ -149,43 +149,19 @@
             }
         },
         "framework": {
-            "libsqlite3.dylib": {
-                "false": 1
-            },
-            "Social.framework": {
-                "true": 1
-            },
-            "Accounts.framework": {
-                "true": 1
-            },
-            "AdSupport.framework": {
-                "true": 1
-            },
-            "Security.framework": {
-                "true": 1
-            }
+            "libsqlite3.dylib": {},
+            "Social.framework": {},
+            "Accounts.framework": {},
+            "AdSupport.framework": {},
+            "Security.framework": {}
         },
         "config.xml": {
-            "/*": {
-                "<access origin=\"https://m.facebook.com\" />": 1,
-                "<access origin=\"https://graph.facebook.com\" />": 1,
-                "<access origin=\"https://api.facebook.com\" />": 1,
-                "<access origin=\"https://*.fbcdn.net\" />": 1,
-                "<access origin=\"https://*.akamaihd.net\" />": 1,
-                "<feature name=\"FacebookConnectPlugin\"><param name=\"ios-package\" value=\"FacebookConnectPlugin\" /><param name=\"onload\" value=\"true\" /></feature>": 1,
-                "<plugin name=\"FacebookConnectPlugin\" value=\"FacebookConnectPlugin\" />": 1
-            }
+            "/*": {}
         },
         "*-Info.plist": {
-            "FacebookAppID": {
-                "<string>489987941127071</string>": 1
-            },
-            "FacebookDisplayName": {
-                "<string>Figurinhas</string>": 1
-            },
-            "CFBundleURLTypes": {
-                "<array><dict><key>CFBundleURLSchemes</key><array><string>fb489987941127071</string></array></dict></array>": 1
-            }
+            "FacebookAppID": {},
+            "FacebookDisplayName": {},
+            "CFBundleURLTypes": {}
         }
     },
     "installed_plugins": {
@@ -199,11 +175,6 @@
             "PACKAGE_NAME": "br.com.fdxtecnologia.boatroca"
         },
         "org.apache.cordova.network-information": {
-            "PACKAGE_NAME": "br.com.fdxtecnologia.boatroca"
-        },
-        "com.phonegap.plugins.facebookconnect": {
-            "APP_ID": "489987941127071",
-            "APP_NAME": "Figurinhas",
             "PACKAGE_NAME": "br.com.fdxtecnologia.boatroca"
         }
     },
