@@ -26,8 +26,7 @@ public class TradeDAO extends GenericDAO<Trade>{
     
     public Trade saveOrUpdateAndReturn(Trade trade){
          
-        session.saveOrUpdate(trade);
-        session.flush();
+        this.saveOrUpdate(trade);
         
         return trade;
     }

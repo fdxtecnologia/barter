@@ -120,3 +120,15 @@ barterserver/target/barterserver/WEB-INF/classes/br/com/barterserver/controller/
 barterserver/target/barterserver.war
 
 barterserver/target/barterserver.war
+
+barterserver/target/classes/br/com/barterserver/model/Trade.class
+
+barterserver/target/classes/br/com/barterserver/model/Trade.class
+
+barterserver/target/classes/br/com/barterserver/dao/TradeDAO.class
+
+barterserver/target/barterserver/WEB-INF/classes/br/com/barterserver/model/Trade.class
+
+barterserver/target/barterserver/WEB-INF/classes/br/com/barterserver/dao/TradeDAO.class
+
+barterserver/target/barterserver/WEB-INF/classes/br/com/barterserver/dao/TradeDAO.class

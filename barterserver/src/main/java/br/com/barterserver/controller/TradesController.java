@@ -6,7 +6,9 @@
 
 package br.com.barterserver.controller;
 
+import br.com.barterserver.dao.PictureDAO;
 import br.com.barterserver.dao.TradeDAO;
+import br.com.barterserver.dao.UserDAO;
 import br.com.barterserver.model.Status;
 import br.com.barterserver.model.Trade;
 import br.com.barterserver.model.User;
@@ -18,6 +20,7 @@ import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.http.route.Router;
 import br.com.caelum.vraptor.resource.HttpMethod;
 import br.com.caelum.vraptor.view.Results;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -32,14 +35,17 @@ public class TradesController {
     private Result result;
     private Router router;
     private RequestInfo requestInfo;
+    private UserDAO userDAO;
+    private PictureDAO pictureDAO;
     
-    public TradesController(Result result, TradeDAO dao, Router router, RequestInfo requestInfo){
+    public TradesController(Result result, TradeDAO dao, Router router, RequestInfo requestInfo, UserDAO userDAO, PictureDAO pictureDAO){
         
         this.dao = dao;
         this.result = result;
         this.router = router;
         this.requestInfo = requestInfo;
-        
+        this.userDAO = userDAO;
+        this.pictureDAO = pictureDAO;
     }
     
     @Path("trade/post/list")
@@ -69,7 +75,11 @@ public class TradesController {
         result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
         //----------------HTTP HEADER NEVER CHANGE----------------------//        
         
+        trade.setUserOffering(userDAO.findById(trade.getUserOffering().getId()));
+        trade.setUserRequiring(userDAO.findById(trade.getUserRequiring().getId()));
+        trade.setPictureOffering(pictureDAO.findById(trade.getPictureOffering().getId()));
         trade.setStatus(Status.PEDING);
+        trade.setDataTrade(new Date());
         Trade t = dao.saveOrUpdateAndReturn(trade);
         result.use(Results.json()).withoutRoot().from(t).serialize();
     }

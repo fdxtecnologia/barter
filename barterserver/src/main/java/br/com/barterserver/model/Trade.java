@@ -7,6 +7,7 @@
 package br.com.barterserver.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -36,6 +39,8 @@ public class Trade implements Serializable{
     private Picture pictureRequiring;
     @Enumerated(EnumType.STRING)
     private Status status;
+    @Temporal(TemporalType.DATE)
+    private Date dataTrade;
 
     public Long getId() {
         return id;
@@ -84,6 +89,13 @@ public class Trade implements Serializable{
     public void setStatus(Status status) {
         this.status = status;
     }
-    
+
+    public Date getDataTrade() {
+        return dataTrade;
+    }
+
+    public void setDataTrade(Date dataTrade) {
+        this.dataTrade = dataTrade;
+    }
     
 }
