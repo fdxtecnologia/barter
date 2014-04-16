@@ -295,3 +295,177 @@
 2014-04-16 04:54:54.929 HelloCordova[62994:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
 2014-04-16 04:54:58.212 HelloCordova[62994:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
 2014-04-16 04:54:58.215 HelloCordova[62994:70b] THREAD WARNING: ['InAppBrowser'] took '27.492188' ms. Plugin should use a background thread.
+2014-04-16 14:37:45.580 HelloCordova[63754:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 14:37:45.621 HelloCordova[63754:70b] Unlimited access to network resources
+2014-04-16 14:37:45.670 HelloCordova[63754:70b] [CDVTimer][statusbar] 20.561993ms
+2014-04-16 14:37:45.670 HelloCordova[63754:70b] [CDVTimer][TotalPluginStartup] 21.317959ms
+2014-04-16 14:37:46.033 HelloCordova[63754:70b] Resetting plugins due to page load.
+2014-04-16 14:37:46.453 HelloCordova[63754:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 14:38:40.512 HelloCordova[63754:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 14:38:40.517 HelloCordova[63754:70b] THREAD WARNING: ['InAppBrowser'] took '41.679199' ms. Plugin should use a background thread.
+2014-04-16 14:39:04.261 HelloCordova[63754:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 15:04:25.199 HelloCordova[64143:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:04:25.206 HelloCordova[64143:70b] Unlimited access to network resources
+2014-04-16 15:04:25.242 HelloCordova[64143:70b] [CDVTimer][statusbar] 14.380038ms
+2014-04-16 15:04:25.242 HelloCordova[64143:70b] [CDVTimer][TotalPluginStartup] 14.893055ms
+2014-04-16 15:04:25.456 HelloCordova[64143:70b] Resetting plugins due to page load.
+2014-04-16 15:04:25.765 HelloCordova[64143:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:04:46.838 HelloCordova[64143:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 15:04:46.843 HelloCordova[64143:70b] THREAD WARNING: ['InAppBrowser'] took '29.634033' ms. Plugin should use a background thread.
+2014-04-16 15:06:43.512 HelloCordova[64414:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:06:43.520 HelloCordova[64414:70b] Unlimited access to network resources
+2014-04-16 15:06:43.552 HelloCordova[64414:70b] [CDVTimer][statusbar] 13.343990ms
+2014-04-16 15:06:43.553 HelloCordova[64414:70b] [CDVTimer][TotalPluginStartup] 13.858974ms
+2014-04-16 15:06:43.812 HelloCordova[64414:70b] Resetting plugins due to page load.
+2014-04-16 15:06:44.091 HelloCordova[64414:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:09:38.392 HelloCordova[64779:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:09:38.402 HelloCordova[64779:70b] Unlimited access to network resources
+2014-04-16 15:09:38.434 HelloCordova[64779:70b] [CDVTimer][statusbar] 12.712002ms
+2014-04-16 15:09:38.434 HelloCordova[64779:70b] [CDVTimer][TotalPluginStartup] 13.222039ms
+2014-04-16 15:09:38.617 HelloCordova[64779:70b] Resetting plugins due to page load.
+2014-04-16 15:09:43.698 HelloCordova[64779:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:11:13.864 HelloCordova[65282:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:11:13.871 HelloCordova[65282:70b] Unlimited access to network resources
+2014-04-16 15:11:13.909 HelloCordova[65282:70b] [CDVTimer][statusbar] 16.362011ms
+2014-04-16 15:11:13.910 HelloCordova[65282:70b] [CDVTimer][TotalPluginStartup] 17.000020ms
+2014-04-16 15:11:14.221 HelloCordova[65282:70b] Resetting plugins due to page load.
+2014-04-16 15:11:25.810 HelloCordova[65425:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:11:25.819 HelloCordova[65425:70b] Unlimited access to network resources
+2014-04-16 15:11:25.913 HelloCordova[65425:70b] [CDVTimer][statusbar] 12.163997ms
+2014-04-16 15:11:25.914 HelloCordova[65425:70b] [CDVTimer][TotalPluginStartup] 12.818992ms
+2014-04-16 15:11:26.109 HelloCordova[65425:70b] Resetting plugins due to page load.
+2014-04-16 15:11:29.505 HelloCordova[65425:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:12:04.185 HelloCordova[65689:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:12:04.193 HelloCordova[65689:70b] Unlimited access to network resources
+2014-04-16 15:12:04.221 HelloCordova[65689:70b] [CDVTimer][statusbar] 9.668052ms
+2014-04-16 15:12:04.222 HelloCordova[65689:70b] [CDVTimer][TotalPluginStartup] 10.170043ms
+2014-04-16 15:12:04.274 HelloCordova[65689:70b] Resetting plugins due to page load.
+2014-04-16 15:12:36.124 HelloCordova[65832:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:12:36.131 HelloCordova[65832:70b] Unlimited access to network resources
+2014-04-16 15:12:36.159 HelloCordova[65832:70b] [CDVTimer][statusbar] 7.182002ms
+2014-04-16 15:12:36.160 HelloCordova[65832:70b] [CDVTimer][TotalPluginStartup] 7.690012ms
+2014-04-16 15:12:36.235 HelloCordova[65832:70b] Resetting plugins due to page load.
+2014-04-16 15:12:38.335 HelloCordova[65832:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:13:14.347 HelloCordova[66095:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:13:14.355 HelloCordova[66095:70b] Unlimited access to network resources
+2014-04-16 15:13:14.382 HelloCordova[66095:70b] [CDVTimer][statusbar] 7.766008ms
+2014-04-16 15:13:14.382 HelloCordova[66095:70b] [CDVTimer][TotalPluginStartup] 8.283973ms
+2014-04-16 15:13:14.535 HelloCordova[66095:70b] Resetting plugins due to page load.
+2014-04-16 15:13:17.898 HelloCordova[66095:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:14:09.433 HelloCordova[66359:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:14:09.439 HelloCordova[66359:70b] Unlimited access to network resources
+2014-04-16 15:14:09.467 HelloCordova[66359:70b] [CDVTimer][statusbar] 8.855999ms
+2014-04-16 15:14:09.468 HelloCordova[66359:70b] [CDVTimer][TotalPluginStartup] 9.380996ms
+2014-04-16 15:14:09.631 HelloCordova[66359:70b] Resetting plugins due to page load.
+2014-04-16 15:14:12.283 HelloCordova[66359:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:15:28.035 HelloCordova[66629:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:15:28.045 HelloCordova[66629:70b] Unlimited access to network resources
+2014-04-16 15:15:28.078 HelloCordova[66629:70b] [CDVTimer][statusbar] 15.718997ms
+2014-04-16 15:15:28.078 HelloCordova[66629:70b] [CDVTimer][TotalPluginStartup] 16.265035ms
+2014-04-16 15:15:28.371 HelloCordova[66629:70b] Resetting plugins due to page load.
+2014-04-16 15:15:28.641 HelloCordova[66629:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:15:46.877 HelloCordova[66629:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 15:15:46.901 HelloCordova[66629:70b] THREAD WARNING: ['InAppBrowser'] took '88.311035' ms. Plugin should use a background thread.
+2014-04-16 15:18:47.872 HelloCordova[66629:70b] Simulator slow-motion animations are now on
+2014-04-16 15:19:19.159 HelloCordova[66918:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:19:19.167 HelloCordova[66918:70b] Unlimited access to network resources
+2014-04-16 15:19:19.193 HelloCordova[66918:70b] [CDVTimer][statusbar] 7.636011ms
+2014-04-16 15:19:19.193 HelloCordova[66918:70b] [CDVTimer][TotalPluginStartup] 8.193016ms
+2014-04-16 15:19:19.348 HelloCordova[66918:70b] Resetting plugins due to page load.
+2014-04-16 15:19:19.685 HelloCordova[66918:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:19:30.461 HelloCordova[66918:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 15:19:30.464 HelloCordova[66918:70b] THREAD WARNING: ['InAppBrowser'] took '23.318115' ms. Plugin should use a background thread.
+2014-04-16 15:21:23.682 HelloCordova[67187:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:21:23.691 HelloCordova[67187:70b] Unlimited access to network resources
+2014-04-16 15:21:23.727 HelloCordova[67187:70b] [CDVTimer][statusbar] 17.153025ms
+2014-04-16 15:21:23.728 HelloCordova[67187:70b] [CDVTimer][TotalPluginStartup] 17.651021ms
+2014-04-16 15:21:24.018 HelloCordova[67187:70b] Resetting plugins due to page load.
+2014-04-16 15:21:24.409 HelloCordova[67187:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/EFF15759-40E0-40CA-8E98-1002FC161699/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:26:37.332 HelloCordova[67487:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:26:37.384 HelloCordova[67487:70b] Unlimited access to network resources
+2014-04-16 15:26:37.569 HelloCordova[67487:70b] [CDVTimer][statusbar] 67.162037ms
+2014-04-16 15:26:37.569 HelloCordova[67487:70b] [CDVTimer][TotalPluginStartup] 67.737997ms
+2014-04-16 15:26:37.978 HelloCordova[67487:70b] Resetting plugins due to page load.
+2014-04-16 15:26:38.897 HelloCordova[67487:70b] THREAD WARNING: ['Device'] took '12.996094' ms. Plugin should use a background thread.
+2014-04-16 15:26:38.936 HelloCordova[67487:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/653E01BA-0F33-435B-8EF9-A8B8217CE52C/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:26:59.750 HelloCordova[67487:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 15:26:59.756 HelloCordova[67487:70b] THREAD WARNING: ['InAppBrowser'] took '49.296875' ms. Plugin should use a background thread.
+2014-04-16 15:27:13.369 HelloCordova[67487:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:27:13.370 HelloCordova[67487:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:27:13.428 HelloCordova[67487:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:27:13.560 HelloCordova[67487:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:27:13.602 HelloCordova[67487:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:27:14.474 HelloCordova[67487:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:27:14.750 HelloCordova[67487:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:27:15.671 HelloCordova[67487:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:27:17.695 HelloCordova[67487:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:29:03.040 HelloCordova[67756:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:29:03.048 HelloCordova[67756:70b] Unlimited access to network resources
+2014-04-16 15:29:03.092 HelloCordova[67756:70b] [CDVTimer][statusbar] 19.432008ms
+2014-04-16 15:29:03.093 HelloCordova[67756:70b] [CDVTimer][TotalPluginStartup] 19.964993ms
+2014-04-16 15:29:03.392 HelloCordova[67756:70b] Resetting plugins due to page load.
+2014-04-16 15:29:03.832 HelloCordova[67756:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/653E01BA-0F33-435B-8EF9-A8B8217CE52C/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:30:32.145 HelloCordova[67756:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 15:30:32.153 HelloCordova[67756:70b] THREAD WARNING: ['InAppBrowser'] took '35.577148' ms. Plugin should use a background thread.
+2014-04-16 15:33:05.634 HelloCordova[68147:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:33:05.697 HelloCordova[68147:70b] Unlimited access to network resources
+2014-04-16 15:33:05.865 HelloCordova[68147:70b] [CDVTimer][statusbar] 41.033030ms
+2014-04-16 15:33:05.865 HelloCordova[68147:70b] [CDVTimer][TotalPluginStartup] 41.523039ms
+2014-04-16 15:33:06.175 HelloCordova[68147:70b] Resetting plugins due to page load.
+2014-04-16 15:33:06.753 HelloCordova[68147:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/61683BFD-CD0E-4575-992B-A0B02D826FAF/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:34:39.655 HelloCordova[68414:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:34:39.663 HelloCordova[68414:70b] Unlimited access to network resources
+2014-04-16 15:34:39.691 HelloCordova[68414:70b] [CDVTimer][statusbar] 10.151029ms
+2014-04-16 15:34:39.692 HelloCordova[68414:70b] [CDVTimer][TotalPluginStartup] 10.663986ms
+2014-04-16 15:34:39.859 HelloCordova[68414:70b] Resetting plugins due to page load.
+2014-04-16 15:34:40.266 HelloCordova[68414:70b] *** Assertion failure in -[UIApplication runModal:](), /SourceCache/UIKit_Sim/UIKit-2935.137/UIApplication.m:9585
+2014-04-16 15:34:40.279 HelloCordova[68414:70b] *** WebKit discarded an uncaught exception in the webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame: delegate: <NSInternalInconsistencyException> The view passed in does not have a window.
+2014-04-16 15:34:40.471 HelloCordova[68414:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/61683BFD-CD0E-4575-992B-A0B02D826FAF/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:38:51.265 HelloCordova[68689:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:38:51.273 HelloCordova[68689:70b] Unlimited access to network resources
+2014-04-16 15:38:51.303 HelloCordova[68689:70b] [CDVTimer][statusbar] 10.505021ms
+2014-04-16 15:38:51.304 HelloCordova[68689:70b] [CDVTimer][TotalPluginStartup] 11.025012ms
+2014-04-16 15:38:51.471 HelloCordova[68689:70b] Resetting plugins due to page load.
+2014-04-16 15:38:53.614 HelloCordova[68689:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/61683BFD-CD0E-4575-992B-A0B02D826FAF/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:42:11.523 HelloCordova[68963:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:42:11.585 HelloCordova[68963:70b] Unlimited access to network resources
+2014-04-16 15:42:11.763 HelloCordova[68963:70b] [CDVTimer][statusbar] 38.820028ms
+2014-04-16 15:42:11.764 HelloCordova[68963:70b] [CDVTimer][TotalPluginStartup] 39.451003ms
+2014-04-16 15:42:12.131 HelloCordova[68963:70b] Resetting plugins due to page load.
+2014-04-16 15:42:15.233 HelloCordova[68963:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/61683BFD-CD0E-4575-992B-A0B02D826FAF/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:42:28.157 HelloCordova[68963:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 15:42:28.175 HelloCordova[68963:70b] THREAD WARNING: ['InAppBrowser'] took '98.558105' ms. Plugin should use a background thread.
+2014-04-16 15:42:49.153 HelloCordova[68963:4d07] CFNetwork SSLHandshake failed (-9806)
+2014-04-16 15:43:07.158 HelloCordova[68963:4d07] CFNetwork SSLHandshake failed (-9806)
+2014-04-16 15:43:07.530 HelloCordova[68963:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:43:07.710 HelloCordova[68963:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:43:35.385 HelloCordova[68963:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:44:20.499 HelloCordova[68963:4d07] CFNetwork SSLHandshake failed (-9806)
+2014-04-16 15:44:22.130 HelloCordova[68963:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 15:44:25.811 HelloCordova[68963:4d07] CFNetwork SSLHandshake failed (-9810)
+2014-04-16 15:44:27.129 HelloCordova[68963:70b] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2014-04-16 15:47:59.426 HelloCordova[69379:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 15:47:59.501 HelloCordova[69379:70b] Unlimited access to network resources
+2014-04-16 15:47:59.697 HelloCordova[69379:70b] [CDVTimer][statusbar] 45.786977ms
+2014-04-16 15:47:59.697 HelloCordova[69379:70b] [CDVTimer][TotalPluginStartup] 46.321988ms
+2014-04-16 15:48:00.037 HelloCordova[69379:70b] Resetting plugins due to page load.
+2014-04-16 15:48:00.730 HelloCordova[69379:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/708359CE-79BF-42A1-9627-496F8747B4FF/HelloCordova.app/www/index.html#/app/login
+2014-04-16 15:48:21.969 HelloCordova[69379:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 15:48:21.987 HelloCordova[69379:70b] THREAD WARNING: ['InAppBrowser'] took '87.010010' ms. Plugin should use a background thread.
+2014-04-16 15:49:02.271 HelloCordova[69379:70b] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2014-04-16 16:06:25.112 HelloCordova[69703:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 16:06:25.174 HelloCordova[69703:70b] Unlimited access to network resources
+2014-04-16 16:06:25.344 HelloCordova[69703:70b] [CDVTimer][statusbar] 39.905012ms
+2014-04-16 16:06:25.344 HelloCordova[69703:70b] [CDVTimer][TotalPluginStartup] 40.476024ms
+2014-04-16 16:06:25.670 HelloCordova[69703:70b] Resetting plugins due to page load.
+2014-04-16 16:06:26.213 HelloCordova[69703:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/708359CE-79BF-42A1-9627-496F8747B4FF/HelloCordova.app/www/index.html#/app/login
+2014-04-16 16:06:31.661 HelloCordova[69703:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 16:06:31.679 HelloCordova[69703:70b] THREAD WARNING: ['InAppBrowser'] took '137.463135' ms. Plugin should use a background thread.
+2014-04-16 16:08:20.203 HelloCordova[69970:70b] Multi-tasking -> Device: YES, App: YES
+2014-04-16 16:08:20.211 HelloCordova[69970:70b] Unlimited access to network resources
+2014-04-16 16:08:20.265 HelloCordova[69970:70b] [CDVTimer][statusbar] 21.176994ms
+2014-04-16 16:08:20.266 HelloCordova[69970:70b] [CDVTimer][TotalPluginStartup] 21.798015ms
+2014-04-16 16:08:20.573 HelloCordova[69970:70b] Resetting plugins due to page load.
+2014-04-16 16:08:20.908 HelloCordova[69970:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/708359CE-79BF-42A1-9627-496F8747B4FF/HelloCordova.app/www/index.html#/app/login
+2014-04-16 16:08:26.464 HelloCordova[69970:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-04-16 16:08:26.468 HelloCordova[69970:70b] THREAD WARNING: ['InAppBrowser'] took '36.368164' ms. Plugin should use a background thread.

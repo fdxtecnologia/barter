@@ -5,8 +5,6 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
         //OpenFB.init('489987941127071','http://localhost/BoaTroca-Ionic/www/oauthcallback.html',window.localStorage);
         OpenFB.init('489987941127071');
 
-        alert(window.sessionStorage['fbtoken']);
-
         navigator.geolocation.getCurrentPosition(function(postion){
            window.localStorage['latitude'] = postion.coords.latitude;
            window.localStorage['longitude'] = postion.coords.longitude;
