@@ -369,3 +369,39 @@ angular.module('sociogram.controllers', [])
         loadFeed();
 
     });
+
+    .controller('SearchPicture', function () {
+
+        $scope.show = function() {
+            $scope.loading = $ionicLoading.show({
+                content: 'Loading feed...'
+            });
+        };
+        $scope.hide = function(){
+            $scope.loading.hide();
+        };
+
+        function searchResults() {
+            $scope.show();
+                $http({
+                    url: 'http://localhost:8080/barterserver/search',
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {'title':numero, 'currentUser.id': window.localStorage.["sessao.userId"]}
+                }).success(function (result) {
+                        $scope.hide();
+                        $scope.items = result.data;
+                        // Used with pull-to-refresh
+                        $scope.$broadcast('scroll.refreshComplete');
+                    })
+                    .error(function(data) {
+                        $scope.hide();
+                        alert(data.error.message);
+                    });                 
+        }
+
+        $scope.doRefresh = loadFeed;
+
+        loadFeed();
+
+    });

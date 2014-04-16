@@ -124,6 +124,16 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                 }
             });
 
+            .state('app.searchresult', {
+                url: "/searchresult",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/search-result.html",
+                        controller: "searchResultCtrl"
+                    }
+                }
+            });
+
         // fallback route
         $urlRouterProvider.otherwise('/app/home');
 
