@@ -384,7 +384,7 @@ angular.module('sociogram.controllers', [])
         function searchResults() {
             $scope.show();
                 $http({
-                    url: 'http://localhost:8080/barterserver/search',
+                    url: 'http://192.168.1.11:8080/barterserver/search',
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                     data: {'title':numero, 'currentUser.id': window.localStorage.["sessao.userId"]}
