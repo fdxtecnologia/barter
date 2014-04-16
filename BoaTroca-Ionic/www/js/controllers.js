@@ -289,9 +289,9 @@ angular.module('sociogram.controllers', [])
     .controller('HomeCtrl', function ($scope ){
     })
 
-    .controller('ShareCtrl', function ($scope, OpenFB) {
+    .controller('MyPicturesCtrl', function ($scope) {
 
-        $scope.item = {};
+/*        $scope.item = {};
 
         $scope.share = function () {
             OpenFB.post('/me/feed', $scope.item)
@@ -302,7 +302,7 @@ angular.module('sociogram.controllers', [])
                     alert(data.error.message);
                 });
         };
-
+*/
     })
 
     .controller('ProfileCtrl', function ($scope, OpenFB) {

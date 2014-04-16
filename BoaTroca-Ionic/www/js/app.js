@@ -76,17 +76,15 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     }
                 }
             })
-
-            .state('app.share', {
-                url: "/share",
+            .state('app.mypictures', {
+                url: "/mypictures",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/share.html",
-                        controller: "ShareCtrl"
+                        templateUrl: "templates/mypictures.html",
+                        controller: "MyPicturesCtrl"
                     }
                 }
             })
-
             .state('app.friends', {
                 url: "/person/:personId/friends",
                 views: {
