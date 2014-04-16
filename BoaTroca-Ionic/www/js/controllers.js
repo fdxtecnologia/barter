@@ -287,7 +287,6 @@ angular.module('sociogram.controllers', [])
     })
 
     .controller('HomeCtrl', function ($scope ){
-        $scope.user = user;
     })
 
     .controller('ShareCtrl', function ($scope, OpenFB) {
@@ -368,7 +367,7 @@ angular.module('sociogram.controllers', [])
 
         loadFeed();
 
-    });
+    })
 
     .controller('SearchPicture', function () {
 
@@ -377,6 +376,7 @@ angular.module('sociogram.controllers', [])
                 content: 'Loading feed...'
             });
         };
+
         $scope.hide = function(){
             $scope.loading.hide();
         };
@@ -387,7 +387,7 @@ angular.module('sociogram.controllers', [])
                     url: 'http://192.168.1.11:8080/barterserver/search',
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
-                    data: {'title':numero, 'currentUser.id': window.localStorage.["sessao.userId"]}
+                    data: {'title':numero, 'currentUser.id': window.localStorage["sessao.userId"] }
                 }).success(function (result) {
                         $scope.hide();
                         $scope.items = result.data;

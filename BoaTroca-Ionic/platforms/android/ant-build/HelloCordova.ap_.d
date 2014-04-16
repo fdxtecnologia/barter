@@ -109,6 +109,8 @@
 /home/fdxdiogo/Development/barter/BoaTroca-Ionic/platforms/android/assets/www/templates/mutual-friend-list.html \
 /home/fdxdiogo/Development/barter/BoaTroca-Ionic/platforms/android/assets/www/templates/feed.html \
 /home/fdxdiogo/Development/barter/BoaTroca-Ionic/platforms/android/assets/www/templates/profile.html \
+/home/fdxdiogo/Development/barter/BoaTroca-Ionic/platforms/android/assets/www/templates/search-result.html \
+/home/fdxdiogo/Development/barter/BoaTroca-Ionic/platforms/android/assets/www/templates/home.html \
 /home/fdxdiogo/Development/barter/BoaTroca-Ionic/platforms/android/assets/www/templates/menu.html \
 /home/fdxdiogo/Development/barter/BoaTroca-Ionic/platforms/android/assets/www/templates/share.html \
 /home/fdxdiogo/Development/barter/BoaTroca-Ionic/platforms/android/assets/www/templates/friend-list.html \

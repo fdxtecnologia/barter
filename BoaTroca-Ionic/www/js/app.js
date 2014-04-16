@@ -122,7 +122,7 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                         controller: "FeedCtrl"
                     }
                 }
-            });
+            })
 
             .state('app.searchresult', {
                 url: "/searchresult",
