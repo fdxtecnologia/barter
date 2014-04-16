@@ -38,7 +38,15 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                 templateUrl: "templates/menu.html",
                 controller: "AppCtrl"
             })
-
+            .state('app.home', {
+                url: "/home",
+                views:{
+                    'menuContent': {
+                        templateUrl: "templates/home.html",
+                        controller: "HomeCtrl"
+                    }
+                }
+            })
             .state('app.login', {
                 url: "/login",
                 views: {
@@ -117,7 +125,7 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
             });
 
         // fallback route
-        $urlRouterProvider.otherwise('/app/person/me/feed');
+        $urlRouterProvider.otherwise('/app/home');
 
     });
 

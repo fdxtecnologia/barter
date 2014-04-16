@@ -57,7 +57,7 @@ angular.module('sociogram.controllers', [])
 
                         var userJson = {'user.name':user.name,'user.email':user.email,'user.age':age,'user.password':password,'user.loc_lat':latitude,'user.loc_long':longitude};
 
-                        $http({method: 'GET', url: 'http://localhost:8080/barterserver/user/post/save', params: userJson}).
+                        $http({method: 'GET', url: 'http://192.168.1.11:8080/barterserver/user/post/save', params: userJson}).
                         success(function(data, status, headers, config) {
                           // this callback will be called asynchronously
                           // when the response is available
@@ -68,7 +68,7 @@ angular.module('sociogram.controllers', [])
                           window.localStorage['sessao.password'] = data.password;
 
                             //REDIRECTT!!!!
-                        $location.path('/app/person/me/feed');
+                        $location.path('/app/home');
                         }).
                         error(function(data, status, headers, config) {
                           // called asynchronously if an error occurs
@@ -284,6 +284,10 @@ angular.module('sociogram.controllers', [])
         }
           
 
+    })
+
+    .controller('HomeCtrl', function ($scope ){
+        $scope.user = user;
     })
 
     .controller('ShareCtrl', function ($scope, OpenFB) {
