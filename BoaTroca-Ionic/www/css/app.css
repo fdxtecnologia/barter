@@ -1,0 +1,49 @@
+/* Your app's CSS, go crazy, make it your own */
+
+.ionic-logo {
+  display: block;
+  margin: 15px auto;
+  width: 96px;
+  height: 96px;
+}
+
+.item-body > p {
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+
+.button-facebook-connet{
+	background-color: #304C84;
+	color: #ffffff;
+	border: none;
+}
+
+.button-facebook-connet:hover{
+	background-color: #304C84;
+	color: #ffffff;
+	border: none;
+}
+
+.center-image{
+	margin: 0 auto;
+}
+
+#logoLogin-image{
+	height: 200px;
+}
+
+#logoLogin-div{
+	margin-top: 40px;
+}
+
+#facebookLoginText{
+	color: #ffffff;
+	font-size: 25px;
+	font: Arial, Helvetica;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+#facebookLoginButton{
+	margin-top: 40px;
+}
