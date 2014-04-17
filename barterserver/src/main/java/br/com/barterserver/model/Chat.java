@@ -21,7 +21,7 @@ import javax.persistence.Table;
  * @author guilherme
  */
 @Entity
-@Table(name = "pictures")
+@Table(name = "chats")
 public class Chat implements Serializable{
     
     @Id

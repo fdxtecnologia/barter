@@ -49,7 +49,7 @@ public class ChatsController{
     }
     
     @Path("/user/chat")
-    public void listChat(Trade trade){ 
+    public void listChat(Trade trade, User user){ 
         
         //----------------HTTP HEADER NEVER CHANGE----------------------//
         Set<HttpMethod> allowed = router.allowedMethodsFor(requestInfo.getRequestedUri());
@@ -63,7 +63,7 @@ public class ChatsController{
         
         List<Chat> listChats = dao.getChatMessages(trade.getId());
         for(Chat c: listChats){
-            if(c.getStatus() == StatusMessages.NEW){
+            if(c.getStatus() == StatusMessages.NEW && c.getUser().getId() != user.getId()){
                 isThereNewMessages = true;
                 c.setStatus(StatusMessages.OLD);
                 dao.saveOrUpdate(c);
