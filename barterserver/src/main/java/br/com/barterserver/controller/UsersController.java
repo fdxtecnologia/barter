@@ -164,4 +164,30 @@ public class UsersController {
             }
     }
     
+    @Path("/user/picture/add")
+    public void addPictureWithoutPicture(Picture picture, User user){
+        
+        //----------------HTTP HEADER NEVER CHANGE----------------------//
+        Set<HttpMethod> allowed = router.allowedMethodsFor(requestInfo.getRequestedUri());
+        result.use(Results.status()).header("Allow", allowed.toString().replaceAll("\\[|\\]", ""));  
+        result.use(Results.status()).header("Access-Control-Allow-Origin", "*");           
+        result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
+        result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
+        //----------------HTTP HEADER NEVER CHANGE----------------------//
+        
+        if(picture.getId() == null){
+            user = dao.findById(user.getId());
+            List<Picture> pictures = user.getPictures();
+            picture.setOwner(user);
+            pictures.add(picture);
+            user.setPictures(pictures);
+            dao.saveOrUpdate(user);
+            result.use(Results.json()).withoutRoot().from(picture).serialize();
+        }else{
+            Picture newPic = picDAO.findById(picture.getId());
+            newPic.setPhotoURL(picture.getPhotoURL());
+            picDAO.saveOrUpdate(newPic);
+        }
+    }
+    
 }
