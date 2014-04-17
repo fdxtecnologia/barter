@@ -16,5 +16,6 @@
     <mapping class="br.com.barterserver.model.User"/>
     <mapping class="br.com.barterserver.model.Picture"/>
     <mapping class="br.com.barterserver.model.Trade"/>
+    <mapping class="br.com.barterserver.model.Chat"/>
   </session-factory>
 </hibernate-configuration>
