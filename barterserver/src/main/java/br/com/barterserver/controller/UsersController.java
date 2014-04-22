@@ -20,6 +20,7 @@ import br.com.caelum.vraptor.http.route.Router;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.resource.HttpMethod;
 import br.com.caelum.vraptor.view.Results;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -162,6 +163,13 @@ public class UsersController {
                    result.use(Results.http()).body("Pictures wasn't able to save");
                 }
             }
+    }
+    
+    @Post("/user/upload")
+    public void uploadPicture(Object object){
+        
+        
+        
     }
     
     @Path("/user/picture/add")

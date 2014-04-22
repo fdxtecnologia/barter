@@ -16,11 +16,9 @@ angular.module('sociogram.controllers', [])
                     alert('Revoke permissions failed');
                 });
         };
-
     })
 
     .controller('LoginCtrl', function ($http, $scope, $location, OpenFB) {
-
         $scope.facebookLogin = function () {
             OpenFB.login('email,user_birthday').then(
                 function (success) {
@@ -53,11 +51,9 @@ angular.module('sociogram.controllers', [])
                         var longitude = window.localStorage['longitude'];
                         var password = hex_md5(user.id);
 
-                        alert(password);
-
                         /* TEMOS QUE FAZER O MD5 */
 
-                        var userJson = {'user.name':user.name,'user.email':user.email,'user.age':age,'user.password':user.id,'user.loc_lat':latitude,'user.loc_long':longitude};
+                        var userJson = {'user.name':user.name,'user.email':user.email,'user.age':age,'user.password':password,'user.loc_lat':latitude,'user.loc_long':longitude};
 
                         $http({method: 'GET', url: 'http://localhost:8080/barterserver/user/post/save', params: userJson}).
                         success(function(data, status, headers, config) {
@@ -70,7 +66,7 @@ angular.module('sociogram.controllers', [])
                           window.localStorage['sessao.password'] = data.password;
 
                             //REDIRECTT!!!!
-                        $location.path('/app/person/me/feed');
+                            $location.path('/app/home');
                         }).
                         error(function(data, status, headers, config) {
                           // called asynchronously if an error occurs
@@ -284,24 +280,15 @@ angular.module('sociogram.controllers', [])
         function bit_rol(a,b){
             return(a<<b)|(a>>>(32-b));
         }
-          
-
     })
 
-    .controller('ShareCtrl', function ($scope, OpenFB) {
+    .controller('HomeCtrl', function ($scope ){
+    })
 
-        $scope.item = {};
-
-        $scope.share = function () {
-            OpenFB.post('/me/feed', $scope.item)
-                .success(function () {
-                    $scope.status = "This item has been shared on OpenFB";
-                })
-                .error(function(data) {
-                    alert(data.error.message);
-                });
+    .controller('MyPicturesCtrl', function ($scope, $state) {
+        $scope.registerPicture = function(){
+            $state.go('app.registerpicture');
         };
-
     })
 
     .controller('ProfileCtrl', function ($scope, OpenFB) {
@@ -360,6 +347,124 @@ angular.module('sociogram.controllers', [])
                     $scope.hide();
                     alert(data.error.message);
                 });
+        }
+
+        $scope.doRefresh = loadFeed;
+
+        loadFeed();
+    })
+
+    .controller('RegisterPicturerCtrl', function($scope, $http){
+        // Launch device camera application
+        $scope.captureImage = function() { 
+            navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+        };
+
+        function captureSuccess(mediaFiles) {
+            var Img = mediaFiles[0].fullPath;
+            onPhotoURISuccess(Img);
+        }
+
+        function captureError(error) {
+            var msg = 'An error occurred during capture: ' + error.code;
+            navigator.notification.alert(msg, null, 'Uh oh!');
+        }
+        //end device camera capture
+
+        // Launch select picture from library
+        $scope.selectPìcture = function(){
+            alert('picture from album');
+            navigator.camera.getPicture( onPhotoURISuccess, onFail, { quality: 49, destinationType: navigator.camera.PictureSourceType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY});
+        };
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }
+
+        function onPhotoURISuccess(imgUri){
+            var Image = document.getElementById('imageId');
+            Image.src = imgUri;
+        }
+        // end device library select
+
+        // upload
+        $scope.uploadFile = function(){
+            /*
+            //var Image = document.getElementById('imageId');
+            var title = angular.fromJson($scope.pic);
+            alert("nome " + title.name );
+
+            if (Image.src != '') {
+                if (title.name == '') {
+                    alert("Insira o numero da figurinha!")
+                } else{
+                    var picJson = {
+                        'user.id': window.localStorage["sessao.userId"],
+                        'picture.title': name,
+                        'image': Image
+                    };
+                    $http({method: 'GET', url: 'http://192.168.1.11:8080/barterserver/user/post/picture/add', params: picJson}).
+                        success(function(data, status, headers, config) {
+                          // this callback will be called asynchronously
+                          // when the response is available
+                          alert('figurinha en Viada!')
+                    });
+                };
+            } else{
+                alert('Sem Imagem!');
+            };*/
+        };
+
+        $scope.send = function(){
+            var Image = document.getElementById('imageId');
+            var image = Image.src;
+            var options = new FileUploadOptions();
+            options.fileKey = "post";
+            options.chunckedMode = false;
+            var params = {};
+            //params. 
+            var ft = new FileTransfer();
+            ft.upload(image, encodeURI("http://localhost:8080/barterserver/user/upload"), onUploadSucess, onUploadFail, options);
+        };
+
+        function onUploadSucess(){
+
+        }
+        function onUploadFail(){
+
+        }
+
+    })
+
+    .controller('SearchPicture', function () {
+
+        $scope.show = function() {
+            $scope.loading = $ionicLoading.show({
+                content: 'Loading feed...'
+            });
+        };
+
+        $scope.hide = function(){
+            $scope.loading.hide();
+        };
+
+        function searchResults() {
+            $scope.show();
+                $http({
+                    url: 'http://192.168.1.11:8080/barterserver/search',
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {'title':numero, 'currentUser.id': window.localStorage["sessao.userId"] }
+                }).success(function (result) {
+                        $scope.hide();
+                        $scope.items = result.data;
+                        // Used with pull-to-refresh
+                        $scope.$broadcast('scroll.refreshComplete');
+                    })
+                    .error(function(data) {
+                        $scope.hide();
+                        alert(data.error.message);
+                    });                 
         }
 
         $scope.doRefresh = loadFeed;
