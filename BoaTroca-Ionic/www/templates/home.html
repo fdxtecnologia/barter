@@ -13,8 +13,17 @@
  -->
 
  		<div class="">
- 			<h3>home</h3>			
+ 			<h3>home</h3>
+ 			<div class="item item-input-inset">
+			    <label class="item-input-wrapper">
+			      	<input type="text" placeholder="Entre com o nº da figurinha" ng-model="numfigurinha">
+			    </label>
+			    <button class="button button-small" ng-click="pesquisar({{numfigurinha}})">
+			     	Buscar
+			    </button>
+			</div>			
  		</div>
+
     </ion-content>
 
 </ion-view>
