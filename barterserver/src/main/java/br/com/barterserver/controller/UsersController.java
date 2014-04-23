@@ -12,16 +12,12 @@ import br.com.barterserver.model.Picture;
 import br.com.barterserver.model.SearchJSON;
 import br.com.barterserver.model.User;
 import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.http.route.Router;
-import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.resource.HttpMethod;
 import br.com.caelum.vraptor.view.Results;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -132,7 +128,8 @@ public class UsersController {
         result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
         result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
         //----------------HTTP HEADER NEVER CHANGE----------------------// 
-        
+       
+       user = dao.findById(user.getId());
        List<Picture> myPics = user.getPictures();
        result.use(Results.json()).withoutRoot().from(myPics).serialize();
     }
