@@ -1,2 +1,2 @@
-/opt/lampp/htdocs/BoaTroca-Ionic/platforms/android/ant-build/AndroidManifest.xml : \
-/opt/lampp/htdocs/BoaTroca-Ionic/platforms/android/AndroidManifest.xml \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/AndroidManifest.xml : \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/AndroidManifest.xml \

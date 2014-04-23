@@ -5,7 +5,7 @@
  		<!-- Cadastrar Figurinhas -->
 	 		<div class="card">
 				<div class="item item-image">
-					<img id="imageId" ng-src="" ng-model="picture.img">
+					<img id="imageId" ng-src="" ng-model="picture.img" style="height: 60%; width: 80%; margin-left: auto; margin-right: auto;">
 				</div>
 			</div>
 			<div>
@@ -14,9 +14,9 @@
     </ion-content>
     <div class="bar bar-footer" style="height: 50px;">
     	<div class="button-bar">
-			<input class="button button-positive" ng-click="captureImage()" value="Foto">
-			<input class="button button-positive" ng-click="selectPìcture()" value="Album">
-			<input class="button button-positive" ng-click="fun()" value="Upload">
+			<button class="button button-positive" ng-click="captureImage()">Foto</button>
+			<button class="button button-positive" ng-click="selectPìcture()">Album</button>
+			<button class="button button-positive" ng-click="send()">Upload</button>
 		</div>
 	</div>
 </ion-view>

@@ -55,7 +55,7 @@ angular.module('sociogram.controllers', [])
 
                         var userJson = {'user.name':user.name,'user.email':user.email,'user.age':age,'user.password':password,'user.loc_lat':latitude,'user.loc_long':longitude};
 
-                        $http({method: 'GET', url: 'http://localhost:8080/barterserver/user/post/save', params: userJson}).
+                        $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/save', params: userJson}).
                         success(function(data, status, headers, config) {
                           // this callback will be called asynchronously
                           // when the response is available
@@ -357,7 +357,10 @@ angular.module('sociogram.controllers', [])
     .controller('RegisterPicturerCtrl', function($scope, $http){
         // Launch device camera application
         $scope.captureImage = function() {
-            navigator.device.capture.captureImage($scope.captureSuccess, $scope.captureError, {limit: 1});
+            var options = { 
+                limit: 1,
+            };            
+            navigator.device.capture.captureImage($scope.captureSuccess, $scope.captureError, options);
         };
 
         $scope.captureSuccess = function(mediaFiles) {
@@ -374,7 +377,15 @@ angular.module('sociogram.controllers', [])
         // Launch select picture from library
         $scope.selectPìcture = function(){
             alert('picture from album');
-            navigator.camera.getPicture( $scope.onPhotoURISuccess, $scope.onFailGetPic, { quality: 49, destinationType: navigator.camera.PictureSourceType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY});
+            var options = { 
+                quality : 50, 
+                destinationType : Camera.DestinationType.FILE_URI, 
+                sourceType : 2, 
+                encodingType: Camera.EncodingType.JPEG,
+                targetWidth: 64,
+                targetHeight: 80,
+            };
+            navigator.camera.getPicture( $scope.onPhotoURISuccess, $scope.onFailGetPic, options);
         };
 
         $scope.onFailGetPic = function(message) {
@@ -384,55 +395,51 @@ angular.module('sociogram.controllers', [])
         $scope.onPhotoURISuccess = function(imgUri){
             var Image = document.getElementById('imageId');
             Image.src = imgUri;
+            $scope.picData = imgUri;
+            $scope.$apply();
         };
         // end device library select
 
         // upload
-        $scope.uploadFile = function(){
-            /*
-            //var Image = document.getElementById('imageId');
-            var title = angular.fromJson($scope.pic);
-            alert("nome " + title.name );
-
-            if (Image.src != '') {
-                if (title.name == '') {
-                    alert("Insira o numero da figurinha!")
-                } else{
-                    var picJson = {
-                        'user.id': window.localStorage["sessao.userId"],
-                        'picture.title': name,
-                        'image': Image
-                    };
-                    $http({method: 'GET', url: 'http://192.168.1.11:8080/barterserver/user/post/picture/add', params: picJson}).
-                        success(function(data, status, headers, config) {
-                          // this callback will be called asynchronously
-                          // when the response is available
-                          alert('figurinha en Viada!')
-                    });
-                };
-            } else{
-                alert('Sem Imagem!');
-            };*/
-        };
-
         $scope.send = function(){
-            var Image = document.getElementById('imageId');
-            var image = Image.src;
-            var options = new FileUploadOptions();
-            options.fileKey = "post";
-            options.chunckedMode = false;
-            var params = {};
-            //params. 
-            var ft = new FileTransfer();
-            ft.upload(image, encodeURI("http://localhost:8080/barterserver/user/upload"), $scope.onUploadSucess, $scope.onUploadFail, options);
-        };
+
+            var picJson = {
+                'user.id': window.localStorage["sessao.userId"],
+                'picture.title': name,
+            };
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/picture/add', params: picJson}).
+                success(function(data, status, headers, config) {
+                    var image = $scope.picData;
+                    $scope.ActualPicId = data.id;
+                    var options = new FileUploadOptions();
+                    options.fileKey = "file";
+                    options.mineType = "image/jpeg"
+                    options.fileName =  data.id + ".jpg";
+                    options.chunckedMode = false;
+                    var params = new Object();
+                    options.params = params;
+                    var ft = new FileTransfer();
+                    ft.upload( image , "http://192.168.0.106/upload/upload.php", $scope.onUploadSucess, $scope.onUploadFail, options);
+            });
+            
+        };//end upload file
 
         $scope.onUploadSucess = function(){
+            var picJson = {
+                'picture.id': $scope.ActualPicId,
+                'picture.photoURL': "http://192.168.0.106/upload/pictures/"+data.id+".jpg"
 
+            }
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/', params: picJson}).
+                success(function(data, status, headers, config){
+                    alert("Figurinha enviada com sucesso!");
+                    $state.go('app.mypictures');
+            });
+            delete $scope.ActualPicId;
         };
 
-        $scope.onUploadFail = function(){
-
+        $scope.onUploadFail = function(evt){
+            alert('Falha no Upload: ' + evt);
         };
 
     })
@@ -452,7 +459,7 @@ angular.module('sociogram.controllers', [])
         function searchResults() {
             $scope.show();
                 $http({
-                    url: 'http://192.168.1.11:8080/barterserver/search',
+                    url: 'http://192.168.0.106:8080/barterserver/search',
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                     data: {'title':numero, 'currentUser.id': window.localStorage["sessao.userId"] }

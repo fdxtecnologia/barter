@@ -1,23 +1,22 @@
 <!-- registerpicture.html -->
 <ion-view title="Cadastrar Figurinha" hide-back-button="false">
-	<form novalidate class="simple-form" >
+	
     <ion-content has-header="true" padding="true">
  		<!-- Cadastrar Figurinhas -->
 	 		<div class="card">
 				<div class="item item-image">
-					<img id="imageId" ng-src="" ng-model="picture.img">
+					<img id="imageId" ng-src="" ng-model="picture.img" style="height: 60%, width: 85%;">
 				</div>
 			</div>
 			<div>
-				<input type="number" id="picname" placeholder="Numero" ng-model="value" ng-value="" required>
-			</div>
+				<input type="text" placeholder="Numero" ng-model="user." div>
+			</required>
     </ion-content>
     <div class="bar bar-footer" style="height: 50px;">
     	<div class="button-bar">
-			<a class="button button-positive" ng-click="captureImage()">Foto</a>
-			<a class="button button-positive" ng-click="selectPìcture()">Album</a>
-			<a class="button button-positive" ng-click="uploadFile()">Upload</a>
+			<button class="button button-positive" ng-click="captureImage()">Foto</button>
+			<button class="button button-positive" ng-click="selectPìcture()">Album</button>
+			<button class="button button-positive" ng-click="send()">Upload</button>
 		</div>
 	</div>
-	</form>
 </ion-view>
