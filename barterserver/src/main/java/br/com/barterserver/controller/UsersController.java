@@ -20,6 +20,7 @@ import br.com.caelum.vraptor.http.route.Router;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.resource.HttpMethod;
 import br.com.caelum.vraptor.view.Results;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -135,9 +136,9 @@ public class UsersController {
        List<Picture> myPics = user.getPictures();
        result.use(Results.json()).withoutRoot().from(myPics).serialize();
     }
-    
-    @Post("/user/post/picture/add")
-    public void addPicture(Picture picture, User user, UploadedFile image) throws IOException{
+   
+    @Path("/user/post/picture/add")
+    public void addPictureWithoutPicture(Picture picture, User user){
         
         //----------------HTTP HEADER NEVER CHANGE----------------------//
         Set<HttpMethod> allowed = router.allowedMethodsFor(requestInfo.getRequestedUri());
@@ -147,21 +148,19 @@ public class UsersController {
         result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
         //----------------HTTP HEADER NEVER CHANGE----------------------//
         
-            if(picture.getId() == null){
-                user = dao.findById(user.getId());
-                List<Picture> pictures = user.getPictures();
-                picture.setOwner(user);
-                pictures.add(picture);
-                user.setPictures(pictures);
-                String fileName = dao.uploadPictureToServer(image, picture.getId());
-                if(fileName != null){
-                    picture.setPhotoURL(fileName);
-                    picDAO.saveOrUpdate(picture);
-                    result.use(Results.http()).body("Pictures saved");
-                }else{
-                   result.use(Results.http()).body("Pictures wasn't able to save");
-                }
-            }
+        if(picture.getId() == null){
+            user = dao.findById(user.getId());
+            List<Picture> pictures = user.getPictures();
+            picture.setOwner(user);
+            pictures.add(picture);
+            user.setPictures(pictures);
+            dao.saveOrUpdate(user);
+            result.use(Results.json()).withoutRoot().from(picture).serialize();
+        }else{
+            Picture newPic = picDAO.findById(picture.getId());
+            newPic.setPhotoURL(picture.getPhotoURL());
+            picDAO.saveOrUpdate(newPic);
+        }
     }
     
 }
