@@ -285,7 +285,26 @@ angular.module('sociogram.controllers', [])
     .controller('HomeCtrl', function ($scope ){
     })
 
-    .controller('MyPicturesCtrl', function ($scope, $state) {
+    .controller('MyPicturesCtrl', function ($scope, $state, $http) {
+        $scope.show = function() {
+            $scope.loading = $ionicLoading.show({
+                content: 'Loading...'
+            });
+        };
+
+        $scope.hide = function(){
+            $scope.loading.hide();
+        };
+
+        var picJson = {
+            'user.id': window.localStorage["sessao.userId"]
+        };
+
+        $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/mypictures', params: picJson}).
+            success(function(data, status, headers, config) {
+                $scope.items = data;
+        });
+
         $scope.registerPicture = function(){
             $state.go('app.registerpicture');
         };
@@ -355,6 +374,18 @@ angular.module('sociogram.controllers', [])
     })
 
     .controller('RegisterPicturerCtrl', function($scope, $http){
+        $scope.data = {};
+
+        $scope.show = function() {
+            $scope.loading = $ionicLoading.show({
+                content: 'Loading feed...'
+            });
+        };
+
+        $scope.hide = function(){
+            $scope.loading.hide();
+        };
+
         // Launch device camera application
         $scope.captureImage = function() {
             var options = { 
@@ -400,12 +431,33 @@ angular.module('sociogram.controllers', [])
         };
         // end device library select
 
+        $scope.onUploadSucess = function(){
+            alert('on success resend');
+            var picJson = {
+                'picture.id': $scope.ActualPicId,
+                'picture.photoURL': "http://192.168.0.106/upload/pictures/"+ $scope.ActualPicId +".jpg"
+            };
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/picture/add', params: picJson}).
+                success(function(data, status, headers, config){
+                    alert("Figurinha enviada com success");
+                })
+                .error(function (data){
+
+                })
+            delete $scope.ActualPicId;
+        };
+
+        $scope.onUploadFail = function(evt){
+            alert('Falha no Upload: ' + evt);
+        };
+        
         // upload
         $scope.send = function(){
-
+            var number = $scope.data;
+            alert(number.pictureNumber);
             var picJson = {
                 'user.id': window.localStorage["sessao.userId"],
-                'picture.title': name,
+                'picture.title': number.pictureNumber
             };
             $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/picture/add', params: picJson}).
                 success(function(data, status, headers, config) {
@@ -424,23 +476,7 @@ angular.module('sociogram.controllers', [])
             
         };//end upload file
 
-        $scope.onUploadSucess = function(){
-            var picJson = {
-                'picture.id': $scope.ActualPicId,
-                'picture.photoURL': "http://192.168.0.106/upload/pictures/"+data.id+".jpg"
 
-            }
-            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/', params: picJson}).
-                success(function(data, status, headers, config){
-                    alert("Figurinha enviada com sucesso!");
-                    $state.go('app.mypictures');
-            });
-            delete $scope.ActualPicId;
-        };
-
-        $scope.onUploadFail = function(evt){
-            alert('Falha no Upload: ' + evt);
-        };
 
     })
 

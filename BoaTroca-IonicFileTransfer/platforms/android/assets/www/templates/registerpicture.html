@@ -5,24 +5,22 @@
  		<!-- Cadastrar Figurinhas -->
 	 		<div class="card">
 				<div class="item item-image">
-					<img id="imageId" ng-src="" ng-model="picture.img" style="height: 60%, width: 85%;">
+					<img id="imageId" ng-src="" ng-model="picture.img" style="height: 60%; width: 80%; margin-left: auto; margin-right: auto;">
 				</div>
 			</div>
 			<div>
-				<input type="text" placeholder="Numero" ng-model="user." div>
+				<label class="item item-input">
+					<span class="input-label">Numero da figurinha</span>
+					<input type="number" ng-model="data.pictureNumber">
+				</label>
+			</div>
 			</required>
     </ion-content>
     <div class="bar bar-footer" style="height: 50px;">
     	<div class="button-bar">
-<<<<<<< HEAD
 			<button class="button button-positive" ng-click="captureImage()">Foto</button>
-			<button class="button button-positive" ng-click="selectPìcture()">Album</button>
+			<!-- <button class="button button-positive" ng-click="selectPìcture()">Album</button> -->
 			<button class="button button-positive" ng-click="send()">Upload</button>
-=======
-			<input class="button button-positive" ng-click="captureImage()" value="Foto">
-			<input class="button button-positive" ng-click="selectPìcture()" value="Album">
-			<input class="button button-positive" ng-click="fun()" value="Upload">
->>>>>>> 4e6432df08c293a7dac57131857bcdef86fbae40
 		</div>
 	</div>
 </ion-view>

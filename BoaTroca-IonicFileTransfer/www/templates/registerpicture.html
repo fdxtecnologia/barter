@@ -9,13 +9,17 @@
 				</div>
 			</div>
 			<div>
-				<input type="text" placeholder="Numero" ng-model="user." div>
+				<label class="item item-input">
+					<span class="input-label">Numero da figurinha</span>
+					<input type="number" ng-model="data.pictureNumber">
+				</label>
+			</div>
 			</required>
     </ion-content>
     <div class="bar bar-footer" style="height: 50px;">
     	<div class="button-bar">
 			<button class="button button-positive" ng-click="captureImage()">Foto</button>
-			<button class="button button-positive" ng-click="selectPìcture()">Album</button>
+			<!-- <button class="button button-positive" ng-click="selectPìcture()">Album</button> -->
 			<button class="button button-positive" ng-click="send()">Upload</button>
 		</div>
 	</div>
