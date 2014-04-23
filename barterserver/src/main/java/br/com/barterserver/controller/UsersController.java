@@ -128,7 +128,8 @@ public class UsersController {
         result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
         result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
         //----------------HTTP HEADER NEVER CHANGE----------------------// 
-        
+       
+       user = dao.findById(user.getId());
        List<Picture> myPics = user.getPictures();
        result.use(Results.json()).withoutRoot().from(myPics).serialize();
     }
