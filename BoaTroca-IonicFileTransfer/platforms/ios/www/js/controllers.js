@@ -282,7 +282,14 @@ angular.module('sociogram.controllers', [])
         }
     })
 
-    .controller('HomeCtrl', function ($scope ){
+    .controller('HomeCtrl', function ($scope, $rootScope){
+            function pesquisar(numpicture){
+                $rootScope.numpicture = numpicture;
+
+                $scope.searchresult = function(){
+                    $state.go('app.registerpicture')
+                };
+            }
     })
 
     .controller('MyPicturesCtrl', function ($scope, $state) {

@@ -13,7 +13,6 @@ import br.com.barterserver.model.Status;
 import br.com.barterserver.model.Trade;
 import br.com.barterserver.model.User;
 import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.core.RequestInfo;

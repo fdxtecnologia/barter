@@ -136,43 +136,8 @@ public class UsersController {
        List<Picture> myPics = user.getPictures();
        result.use(Results.json()).withoutRoot().from(myPics).serialize();
     }
-    
-    @Post("/user/post/picture/add")
-    public void addPicture(Picture picture, User user, UploadedFile image) throws IOException{
-        
-        //----------------HTTP HEADER NEVER CHANGE----------------------//
-        Set<HttpMethod> allowed = router.allowedMethodsFor(requestInfo.getRequestedUri());
-        result.use(Results.status()).header("Allow", allowed.toString().replaceAll("\\[|\\]", ""));  
-        result.use(Results.status()).header("Access-Control-Allow-Origin", "*");           
-        result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
-        result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
-        //----------------HTTP HEADER NEVER CHANGE----------------------//
-        
-            if(picture.getId() == null){
-                user = dao.findById(user.getId());
-                List<Picture> pictures = user.getPictures();
-                picture.setOwner(user);
-                pictures.add(picture);
-                user.setPictures(pictures);
-                String fileName = dao.uploadPictureToServer(image, picture.getId());
-                if(fileName != null){
-                    picture.setPhotoURL(fileName);
-                    picDAO.saveOrUpdate(picture);
-                    result.use(Results.http()).body("Pictures saved");
-                }else{
-                   result.use(Results.http()).body("Pictures wasn't able to save");
-                }
-            }
-    }
-    
-    @Post("/user/upload")
-    public void uploadPicture(Object object){
-        
-        
-        
-    }
-    
-    @Path("/user/picture/add")
+   
+    @Path("/user/post/picture/add")
     public void addPictureWithoutPicture(Picture picture, User user){
         
         //----------------HTTP HEADER NEVER CHANGE----------------------//
