@@ -282,7 +282,19 @@ angular.module('sociogram.controllers', [])
         }
     })
 
-    .controller('HomeCtrl', function ($scope ){
+    .controller('HomeCtrl', function ($scope, $rootScope){
+        $scope.data = {};
+
+        $scope.pesquisa = function() {
+            $rootScope.numfigurinha = $scope.data.numfigurinha;
+            if($rootScope.numfigurinha){
+                $scope.pesquisar = function(){
+                    $state.go('app.searchresult');
+                };
+            }else{
+                alert("Entre com o numero da figurinha");
+            }
+        }
     })
 
     .controller('MyPicturesCtrl', function ($scope, $state, $http) {
@@ -480,7 +492,8 @@ angular.module('sociogram.controllers', [])
 
     })
 
-    .controller('SearchPicture', function () {
+    .controller('searchResultCtrl', function ($scope, $rootScope) {
+        $scope.data {}
 
         $scope.show = function() {
             $scope.loading = $ionicLoading.show({
@@ -492,27 +505,30 @@ angular.module('sociogram.controllers', [])
             $scope.loading.hide();
         };
 
-        function searchResults() {
-            $scope.show();
-                $http({
-                    url: 'http://192.168.0.106:8080/barterserver/search',
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' },
-                    data: {'title':numero, 'currentUser.id': window.localStorage["sessao.userId"] }
-                }).success(function (result) {
-                        $scope.hide();
-                        $scope.items = result.data;
-                        // Used with pull-to-refresh
-                        $scope.$broadcast('scroll.refreshComplete');
-                    })
-                    .error(function(data) {
-                        $scope.hide();
-                        alert(data.error.message);
-                    });                 
+        var picJson = {
+                'title': $rootScope.ActualPicId,
+                'currentUser.id': window.localStorage["sessao.userId"]
+        };
+
+        $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/search', params: picJson}).
+                success(function(result){
+                    $scope.items = result.data;
+                })
+
+        $scope.match = function(pictureId, ownerId){
+            var pictureId = pictureId;
+            var ownerId = ownderId;
+
+            var picJson = {
+                'picture.id': pictureId,
+                'owner.id': ownerId,
+                'currentUser.id': window.localStorage["sessao.userId"]
+            };
+
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/trade', params: picJson}).
+                success(function(result){
+                    $scope.items = result.data;
+                })
         }
-
-        $scope.doRefresh = loadFeed;
-
-        loadFeed();
-
+                
     });

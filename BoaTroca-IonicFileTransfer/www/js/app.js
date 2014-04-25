@@ -134,8 +134,18 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                 url: "/searchresult",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/search-result.html",
+                        templateUrl: "templates/searchresult.html",
                         controller: "searchResultCtrl"
+                    }
+                }
+            });
+
+            .state('app.userpictures', {
+                url: "/userpictures",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/userpictures.html",
+                        controller: "userPicturesCtrl"
                     }
                 }
             });
