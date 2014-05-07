@@ -395,9 +395,9 @@ angular.module('sociogram.controllers', [])
         $scope.sendMessage = function(){
             if ( $scope.dados.message != "") {
                 var msgJson = {
-                    'chat.user.id' = window.localStorage["sessao.userId"],
-                    'chat.trade.id' = $scope.trade,
-                    'chat.message' = $scope.dados.message
+                    'chat.user.id': window.localStorage["sessao.userId"],
+                    'chat.trade.id': $scope.trade,
+                    'chat.message': $scope.dados.message
                 };
                 $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/new/message ', params: msgJson})
                     .success(function(data, status, headers, config){
@@ -414,8 +414,8 @@ angular.module('sociogram.controllers', [])
             $scope.show();
             
             var chatJson = {
-                'trade.id' = $scope.trade,
-                'user.id' = window.localStorage["sessao.userId"]
+                'trade.id': $scope.trade,
+                'user.id': window.localStorage["sessao.userId"]
             };
 
             //  @barterserver/user/chat
