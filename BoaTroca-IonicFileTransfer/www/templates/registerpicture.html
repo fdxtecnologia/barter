@@ -1,25 +1,26 @@
-<!-- mypictures.html -->
-<ion-view title="Minhas Figurinhas" hide-back-button="true">
+<!-- registerpicture.html -->
+<ion-view title="Cadastrar Figurinha" hide-back-button="false">
+    
+    <ion-content has-header="true">
+        <!-- Cadastrar Figurinhas -->
+        <ion-list class="list" style="border: none !important;">
+            <label class="back-collor item item-input" style="margin-top: 10px;">
+                <span class="input-label">Numero da figurinha</span>
+                <input type="number" ng-model="data.pictureNumber">
+            </label>
+            
+            <button class="back-collor button button-block" ng-click="captureImage()">Foto</button>
+            
+            <div class="card" style="border: none !important;">
+                <div class="item item-image" style="border: none !important;">
+                    <img id="imageId" ng-src="" ng-model="picture.img" style="height: 280px; width: 200px; margin-left: auto; margin-right: auto; border: none !important;">
+                </div>
+            </div>
+            <div class="button-bar">
+                <a href="" class="button btn-cancel" ng-click="cancel()">Cancela</a>
+                <a href="" class="button btn-confirma" ng-click="send()">Confirma</a>
+            </div>
+        </ion-list>
 
-    <ion-nav-buttons side="left">
-        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
-
-    <ion-content has-header="true" padding="true">
-
-        <a href="#/app/registerpicture" class="button button-block button-dark">Nova</a>
-        
-        <ion-refresher
-            pulling-text="Pull to refresh..."
-            on-refresh="doRefresh()">
-        </ion-refresher>
-
-    	<div class="list">
-    		<a ng-repeat="item in items | orderBy: predicate='title'" href="#/app/showpicture/{{item.id}}" class="item item-thumbnail-left">
-    			<img ng-src="{{ item.photoURL }}" />
-    			<h2>{{ item.title }}</h2>
-    		</a>
-    	</div>
     </ion-content>
 </ion-view>
-
