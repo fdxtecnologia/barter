@@ -25,11 +25,6 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/geolocation/GPSListener.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/geolocation/CordovaLocationListener$LocationTimeoutTask.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/mediacapture/Capture$1.class \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/mediacapture/Capture$3.class \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/mediacapture/Capture.class \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/mediacapture/FileHelper.class \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/mediacapture/Capture$2.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/file/Filesystem$LimitedInputStream.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/file/InvalidModificationException.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/file/LocalFilesystem.class \

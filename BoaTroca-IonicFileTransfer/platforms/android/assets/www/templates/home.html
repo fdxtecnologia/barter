@@ -5,16 +5,30 @@
     </ion-nav-buttons>
 
     <ion-content has-header="true" padding="true">
-<!-- 
-        <ion-refresher
-                pulling-text="Pull to refresh..."
-                on-refresh="doRefresh()">
-        </ion-refresher>
- -->
 
- 		<div class="">
- 			<h3>home</h3>			
+        <div class="list">
+
+            <div class="item item-image" style="border:none;margin-top:10px; padding-top: 15%; padding-bottom: 30%;">
+                <img src="img/logoCopa.png" style="width: 65%"/>
+            </div>
+            <label class="back-collor item item-input">
+                <input type="text" placeholder="Numero da figurinha" ng-model="data.numfigurinha">
+                <i class="icon ion-search placeholder-icon"></i>
+            </label>
+            <div class="item">
+                <a class="button button-positive" ng-click="pesquisar()">Buscar</a> 
+            </div>
+        </div>
+
+        <!--
+  		<div class="">
+ 			<h3>Home</h3>
+ 		
+			    <input type="text" placeholder="Entre com o nº da figurinha" ng-model="data.numfigurinha">
+			    
+			    <a class="button button-positive" ng-click="pesquisar()">Buscar</a>			
  		</div>
+        -->
     </ion-content>
 
 </ion-view>

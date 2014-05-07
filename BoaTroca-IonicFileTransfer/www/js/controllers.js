@@ -379,6 +379,39 @@ angular.module('sociogram.controllers', [])
         loadPictures();
     })
 
+    .controller('ShowPictureCtrl', function($scope, $state, $stateParams, $http, $ionicLoading, $location){
+        $scope.picId = $stateParams.pictureId;
+        
+        $scope.show = function(){
+            $scope.loading = $ionicLoading.show({
+                content: 'Loading...'
+            });
+        };
+        
+        $scope.hide = function(){
+            $scope.loading.hide();
+        };
+        
+        $scope.removeItem = function(){
+            $scope.show();
+            // remover figurinha do banco
+            var picJson = {
+                'user.id': window.localStorage["sessao.userId"],
+                'picture.id': $scope.picId
+            };
+            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/picture/delete', params : picJson})
+                .success(function(data, status, headers, config){
+                    $scope.hide();
+                    alert('Figurinha removida com sucesso!');
+                    $location.path('/app/mypictures');
+                })
+                .error(function(data){
+                    $scope.hide();
+                    alert('Erro na remoção' + data);
+                });
+        };
+    })
+
     .controller('ChatCrtl', function($scope, $stateParams, $state, $http, $ionicLoading, $interval, $ionicScrollDelegate){
         $scope.trade = $stateParams.tradeId;
         $scope.dados = {};

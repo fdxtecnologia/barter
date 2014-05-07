@@ -102,6 +102,15 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     }
                 }
             })
+            .state('app.showpicture', {
+                url: "/showpicture/:pictureId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/showpicture.html",
+                        controller: "ShowPictureCtrl"
+                    }
+                }
+            })
             .state('app.registerpicture', {
                 url: "/registerpicture",
                 views: {
@@ -144,6 +153,15 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     'menuContent': {
                         templateUrl: "templates/feed.html",
                         controller: "FeedCtrl"
+                    }
+                }
+            })
+            .state('app.chat', {
+                url: '/chat/:trade',
+                views: {
+                    'menuContent':{
+                        templateUrl: "templates/chat.html",
+                        controller: 'ChatCrtl'
                     }
                 }
             })

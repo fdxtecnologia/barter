@@ -53,7 +53,6 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/js/controllers.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.camera \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.geolocation \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.media-capture \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.statusbar \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser \
@@ -69,14 +68,6 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/Coordinates.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/PositionError.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/geolocation.js \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.media-capture/www \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.media-capture/www/CaptureImageOptions.js \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.media-capture/www/CaptureError.js \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.media-capture/www/CaptureAudioOptions.js \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.media-capture/www/capture.js \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.media-capture/www/MediaFile.js \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.media-capture/www/MediaFileData.js \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.media-capture/www/CaptureVideoOptions.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.statusbar/www \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.statusbar/www/statusbar.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.file/www \
@@ -118,6 +109,7 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/img/loader.gif \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/img/icon120x120.png \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/css/app.css \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/www - Atalho.lnk \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic/js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic/fonts \
@@ -146,16 +138,22 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic/fonts/ionicons.eot \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic/css/ionic.css \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic/css/ionic.min.css \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/userpictures.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/mutual-friend-list.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/feed.html \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/showpicture.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/profile.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/search-result.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/registerpicture.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/home.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/menu.html \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/share.html \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/searchresult.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/friend-list.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/login.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/mypictures.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/person.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/logout.html \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/chat.html \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates/trades.html \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/AndroidManifest.xml \
