@@ -7,18 +7,19 @@
 
     <ion-content has-header="true" padding="true">
 
-    	<div class="list">
-    		<a ng-repeat="item in items" href="" class="item item-thumbnail-left">
-    			<img ng-src="{{ item.photoURL }}" />
-    			<h2>{{ item.title }}</h2>
-    		</a>
-    	</div>
+        <a href="#/app/registerpicture" class="button button-block button-dark">Nova</a>
+        
+        <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+        </ion-refresher>
 
+        <div class="list">
+            <a ng-repeat="item in items | orderBy: predicate='title'" href="#/app/showpicture/{{item.id}}" class="item item-thumbnail-left">
+                <img ng-src="{{ item.photoURL }}" />
+                <h2>{{ item.title }}</h2>
+            </a>
+        </div>
     </ion-content>
-	<div class="bar bar-footer" style="height: 50px;">
-		<div class="button-bar">
-			<a class="button button-positive" ng-click="registerPicture()">Cadastrar Figurinha</a>
-		</div>
-	</div>
 </ion-view>
 
