@@ -11,6 +11,7 @@ import br.com.barterserver.dao.TradeDAO;
 import br.com.barterserver.dao.UserDAO;
 import br.com.barterserver.model.Status;
 import br.com.barterserver.model.Trade;
+import br.com.barterserver.model.TradeJSON;
 import br.com.barterserver.model.User;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -19,6 +20,7 @@ import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.http.route.Router;
 import br.com.caelum.vraptor.resource.HttpMethod;
 import br.com.caelum.vraptor.view.Results;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -57,9 +59,13 @@ public class TradesController {
         result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
         result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
         //----------------HTTP HEADER NEVER CHANGE----------------------//         
-        
+            user = userDAO.findById(user.getId());
+            List<TradeJSON> tradesJSON = new ArrayList<TradeJSON>();
             List<Trade> listOfTrades = dao.listMyTrades(user);
-            result.use(Results.json()).withoutRoot().from(listOfTrades).serialize();
+            for(Trade t: listOfTrades){
+                tradesJSON.add(new TradeJSON(t.getId(),t.getPictureOffering().getId(), t.getPictureOffering().getTitle(),t.getUserRequiring().getId(), t.getUserRequiring().getName()));
+            }
+            result.use(Results.json()).withoutRoot().from(tradesJSON).serialize();
     }
     
     
@@ -93,9 +99,10 @@ public class TradesController {
         result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
         result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
         //----------------HTTP HEADER NEVER CHANGE----------------------//        
-        
-        trade.setStatus(Status.PROCESSING);
-        Trade t = dao.saveOrUpdateAndReturn(trade);
+        Trade tr = dao.findById(trade.getId());
+        tr.setPictureRequiring(pictureDAO.findById(trade.getPictureRequiring().getId()));
+        tr.setStatus(Status.PROCESSING);
+        Trade t = dao.saveOrUpdateAndReturn(tr);
         result.use(Results.json()).withoutRoot().from(t).serialize();
     }
     

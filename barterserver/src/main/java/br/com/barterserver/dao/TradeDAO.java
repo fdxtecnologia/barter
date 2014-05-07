@@ -32,7 +32,7 @@ public class TradeDAO extends GenericDAO<Trade>{
     }
 
     public List<Trade> listMyTrades(User user) {
-       Query q = session.createQuery("from Trade t where user_offering = :user_offering or user_requiring = :user_requiring");
+       Query q = session.createQuery("from Trade t where t.userOffering = :user_offering or t.userRequiring = :user_requiring");
        q.setParameter("user_offering", user);
        q.setParameter("user_requiring", user);
        

@@ -9,7 +9,7 @@
 
     <ion-side-menu side="left">
         <header class="bar bar-header bar-dark">
-            <h1 class="title">Sociogram</h1>
+            <h1 class="title">Menu</h1>
         </header>
         <ion-content class="has-header">
             <ion-list>
@@ -20,6 +20,10 @@
                 <ion-item item-type="item-icon-left" nav-clear menu-close href="#/app/mypictures">
                     <i class="icon ion-share"></i>
                     Minhas figurinhas
+                </ion-item>
+                <ion-item item-type="item-icon-left" nav-clear menu-close href="#/app/trades">
+                    <i class="icon ion-share"></i>
+                    Trades
                 </ion-item>
                 <ion-item item-type="item-icon-left" nav-clear menu-close href="#/app/person/me/friends">
                     <i class="icon ion-ios7-people"></i>
@@ -40,12 +44,24 @@
             </ion-list>
         </ion-content>
     </ion-side-menu>
-    <ion-side-menu side="right">
+    <ion-side-menu side="right"  data-ng-controller="menuCtrl">
         <header class="bar bar-header bar-dark">
-            <h1 class="title">Sociogram</h1>
+            <h1 class="title"  data-ng-init="carregaTrade()">Trocas</h1>
         </header>
         <ion-content class="has-header">
             <ion-list>
+                <div>
+                    <div ng-repeat="item in items" id="matchesList">
+                            <div>
+                                <div>Figurinha: {{item.pictureId}}</div>
+                                <div>Usuário: {{item.userReqName}}</div>
+                                <div>
+                                    <a class="button button-positive" ng-click="userPictures(item.tradeId,item.userReqId,item.userReqName)">Trocar</a>
+                                    
+                                </div>
+                            </div>
+                    </div>
+                </div>
             </ion-list>
         </ion-content>
     </ios-side-menu>
