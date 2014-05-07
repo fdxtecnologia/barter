@@ -38,6 +38,24 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                 templateUrl: "templates/menu.html",
                 controller: "AppCtrl"
             })
+            .state('app.menuRight', {
+                url: "/menu",
+                views:{
+                    'menuContent':{
+                        templateUrl: "templates/menu.html",
+                        controller: "menuCtrl"
+                    }
+                }
+            })
+            /*.state('app.trades', {
+                url: "/app",
+                views:{
+                    'menuContent':{
+                        templateUrl: "templates/trades.html",
+                        controller: "tradesCtrl"
+                    }
+                }
+            })*/
             .state('app.home', {
                 url: "/home",
                 views:{
@@ -129,7 +147,6 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     }
                 }
             })
-
             .state('app.searchresult', {
                 url: "/searchresult",
                 views: {
@@ -138,8 +155,7 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                         controller: "searchResultCtrl"
                     }
                 }
-            });
-
+            })
             .state('app.userpictures', {
                 url: "/userpictures",
                 views: {
@@ -149,6 +165,7 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     }
                 }
             });
+            
 
         // fallback route
         $urlRouterProvider.otherwise('/app/home');
