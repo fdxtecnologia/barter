@@ -7,9 +7,11 @@
 package br.com.barterserver.controller;
 
 import br.com.barterserver.dao.PictureDAO;
+import br.com.barterserver.dao.TradeDAO;
 import br.com.barterserver.dao.UserDAO;
 import br.com.barterserver.model.Picture;
 import br.com.barterserver.model.SearchJSON;
+import br.com.barterserver.model.Trade;
 import br.com.barterserver.model.User;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -36,14 +38,16 @@ public class UsersController {
     private Result result;
     private Router router;
     private RequestInfo requestInfo;
+    private TradeDAO tradeDAO;
     
-    public UsersController(Result result, UserDAO dao, PictureDAO picDAO, Router router, RequestInfo requestInfo){
+    public UsersController(Result result, UserDAO dao, PictureDAO picDAO, Router router, RequestInfo requestInfo, TradeDAO tradeDAO){
         
         this.result = result;
         this.dao = dao;
         this.requestInfo = requestInfo;
         this.router = router;
         this.picDAO = picDAO;
+        this.tradeDAO = tradeDAO;
         
     }
     
@@ -81,11 +85,14 @@ public class UsersController {
         
         List<Picture> pics = dao.searchPictures(title);
         List<SearchJSON> searchs = new ArrayList<SearchJSON>();
+        List<Trade> trades = tradeDAO.listMyTrades(currentUser);
         
         for(Picture p: pics ){
             SearchJSON s = new SearchJSON(p.getId(), p.getTitle(), p.getPhotoURL(), p.getOwner().getId(), p.getOwner().getName(), p.getOwner().getEmail(), this.distance(p.getOwner().getLoc_lat(), p.getOwner().getLoc_long(), currentUser.getLoc_lat(), currentUser.getLoc_long()));
-            if(p.getOwner().getId() != currentUser.getId()){
-                searchs.add(s);
+            for(Trade t: trades){
+                if(t.getPictureOffering().getId() != p.getId() && p.getOwner().getId() != currentUser.getId()){
+                    searchs.add(s);
+                }
             }
         }
         
