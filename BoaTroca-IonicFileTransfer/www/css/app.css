@@ -47,3 +47,31 @@
 #facebookLoginButton{
 	margin-top: 40px;
 }
+
+/**************************************************/
+
+.back-collor{
+	background-color: #92A0BD;
+}
+
+.btn-confirma{
+	background-color: #EDA102;
+}
+.btn-cancel{
+	background-color: #666666;
+}
+
+.box-width{
+	width: 80%;
+}
+
+.img-home{
+	border: none;
+	margin-top: 10px;
+	padding-top: 15%;
+	padding-bottom: 30%;
+}
+
+#imageId{
+	border: none;
+}
