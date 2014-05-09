@@ -21,9 +21,7 @@ import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.http.route.Router;
 import br.com.caelum.vraptor.resource.HttpMethod;
 import br.com.caelum.vraptor.view.Results;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import java.util.Set;
 
 /**

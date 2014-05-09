@@ -84,7 +84,9 @@ public class UsersController {
         
         for(Picture p: pics ){
             SearchJSON s = new SearchJSON(p.getId(), p.getTitle(), p.getPhotoURL(), p.getOwner().getId(), p.getOwner().getName(), p.getOwner().getEmail(), this.distance(p.getOwner().getLoc_lat(), p.getOwner().getLoc_long(), currentUser.getLoc_lat(), currentUser.getLoc_long()));
-            searchs.add(s);
+            if(p.getOwner().getId() != currentUser.getId()){
+                searchs.add(s);
+            }
         }
         
         Collections.sort(searchs, new Comparator<SearchJSON>() {
