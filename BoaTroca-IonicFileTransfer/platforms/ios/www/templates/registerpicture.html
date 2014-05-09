@@ -1,22 +1,30 @@
 <!-- registerpicture.html -->
 <ion-view title="Cadastrar Figurinha" hide-back-button="false">
-	
-    <ion-content has-header="true" padding="true">
- 		<!-- Cadastrar Figurinhas -->
-	 		<div class="card">
-				<div class="item item-image">
-					<img id="imageId" ng-src="" ng-model="picture.img">
-				</div>
-			</div>
-			<div>
-				<input type="text" placeholder="Numero" ng-model="user." div>
-			</required>
+    
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <ion-content has-header="true">
+        <!-- Cadastrar Figurinhas -->
+        <ion-list class="list" style="border: none !important;">
+            <label class="back-collor item item-input" style="margin-top: 10px;">
+                <span class="input-label">Numero da figurinha</span>
+                <input type="number" ng-model="data.pictureNumber">
+            </label>
+            
+            <button class="back-collor button button-block" ng-click="captureImage()">Foto</button>
+            
+            <div class="card" style="border: none !important;">
+                <div class="item item-image" style="border: none !important;">
+                    <img id="imageId" ng-src="" ng-model="picture.img" style="height: 280px; width: 200px; margin-left: auto; margin-right: auto; border: none !important;">
+                </div>
+            </div>
+            <div class="button-bar">
+                <a href="" class="button btn-cancel" ng-click="cancel()">Cancela</a>
+                <a href="" class="button btn-confirma" ng-click="send()">Confirma</a>
+            </div>
+        </ion-list>
+
     </ion-content>
-    <div class="bar bar-footer" style="height: 50px;">
-    	<div class="button-bar">
-			<input class="button button-positive" ng-click="captureImage()" value="Foto">
-			<input class="button button-positive" ng-click="selectPìcture()" value="Album">
-			<input class="button button-positive" ng-click="fun()" value="Upload">
-		</div>
-	</div>
 </ion-view>

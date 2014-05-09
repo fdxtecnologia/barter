@@ -38,6 +38,24 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                 templateUrl: "templates/menu.html",
                 controller: "AppCtrl"
             })
+            .state('app.menuRight', {
+                url: "/menu",
+                views:{
+                    'menuContent':{
+                        templateUrl: "templates/menu.html",
+                        controller: "menuCtrl"
+                    }
+                }
+            })
+            /*.state('app.trades', {
+                url: "/app",
+                views:{
+                    'menuContent':{
+                        templateUrl: "templates/trades.html",
+                        controller: "tradesCtrl"
+                    }
+                }
+            })*/
             .state('app.home', {
                 url: "/home",
                 views:{
@@ -81,6 +99,15 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     'menuContent': {
                         templateUrl: "templates/mypictures.html",
                         controller: "MyPicturesCtrl"
+                    }
+                }
+            })
+            .state('app.showpicture', {
+                url: "/showpicture/:pictureId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/showpicture.html",
+                        controller: "ShowPictureCtrl"
                     }
                 }
             })
@@ -129,16 +156,34 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     }
                 }
             })
-
+            .state('app.chat', {
+                url: '/chat/:trade',
+                views: {
+                    'menuContent':{
+                        templateUrl: "templates/chat.html",
+                        controller: 'ChatCrtl'
+                    }
+                }
+            })
             .state('app.searchresult', {
                 url: "/searchresult",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/search-result.html",
+                        templateUrl: "templates/searchresult.html",
                         controller: "searchResultCtrl"
                     }
                 }
+            })
+            .state('app.userpictures', {
+                url: "/userpictures",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/userpictures.html",
+                        controller: "userPicturesCtrl"
+                    }
+                }
             });
+            
 
         // fallback route
         $urlRouterProvider.otherwise('/app/home');

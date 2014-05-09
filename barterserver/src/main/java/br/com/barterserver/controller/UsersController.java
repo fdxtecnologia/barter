@@ -104,6 +104,8 @@ public class UsersController {
      
    public Double distance(Double targetLat, Double targetLong, Double userLat, Double userLong){
        
+       try{
+       
         Double R = 6371d;
         
         Double dLat = Math.toRadians(targetLat-userLat);
@@ -116,8 +118,13 @@ public class UsersController {
         Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
         
         Double distance = R * c;
-        
         return distance;
+        
+       }catch(NullPointerException e){
+           return 100000d;
+       }
+        
+        
     }
     
     @Path("/user/post/mypictures")

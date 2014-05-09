@@ -541,3 +541,13 @@
     }
   ]
 ]
+2014-05-09 15:25:39.291 HelloCordova[2878:70b] Multi-tasking -> Device: YES, App: YES
+2014-05-09 15:25:39.333 HelloCordova[2878:70b] Unlimited access to network resources
+2014-05-09 15:25:39.889 HelloCordova[2878:70b] [CDVTimer][statusbar] 106.881976ms
+2014-05-09 15:25:39.890 HelloCordova[2878:70b] [CDVTimer][TotalPluginStartup] 107.524991ms
+2014-05-09 15:25:40.101 HelloCordova[2878:70b] Resetting plugins due to page load.
+2014-05-09 15:25:40.854 HelloCordova[2878:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/C2890169-CDE3-4D14-89D8-511A68518A36/HelloCordova.app/www/index.html#/app/login
+2014-05-09 15:25:43.581 HelloCordova[2878:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-05-09 15:25:43.600 HelloCordova[2878:70b] THREAD WARNING: ['InAppBrowser'] took '67.944092' ms. Plugin should use a background thread.
+2014-05-09 15:30:31.299 HelloCordova[2878:4003] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2014-05-09 15:31:48.509 HelloCordova[2878:4003] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode

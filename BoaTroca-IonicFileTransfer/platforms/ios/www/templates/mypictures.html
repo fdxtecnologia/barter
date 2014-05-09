@@ -1,21 +1,21 @@
 <!-- mypictures.html -->
 <ion-view title="Minhas Figurinhas" hide-back-button="true">
 
-    <ion-nav-buttons side="left">
-        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
-
     <ion-content has-header="true" padding="true">
 
- 		<div class="row"><!-- Mostrar figurinhas pertencentes ao usuário -->
+        <a href="#/app/registerpicture" class="button button-block button-dark">Nova</a>
+        
+        <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+        </ion-refresher>
 
- 		</div>
-
+        <div class="list card" ng-repeat="item in items | orderBy: predicate='title'">
+            <a  href="#/app/showpicture/{{item.id}}" class="item item-thumbnail-left">
+                <img ng-src="{{ item.photoURL }}" />
+                <h2>{{ item.title }}</h2>
+            </a>
+        </div>
     </ion-content>
-	<div class="bar bar-footer" style="height: 50px;">
-		<div class="button-bar">
-			<a class="button button-positive" ng-click="registerPicture()">Cadastrar Figurinha</a>
-		</div>
-	</div>
 </ion-view>
 
