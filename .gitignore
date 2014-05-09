@@ -146,3 +146,23 @@ barterserver/target/barterserver/WEB-INF/classes/hibernate.cfg.xml
 barterserver/target/classes/hibernate.cfg.xml
 
 barterserver/target/classes/hibernate.cfg.xml
+
+*.log
+
+*.hmap
+
+*.dep
+
+*.dat
+
+*.d
+
+*.dia
+
+*.o
+
+*.LinkFileList
+
+*.sh
+
+*.plist

@@ -551,3 +551,63 @@
 2014-05-09 15:25:43.600 HelloCordova[2878:70b] THREAD WARNING: ['InAppBrowser'] took '67.944092' ms. Plugin should use a background thread.
 2014-05-09 15:30:31.299 HelloCordova[2878:4003] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
 2014-05-09 15:31:48.509 HelloCordova[2878:4003] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2014-05-09 15:36:52.811 HelloCordova[2878:70b] ERROR: Plugin 'Camera' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-05-09 15:36:52.811 HelloCordova[2878:70b] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "Camera1986483890",
+  "Camera",
+  "takePicture",
+  [
+    80,
+    1,
+    1,
+    200,
+    280,
+    0,
+    0,
+    false,
+    false,
+    true,
+    null,
+    0
+  ]
+]
+2014-05-09 15:36:54.367 HelloCordova[2878:70b] ERROR: Plugin 'Camera' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-05-09 15:36:54.368 HelloCordova[2878:70b] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "Camera1986483891",
+  "Camera",
+  "takePicture",
+  [
+    80,
+    1,
+    1,
+    200,
+    280,
+    0,
+    0,
+    false,
+    false,
+    true,
+    null,
+    0
+  ]
+]
+2014-05-09 15:36:55.008 HelloCordova[2878:70b] ERROR: Plugin 'Camera' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-05-09 15:36:55.009 HelloCordova[2878:70b] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "Camera1986483892",
+  "Camera",
+  "takePicture",
+  [
+    80,
+    1,
+    1,
+    200,
+    280,
+    0,
+    0,
+    false,
+    false,
+    true,
+    null,
+    0
+  ]
+]
