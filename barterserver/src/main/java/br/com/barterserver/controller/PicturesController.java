@@ -56,7 +56,7 @@ public class PicturesController {
         result.use(Results.status()).header("Access-Control-Allow-Methods", allowed.toString().replaceAll("\\[|\\]", ""));           
         result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, accept, authorization, origin");
         //----------------HTTP HEADER NEVER CHANGE----------------------//        
-        
+            user = userDAO.findById(user.getId());
             List<Picture> listMyPics = user.getPictures();
             for(Picture p: listMyPics){
                 if(p.getId() == picture.getId()){
