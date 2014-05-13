@@ -75,3 +75,75 @@
 #imageId{
 	border: none;
 }
+
+#menu_right{
+	background-color: #3372ba;
+	color: #fff;
+}
+
+.picturesRef {
+	color: #eca000;
+}
+
+.tradesBtn {
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.pictureTitle {
+	background-color: #ececec;
+	border: 0px;
+	margin-bottom: 0px;
+	padding: 5px;
+	font-size: 16px;
+	color: #476cbd;
+}
+
+.pictureImageBg{
+	background-color: #ececec;
+	border: 0px;
+	border-bottom: 1px solid #476cbd;
+	text-align: center;
+}
+
+.pictureImage {
+	background-color: #ccc;
+	width: 200px;
+	height: 280px;
+	margin-left: 40px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.pictureStatus{
+	background-color: #ececec;
+	border: 0px;
+	padding: 5px;
+	color: #476cbd;
+	font-size: 12px;
+}
+
+.picUserName{
+	width: 75%;
+	float: left;
+}
+
+.picTrade{
+	width: 25%;
+	float: right;
+	font-weight: bold;
+	color: #f59c00;
+}
+
+.tradeStatusFlag {
+	width: 20px;
+	height: 20px;
+	background-color: #eca000;
+	color: #fff;
+	float: right;
+	margin-right: 5px;
+	text-align: center;
+}
+
+
+

@@ -10,6 +10,8 @@ import br.com.barterserver.dao.ChatDAO;
 import br.com.barterserver.dao.TradeDAO;
 import br.com.barterserver.dao.UserDAO;
 import br.com.barterserver.model.Chat;
+import br.com.barterserver.model.ChatJSON;
+import br.com.barterserver.model.Status;
 import br.com.barterserver.model.StatusMessages;
 import br.com.barterserver.model.Trade;
 import br.com.barterserver.model.User;
@@ -21,6 +23,7 @@ import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.http.route.Router;
 import br.com.caelum.vraptor.resource.HttpMethod;
 import br.com.caelum.vraptor.view.Results;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -44,6 +47,7 @@ public class ChatsController{
         this.router = router;
         this.requestInfo = requestInfo;
         this.tradeDAO = tradeDAO;
+        this.userDAO = userDAO;
     }
     
     @Path("/user/chat")
@@ -60,17 +64,20 @@ public class ChatsController{
         boolean isThereNewMessages = false;
         
         List<Chat> listChats = dao.getChatMessages(trade.getId());
+        List<ChatJSON> chatsJSON = new ArrayList<ChatJSON>();
         for(Chat c: listChats){
-            if(c.getStatus() == StatusMessages.NEW && c.getUser().getId() != user.getId()){
+            ChatJSON chatJSON = new ChatJSON(c.getUser().getName(), c.getMessage(), c.getStatus());
+            chatsJSON.add(chatJSON);
+            if(c.getStatus() == StatusMessages.NEW){
                 isThereNewMessages = true;
                 c.setStatus(StatusMessages.OLD);
                 dao.saveOrUpdate(c);
             }
         }
         
-        if(isThereNewMessages){
-            result.use(Results.json()).withoutRoot().from(listChats).serialize();
-        }  
+        
+            result.use(Results.json()).withoutRoot().from(chatsJSON).serialize();
+        
     }
     
     @Post("/user/new/message")

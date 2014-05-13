@@ -3,30 +3,27 @@
 
     <ion-content has-header="true" padding="true">
 
-    <h3>Figurinhas do {{item.userName}}:</h3>
+    <h3>Figurinhas do {{ownerName}}:</h3>
 
-    <div ng-repeat="item in items" class="list card">
+    <div ng-repeat="item in items" class="list card" style="background-color: #ececec">
 
-            <div class="item item-avatar">
-              <h2>Número da figurinha: {{item.title}}</h2>
+            <div class="pictureTitle">
+                Número da figurinha: {{item.title}}
             </div>
 
-            <div class="item item-body">
-              <img class="full-image" src="delorean.jpg">
-              <p>
-                {{item.photoURL}}
-              </p>
+            <div class="pictureImageBg">
+              <div class="pictureImage">
+                <img src="http://192.168.0.110/upload/pictures/{{item.pictureId}}">
+              </div>
             </div>
 
-            <div class="item tabs tabs-secondary tabs-icon-left">
-              <a class="tab-item" href="#">
-                
-                {{item.id}}
-              </a>
-              <a class="tab-item" href="#">
-                
-              </a>
-              <a class="button button-positive" ng-click="match(item.id)">Trocar</a>
+            <div class="pictureStatus">
+              <div class="picUserName">     
+                  
+              </div>
+              <div class="picTrade">
+                <a ng-click="match(item.id)">Trocar</a>
+              </div>
             </div>
 
         </div>

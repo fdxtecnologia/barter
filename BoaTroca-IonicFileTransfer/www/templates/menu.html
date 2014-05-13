@@ -53,7 +53,7 @@
                                 <div><label class="picturesRef">Figurinha:</label> {{item.pictureTitle}}<div class="tradeStatusFlag">T</div></div>
                                 <div><label class="picturesRef">Usuário:</label> {{item.userReqName}}</div>
                             </div>
-                            <a href="#/app/chat/item.tradeId" style="text-decoration:none;color:#fff">
+                            <a href="#/app/chat/{{item.tradeId}}" style="text-decoration:none;color:#fff">
                                 <div class="tradesBtn" ng-if="item.tradeStatus == 'PROCESSING'">
                                     <div><label class="picturesRef">Figurinha:</label> {{item.pictureTitle}}<div class="tradeStatusFlag">C</div></div>
                                     <div><label class="picturesRef">Usuário:</label> {{item.userReqName}}</div>
