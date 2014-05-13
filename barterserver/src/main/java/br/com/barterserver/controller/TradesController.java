@@ -63,7 +63,7 @@ public class TradesController {
             List<TradeJSON> tradesJSON = new ArrayList<TradeJSON>();
             List<Trade> listOfTrades = dao.listMyTrades(user);
             for(Trade t: listOfTrades){
-                tradesJSON.add(new TradeJSON(t.getId(),t.getPictureOffering().getId(), t.getPictureOffering().getTitle(),t.getUserRequiring().getId(), t.getUserRequiring().getName()));
+                tradesJSON.add(new TradeJSON(t.getId(),t.getPictureOffering().getId(), t.getPictureOffering().getTitle(),t.getUserRequiring().getId(), t.getUserRequiring().getName(), t.getStatus().toString()));
             }
             result.use(Results.json()).withoutRoot().from(tradesJSON).serialize();
     }

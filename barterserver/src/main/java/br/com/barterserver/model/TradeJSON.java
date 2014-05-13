@@ -17,17 +17,27 @@ public class TradeJSON {
     private String pictureTitle;
     private Long userReqId;
     private String userReqName;
+    private String tradeStatus;
     
-    public TradeJSON(Long tradeId, Long pictureId, String pictureTitle, Long userReqId, String userReqName){
+    public TradeJSON(Long tradeId, Long pictureId, String pictureTitle, Long userReqId, String userReqName, String tradeStatus){
         this.pictureId = pictureId;
         this.tradeId = tradeId;
         this.pictureTitle = pictureTitle;
         this.userReqId = userReqId;
         this.userReqName = userReqName;
+        this.tradeStatus = tradeStatus;
     }
 
     public Long getTradeId() {
         return tradeId;
+    }
+
+    public String getTradeStatus() {
+        return tradeStatus;
+    }
+
+    public void setTradeStatus(String tradeStatus) {
+        this.tradeStatus = tradeStatus;
     }
 
     public void setTradeId(Long tradeId) {
