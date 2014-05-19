@@ -1,5 +1,6 @@
 angular.module('sociogram.controllers', [])
 
+
     .controller('AppCtrl', function ($scope, $state, OpenFB) {
 
         $scope.logout = function () {
@@ -18,30 +19,29 @@ angular.module('sociogram.controllers', [])
         };
     })
 
+
     .controller('menuCtrl', function ($scope, $rootScope, $http, $state, $window, OpenFB) {
+        $scope.data = {};
         //$interval(
             $rootScope.$on('$stateChangeStart', function(event, toState) {
                 if (toState.name !== "app.login" && toState.name !== "app.logout" && !$window.sessionStorage['fbtoken']) {
                     $state.go('app.login');
                     event.preventDefault();
                 }else{
-                   
-                        //alert(window.localStorage["sessao.userId"]);
-
                         var userJson = {'user.id': window.localStorage["sessao.userId"]};
 
-                        $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/trade/post/list', params: userJson})
+                        $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/trade/post/list', params: userJson})
                         .success(function(data, status, headers, config) {
-                            //alert(JSON.stringify(data[0]));
+                              //alert(JSON.stringify(data[0]));
                               $scope.items = data;
-                            })
-                            .error(function(data) {
-                              alert(data);
-                            });
-
+                              
+                        })
+                        .error(function(data) {
+                            alert(data);
+                        });
                 }
-            });
 
+            });
         //}), 10);
         
         $scope.userPictures = function(tradeId, userReqId, userReqName) {
@@ -102,7 +102,7 @@ angular.module('sociogram.controllers', [])
 
                         var userJson = {'user.name':user.name,'user.email':user.email,'user.age':age,'user.password':password,'user.loc_lat':latitude,'user.loc_long':longitude};
 
-                        $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/save', params: userJson}).
+                        $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/save', params: userJson}).
                         success(function(data, status, headers, config) {
                           // this callback will be called asynchronously
                           // when the response is available
@@ -111,6 +111,7 @@ angular.module('sociogram.controllers', [])
                           window.localStorage['sessao.email'] = data.email;
                           window.localStorage['sessao.age'] = data.age;
                           window.localStorage['sessao.password'] = data.password;
+
 
                             //REDIRECTT!!!!
                             $location.path('/app/home');
@@ -329,8 +330,30 @@ angular.module('sociogram.controllers', [])
         }
     })
 
-    .controller('HomeCtrl', function ($scope, $rootScope, $state){
+    .controller('HomeCtrl', function ($scope, $rootScope, $http, $state, $window){
         $scope.data = {};
+
+        var userJson = {'user.id': window.localStorage["sessao.userId"]};
+            //Monstrar na tela o icone esta certo, falta analisar o porque do erro no if, retornando sempre zero, mesmo estando diferentes!!!
+            //=========================================================
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/trade/post/list', params: userJson})
+            .success(function(data, status, headers, config) {
+                  //alert(JSON.stringify(data[0]));
+                  $scope.items = data;
+                  //alert("scope "+$scope.items.length);
+                  //alert("window "+window.localStorage['oldTrades']);
+                  if ($scope.items.length <= window.localStorage['oldTrades']){
+                        $scope.oldNewTrades = 0;
+                  }else{
+                       $scope.oldNewTrades = 1;
+                        window.localStorage['oldTrades'] = null;
+                         window.localStorage['oldTrades'] = $scope.items.length;
+                  }
+            })
+            .error(function(data) {
+                alert(data);
+            });
+        //$scope.oldNewTrades = window.localStorage['oldTradesNum'];
 
         $scope.pesquisar = function() {
             $rootScope.numfigurinha = $scope.data.numfigurinha;
@@ -361,7 +384,7 @@ angular.module('sociogram.controllers', [])
         };
         function loadPictures(){
             $scope.show();
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/mypictures', params: picJson}).
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/mypictures', params: picJson}).
             success(function(data, status, headers, config) {
                 $scope.items = data;
                 $scope.hide();
@@ -399,7 +422,7 @@ angular.module('sociogram.controllers', [])
                 'user.id': window.localStorage["sessao.userId"],
                 'picture.id': $scope.picId
             };
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/picture/delete', params : picJson})
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/picture/delete', params : picJson})
                 .success(function(data, status, headers, config){
                     $scope.hide();
                     alert('Figurinha removida com sucesso!');
@@ -418,7 +441,7 @@ angular.module('sociogram.controllers', [])
 
         $scope.show = function(){
             $scope.loading = $ionicLoading.show({
-                content: ' ';
+                content: ' '
             });
         };
         $scope.hide = function(){
@@ -435,7 +458,7 @@ angular.module('sociogram.controllers', [])
                     'chat.trade.id': $scope.trade,
                     'chat.message': $scope.dados.message
                 };
-                $http({method: 'POST', url: 'http://192.168.0.110:8080/barterserver/user/new/message', params: msgJson})
+                $http({method: 'POST', url: 'http://192.168.0.106:8080/barterserver/user/new/message', params: msgJson})
                     .success(function(){
                         loadChat();
                         $scope.hide();
@@ -459,7 +482,7 @@ angular.module('sociogram.controllers', [])
 
             //  @barterserver/user/chat
             if ( window.localStorage["chat"+$scope.trade] == null) {
-                $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/chat', params: chatJson})
+                $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/chat', params: chatJson})
                     .success(function(data, status, headers, config){
                         window.localStorage["chat"+$scope.trade] = data;
                         $scope.messages = data;
@@ -471,7 +494,7 @@ angular.module('sociogram.controllers', [])
                         alert('Unable to reach chat server.');
                     });
             } else{
-                $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/chat', params: chatJson})
+                $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/chat', params: chatJson})
                     .success(function(data, status, headers, config){
                         if ( window.localStorage["chat"+$scope.trade] != data ) {
                             window.localStorage["chat"+$scope.trade] = data;
@@ -599,9 +622,9 @@ angular.module('sociogram.controllers', [])
         $scope.onUploadSucess = function(){
             var picJson = {
                 'picture.id': $scope.ActualPicId,
-                'picture.photoURL': "http://192.168.0.110/upload/pictures/"+$scope.ActualPicId+".jpg"
+                'picture.photoURL': "http://192.168.0.106/upload/pictures/"+$scope.ActualPicId+".jpg"
             };
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/picture/add', params: picJson}).
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/picture/add', params: picJson}).
                 success(function(data, status, headers, config){
                     $scope.hide();
                     alert("Figurinha enviada com success");
@@ -627,7 +650,7 @@ angular.module('sociogram.controllers', [])
                 'user.id': window.localStorage["sessao.userId"],
                 'picture.title': number.pictureNumber
             };
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/picture/add', params: picJson}).
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/picture/add', params: picJson}).
                 success(function(data, status, headers, config) {
                     var image = $scope.picData;
                     $scope.ActualPicId = data.id;
@@ -639,7 +662,7 @@ angular.module('sociogram.controllers', [])
                     var params = new Object();
                     options.params = params;
                     var ft = new FileTransfer();
-                    ft.upload( image , "http://192.168.0.110/upload/upload.php", $scope.onUploadSucess, $scope.onUploadFail, options);
+                    ft.upload( image , "http://192.168.0.106/upload/upload.php", $scope.onUploadSucess, $scope.onUploadFail, options);
             }).error(function(){
                 $scope.hide();
                 alert("Upload error");
@@ -659,6 +682,7 @@ angular.module('sociogram.controllers', [])
             $scope.loading.hide();
         };
 
+
         //alert("Num: "+$rootScope.numfigurinha);
         //alert("User: "+window.localStorage["sessao.userId"]);
 
@@ -666,7 +690,7 @@ angular.module('sociogram.controllers', [])
 
         var userJson = {'title':$rootScope.numfigurinha,'currentUser.id':window.localStorage["sessao.userId"]};
 
-        $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/search', params: userJson}).
+        $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/search', params: userJson}).
         success(function(data, status, headers, config) {
            //alert(JSON.stringify(data[0])); 
           $scope.items = data;
@@ -681,8 +705,8 @@ angular.module('sociogram.controllers', [])
             var pId = pictureId;
             var oId = ownerId;
 
-            alert("P.Id: "+pictureId);
-            alert("OW.id: "+ownerId);
+            //alert("P.Id: "+pictureId);
+            //alert("OW.id: "+ownerId);
 
             var picJson = {
                 'trade.pictureOffering.id': pictureId,
@@ -690,11 +714,10 @@ angular.module('sociogram.controllers', [])
                 'trade.userRequiring.id': window.localStorage["sessao.userId"]
             };
 
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/trade/post/new', params: picJson}).
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/trade/post/new', params: picJson}).
                 success(function(data, status, headers, config){
-                    alert("Lançado trade");
-                    var btntrade = element('trade'+pictureId);
-                    expect(btntrade.isDisplayed()).toBeFalsy();
+                    alert("Trade Lançado");
+                    $state.go('app.home');
                 }).
                 error(function(data, status, headers, config) {
                     alert("Erro ao lançar trade!!!");
@@ -716,7 +739,7 @@ angular.module('sociogram.controllers', [])
         $scope.ownerName = $rootScope.userReqName;
         var userJson = {'user.id':$rootScope.userReqId};
 
-        $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/mypictures', params: userJson}).
+        $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/user/post/mypictures', params: userJson}).
         success(function(data, status, headers, config) {
           //alert("Certo!!!!!!");
           $scope.items = data;
@@ -737,7 +760,7 @@ angular.module('sociogram.controllers', [])
                 'trade.pictureRequiring.id': pictureId
             };
 
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/trade/post/update', params: picJson}).
+            $http({method: 'GET', url: 'http://192.168.0.106:8080/barterserver/trade/post/update', params: picJson}).
                 success(function(data, status, headers, config){
                     //alert("Lançado trade!!!");
                     $state.go('app.home');
