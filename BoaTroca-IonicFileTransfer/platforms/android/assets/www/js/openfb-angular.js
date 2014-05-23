@@ -58,6 +58,8 @@ angular.module('openfb', [])
                 return error({error: 'Facebook App Id not set.'});
             }
 
+            window.localStorage['oldTrades'] = 0;
+
             var loginWindow;
 
             fbScope = fbScope || '';

@@ -50,6 +50,7 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/templates \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/js/app.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/js/openfb-angular.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/js/ionic.cards.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/js/controllers.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.camera \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.geolocation \
@@ -110,7 +111,26 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/img/icon120x120.png \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/css/app.css \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/www - Atalho.lnk \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/ionic-angular.min.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/ionic.min.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/ionic.bundle.min.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/ionic-angular.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/ionic.bundle.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/ionic.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular-ui \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular/angular-resource.min.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular/angular.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular/angular-resource.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular/angular-animate.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular/angular-sanitize.min.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular/angular.min.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular/angular-animate.min.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular/angular-sanitize.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular-ui/angular-ui-router.min.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/js/angular-ui/angular-ui-router.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic/js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic/fonts \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/lib/ionic/css \

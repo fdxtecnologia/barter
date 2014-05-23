@@ -157,11 +157,11 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                 }
             })
             .state('app.chat', {
-                url: '/chat/:tradeId',
+                url: '/chat',
                 views: {
                     'menuContent':{
                         templateUrl: "templates/chat.html",
-                        controller: 'ChatCrtl'
+                        controller: 'ChatCtrl'
                     }
                 }
             })

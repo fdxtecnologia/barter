@@ -1,5 +1,10 @@
 /* Your app's CSS, go crazy, make it your own */
 
+.ion-looping {
+  color: #f59c00;
+  background-color: #f59c00;
+}
+
 .ionic-logo {
   display: block;
   margin: 15px auto;
@@ -50,6 +55,10 @@
 
 /**************************************************/
 
+.list card{
+	background-color:  #ececec;
+}
+
 .back-collor{
 	background-color: #92A0BD;
 }
@@ -71,6 +80,8 @@
 	padding-top: 15%;
 	padding-bottom: 30%;
 }
+
+#buscaHome::-webkit-input-placeholder { color:#fff; }
 
 #imageId{
 	border: none;
@@ -95,8 +106,7 @@
 	border: 0px;
 	margin-bottom: 0px;
 	padding: 5px;
-	font-size: 16px;
-	color: #476cbd;
+	font-size: 16px;color: #476cbd;
 }
 
 .pictureImageBg{
