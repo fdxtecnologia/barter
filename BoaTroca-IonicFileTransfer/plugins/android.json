@@ -11,14 +11,16 @@
                 "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.GeoBroker\" /></feature>": 1,
                 "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>": 1,
                 "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>": 1,
-                "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>": 1
+                "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>": 1,
+                "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>": 1
             }
         },
         "AndroidManifest.xml": {
             "/*": {
                 "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />": 3,
                 "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />": 1,
-                "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />": 1
+                "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />": 1,
+                "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />": 1
             }
         }
     },
@@ -45,6 +47,9 @@
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
         "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },

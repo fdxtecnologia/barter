@@ -687,8 +687,7 @@ angular.module('sociogram.controllers', [])
         $scope.hide = function(){
             $scope.loading.hide();
         };
-
-
+        
         //alert("Num: "+$rootScope.numfigurinha);
         //alert("User: "+window.localStorage["sessao.userId"]);
 

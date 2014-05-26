@@ -6,10 +6,12 @@
             <div class="item item-divider">
                 <div class="item" ng-repeat="msg in messages">
                     <div style="text-align: right;" ng-if=" msg.userName == username ">
-                        {{ msg.message }}<strong>: {{ msg.userName }}</strong>
+                        <p>{{ msg.message }}</p>
                     </div>
-                    <div style="text-align: right;" ng-if=" msg.userName != username">
-                        <strong>{{ msg.userName }}</strong>: {{ msg.message }}
+                    <div style="text-align: left;" ng-if=" msg.userName != username">
+                        <p>
+                            <strong>{{ msg.userName }}</strong>: {{ msg.message }}
+                        </p>
                     </div>
                 </div>
             </div>

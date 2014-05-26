@@ -65,6 +65,9 @@
             },
             "MobileCoreServices.framework": {
                 "false": 1
+            },
+            "SystemConfiguration.framework": {
+                "true": 1
             }
         },
         "config.xml": {
@@ -72,7 +75,8 @@
                 "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>": 1,
                 "<feature name=\"File\"><param name=\"ios-package\" value=\"CDVFile\" /><param name=\"onload\" value=\"true\" /></feature>": 1,
                 "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>": 1,
-                "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>": 1
+                "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>": 1,
+                "<feature name=\"NetworkStatus\"><param name=\"ios-package\" value=\"CDVConnection\" /></feature>": 1
             }
         }
     },
@@ -99,6 +103,9 @@
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
         "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },
