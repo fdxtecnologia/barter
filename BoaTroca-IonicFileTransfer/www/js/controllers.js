@@ -495,6 +495,7 @@ angular.module('sociogram.controllers', [])
                 })
                 .error(function(data, status, headers, config){
                     alert('Sorry, Unable to reach chat server' + data);
+                    $state.go('app.home');
                 });
         };
 
@@ -515,7 +516,6 @@ angular.module('sociogram.controllers', [])
             loadChat();
             $scope.hide();
             if (angular.isDefined(stopTime)) return;
-            alert('1');
             stopTime = $interval(loadChat, 15000);
         };
 
@@ -687,7 +687,7 @@ angular.module('sociogram.controllers', [])
         $scope.hide = function(){
             $scope.loading.hide();
         };
-        
+
         //alert("Num: "+$rootScope.numfigurinha);
         //alert("User: "+window.localStorage["sessao.userId"]);
 
