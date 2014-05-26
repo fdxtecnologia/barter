@@ -5,11 +5,13 @@
         <div class="list">
             <div class="item item-divider">
                 <div class="item" ng-repeat="msg in messages">
-                    <div style="text-align: right;" ng-if=" msg.userName == username ">
-                        {{ msg.message }}<strong>: {{ msg.userName }}</strong>
+                    <div style="text-align: right; min-height: 15px; max-width: 100%;" ng-if=" msg.userName == username ">
+                        <p>{{ msg.message }}</p>
                     </div>
-                    <div style="text-align: right;" ng-if=" msg.userName != username">
-                        <strong>{{ msg.userName }}</strong>: {{ msg.message }}
+                    <div style="text-align: left; min-height: 15px; max-width: 100%;" ng-if=" msg.userName != username">
+                        <p>
+                            <strong>{{ msg.userName }}</strong>: {{ msg.message }}
+                        </p>
                     </div>
                 </div>
             </div>

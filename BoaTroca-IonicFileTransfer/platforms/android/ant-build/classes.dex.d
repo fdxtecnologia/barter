@@ -65,6 +65,8 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/file/LocalFilesystemURL.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/file/FileUtils$19.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/file/ContentFilesystem.class \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/networkinformation/NetworkManager.class \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/networkinformation/NetworkManager$1.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/camera/ExifHelper.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/camera/FileHelper.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/camera/CameraLauncher.class \

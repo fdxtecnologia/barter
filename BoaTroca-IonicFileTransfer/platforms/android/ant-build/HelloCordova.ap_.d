@@ -59,6 +59,7 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.network-information \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.camera/www \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraPopoverOptions.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraPopoverHandle.js \
@@ -98,6 +99,9 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer/www \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer/www/FileTransfer.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer/www/FileTransferError.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.network-information/www \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.network-information/www/Connection.js \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/plugins/org.apache.cordova.network-information/www/network.js \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/img/logo.png \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/img/icon60x60.png \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/assets/www/img/sociogram.jpg \
