@@ -26,12 +26,11 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
-    <name>HelloCordova</name>
+    <name>Boa Troca</name>
     <description>
-        An Ionic Framework and Cordova project.
     </description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+      FDX Development Team
     </author>
     <content src="index.html" />
     <access origin="*" />

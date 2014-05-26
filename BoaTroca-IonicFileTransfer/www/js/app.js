@@ -83,6 +83,15 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     }
                 }
             })
+            .state('app.profile', {
+                url: "/profile",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/profile.html",
+                        controller: "ProfileCtrl"
+                    }
+                }
+            })
             .state('app.mypictures', {
                 url: "/mypictures",
                 views: {
@@ -107,6 +116,42 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     'menuContent': {
                         templateUrl: "templates/registerpicture.html",
                         controller: "RegisterPicturerCtrl"
+                    }
+                }
+            })
+            .state('app.friends', {
+                url: "/person/:personId/friends",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/friend-list.html",
+                        controller: "FriendsCtrl"
+                    }
+                }
+            })
+            .state('app.mutualfriends', {
+                url: "/person/:personId/mutualfriends",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/mutual-friend-list.html",
+                        controller: "MutualFriendsCtrl"
+                    }
+                }
+            })
+            .state('app.person', {
+                url: "/person/:personId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/person.html",
+                        controller: "PersonCtrl"
+                    }
+                }
+            })
+            .state('app.feed', {
+                url: "/person/:personId/feed",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/feed.html",
+                        controller: "FeedCtrl"
                     }
                 }
             })

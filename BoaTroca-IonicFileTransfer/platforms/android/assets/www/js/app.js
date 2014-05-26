@@ -83,7 +83,6 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     }
                 }
             })
-
             .state('app.profile', {
                 url: "/profile",
                 views: {

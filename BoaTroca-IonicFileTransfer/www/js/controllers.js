@@ -464,7 +464,7 @@ angular.module('sociogram.controllers', [])
                 };
                 $http({method: 'POST', url: 'http://192.168.0.120:8080/barterserver/user/new/message', params: msgJson})
                     .success(function(){
-                        $scope.messages = window.localStorage.getItem($scope.chatKey) + msgJson;
+                        loadChat();
                         $ionicScrollDelegate.scrollBottom();
                     })
                     .error(function(){
@@ -516,7 +516,7 @@ angular.module('sociogram.controllers', [])
             loadChat();
             $scope.hide();
             if (angular.isDefined(stopTime)) return;
-            stopTime = $interval(loadChat, 15000);
+            stopTime = $interval(loadChat, 20000);
         };
 
         init();
@@ -711,6 +711,69 @@ angular.module('sociogram.controllers', [])
                     alert("Erro ao dar match!!!");
                 });
         }
+    })
+
+    .controller('ProfileCtrl', function ($scope, OpenFB) {
+        OpenFB.get('/me').success(function (user) {
+            $scope.user = user;
+        });
+    })
+
+    .controller('PersonCtrl', function ($scope, $stateParams, OpenFB) {
+        OpenFB.get('/' + $stateParams.personId).success(function (user) {
+            $scope.user = user;
+        });
+    })
+
+    .controller('FriendsCtrl', function ($scope, $stateParams, OpenFB) {
+        OpenFB.get('/' + $stateParams.personId + '/friends', {limit: 50})
+            .success(function (result) {
+                $scope.friends = result.data;
+            })
+            .error(function(data) {
+                alert(data.error.message);
+            });
+    })
+
+    .controller('MutualFriendsCtrl', function ($scope, $stateParams, OpenFB) {
+        OpenFB.get('/' + $stateParams.personId + '/mutualfriends', {limit: 50})
+            .success(function (result) {
+                $scope.friends = result.data;
+            })
+            .error(function(data) {
+                alert(data.error.message);
+            });
+    })
+
+    .controller('FeedCtrl', function ($scope, $stateParams, OpenFB, $ionicLoading) {
+
+        $scope.show = function() {
+            $scope.loading = $ionicLoading.show({
+                content: 'Loading feed...'
+            });
+        };
+        $scope.hide = function(){
+            $scope.loading.hide();
+        };
+
+        function loadFeed() {
+            $scope.show();
+            OpenFB.get('/' + $stateParams.personId + '/home', {limit: 30})
+                .success(function (result) {
+                    $scope.hide();
+                    $scope.items = result.data;
+                    // Used with pull-to-refresh
+                    $scope.$broadcast('scroll.refreshComplete');
+                })
+                .error(function(data) {
+                    $scope.hide();
+                    alert(data.error.message);
+                });
+        }
+
+        $scope.doRefresh = loadFeed;
+
+        loadFeed();
     });
 
     
