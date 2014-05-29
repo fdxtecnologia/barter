@@ -19,29 +19,27 @@ angular.module('sociogram.controllers', [])
     })
 
     .controller('menuCtrl', function ($scope, $rootScope, $http, $state, $window, OpenFB) {
+        $scope.data = {};
         //$interval(
             $rootScope.$on('$stateChangeStart', function(event, toState) {
                 if (toState.name !== "app.login" && toState.name !== "app.logout" && !$window.sessionStorage['fbtoken']) {
                     $state.go('app.login');
                     event.preventDefault();
                 }else{
-                   
-                        //alert(window.localStorage["sessao.userId"]);
-
                         var userJson = {'user.id': window.localStorage["sessao.userId"]};
 
-                        $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/trade/post/list', params: userJson})
+                        $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/trade/post/list', params: userJson})
                         .success(function(data, status, headers, config) {
-                            /*alert(JSON.stringify(data[0]));*/
+                              //alert(JSON.stringify(data[0]));
                               $scope.items = data;
-                            })
-                            .error(function(data) {
-                              alert(data);
-                            });
-
+                              
+                        })
+                        .error(function(data) {
+                            alert(data);
+                        });
                 }
-            });
 
+            });
         //}), 10);
         
         $scope.userPictures = function(tradeId, userReqId, userReqName) {
@@ -60,9 +58,12 @@ angular.module('sociogram.controllers', [])
             }else{
                 alert("Erro!");
             }
+        };
 
-
-        }
+        $scope.goChat = function(tradeId){
+            $rootScope.tradeId = tradeId;
+            $state.go('app.chat');
+        };
     })
 
     .controller('LoginCtrl', function ($http, $scope, $location, OpenFB) {
@@ -102,7 +103,7 @@ angular.module('sociogram.controllers', [])
 
                         var userJson = {'user.name':user.name,'user.email':user.email,'user.age':age,'user.password':password,'user.loc_lat':latitude,'user.loc_long':longitude};
 
-                        $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/save', params: userJson}).
+                        $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/user/post/save', params: userJson}).
                         success(function(data, status, headers, config) {
                           // this callback will be called asynchronously
                           // when the response is available
@@ -111,6 +112,7 @@ angular.module('sociogram.controllers', [])
                           window.localStorage['sessao.email'] = data.email;
                           window.localStorage['sessao.age'] = data.age;
                           window.localStorage['sessao.password'] = data.password;
+
 
                             //REDIRECTT!!!!
                             $location.path('/app/home');
@@ -329,8 +331,30 @@ angular.module('sociogram.controllers', [])
         }
     })
 
-    .controller('HomeCtrl', function ($scope, $rootScope, $state){
+    .controller('HomeCtrl', function ($scope, $rootScope, $http, $state, $window){
         $scope.data = {};
+
+        var userJson = {'user.id': window.localStorage["sessao.userId"]};
+            //Monstrar na tela o icone esta certo, falta analisar o porque do erro no if, retornando sempre zero, mesmo estando diferentes!!!
+            //=========================================================
+            $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/trade/post/list', params: userJson})
+            .success(function(data, status, headers, config) {
+                  //alert(JSON.stringify(data[0]));
+                  $scope.items = data;
+                  //alert("scope "+$scope.items.length);
+                  //alert("window "+window.localStorage['oldTrades']);
+                  if ($scope.items.length <= window.localStorage['oldTrades']){
+                        $scope.oldNewTrades = 0;
+                  }else{
+                       $scope.oldNewTrades = 1;
+                        window.localStorage['oldTrades'] = null;
+                         window.localStorage['oldTrades'] = $scope.items.length;
+                  }
+            })
+            .error(function(data) {
+                alert(data);
+            });
+        //$scope.oldNewTrades = window.localStorage['oldTradesNum'];
 
         $scope.pesquisar = function() {
             $rootScope.numfigurinha = $scope.data.numfigurinha;
@@ -361,7 +385,7 @@ angular.module('sociogram.controllers', [])
         };
         function loadPictures(){
             $scope.show();
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/mypictures', params: picJson}).
+            $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/user/post/mypictures', params: picJson}).
             success(function(data, status, headers, config) {
                 $scope.items = data;
                 $scope.hide();
@@ -399,7 +423,7 @@ angular.module('sociogram.controllers', [])
                 'user.id': window.localStorage["sessao.userId"],
                 'picture.id': $scope.picId
             };
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/picture/delete', params : picJson})
+            $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/user/picture/delete', params : picJson})
                 .success(function(data, status, headers, config){
                     $scope.hide();
                     alert('Figurinha removida com sucesso!');
@@ -412,86 +436,281 @@ angular.module('sociogram.controllers', [])
         };
     })
 
-    .controller('ChatCrtl', function($scope, $stateParams, $state, $http, $ionicLoading, $interval, $ionicScrollDelegate){
-        $scope.trade = $stateParams.tradeId;
+    .controller('ChatCtrl', function($scope, $rootScope, $http, $ionicLoading, $interval, $ionicScrollDelegate, $ionicSideMenuDelegate){
+        $scope.chatKey = "chat" + $rootScope.tradeId;
+        var localData = window.localStorage.getItem($scope.chatKey);
+        var stopTime;
+        $scope.messages = angular.toJson(localData);
         $scope.dados = {};
+        $scope.username = window.localStorage['sessao.name'];
 
         $scope.show = function(){
             $scope.loading = $ionicLoading.show({
-                content: 'Loading Chat...'
+                content: 'Loading...'
             });
         };
+
         $scope.hide = function(){
             $scope.loading.hide();
         };
 
+        /* SEND MESSAGE OK! */
         $scope.sendMessage = function(){
             if ( $scope.dados.message != "") {
                 var msgJson = {
                     'chat.user.id': window.localStorage["sessao.userId"],
-                    'chat.trade.id': $scope.trade,
+                    'chat.trade.id': $rootScope.tradeId,
                     'chat.message': $scope.dados.message
                 };
-                $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/new/message ', params: msgJson})
-                    .success(function(data, status, headers, config){
+                $http({method: 'POST', url: 'http://192.168.0.120:8080/barterserver/user/new/message', params: msgJson})
+                    .success(function(){
                         loadChat();
+                        $ionicScrollDelegate.scrollBottom();
                     })
                     .error(function(){
-                        alert('Connection problem with server');
+                        alert('Mensagem não pode ser enviada!');
                     });
+                $scope.dados.message = "";
             };
-            $scope.dados.message = "";
         };
 
-        function loadChat(){
-            $scope.show();
-            
+        function loadChat (){
             var chatJson = {
-                'trade.id': $scope.trade,
+                'trade.id': $rootScope.tradeId,
                 'user.id': window.localStorage["sessao.userId"]
             };
-
             //  @barterserver/user/chat
-            if ( localStorage.getItem($scope.trade) == null) {
-                
-                $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/chat', params: chatJson})
-                    .success(function(data, status, headers, config){
-                        localStorage.setItem($scope.trade, JSON.stringfy(data));
+            $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/user/chat', params: chatJson})
+                .success(function(data, status, headers, config){
+                    var tmp = angular.fromJson(data);
+                    if ( window.localStorage.getItem($scope.chatKey) != tmp ) {
+                        window.localStorage.setItem($scope.chatKey, tmp);
                         $scope.messages = data;
                         $ionicScrollDelegate.scrollBottom();
-                        $scope.hide();
-                    })
-                    .error(function(){
-                        $scope.hide();
-                        alert('Unable to reach chat server');
-                    });
-
-            } else{
-                $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/chat', params: chatJson})
-                    .success(function(data, status, headers, config){
-                        var stringData = JSON.stringfy(data);
-                        if ( localStorage.getItem($scope.trade) != stringData ) {
-                            localStorage.setItem($scope.trade, stringData );
-                            $scope.messages = data;
-                            $ionicScrollDelegate.scrollBottom();
-                            $scope.hide();
-                        }else{
-                            $scope.messages = data;
-                            $ionicScrollDelegate.scrollBottom();
-                            $scope.hide();
-                        };
-                    })
-                    .error(function(){
+                    }else{
                         $scope.messages = data;
                         $ionicScrollDelegate.scrollBottom();
-                        $scope.hide();
-                        alert('Unable to reach chat server');
-                    });    
-            };
-            
+                    };
+                    
+                })
+                .error(function(data, status, headers, config){
+                    alert('Sorry, Unable to reach chat server' + data);
+                    $state.go('app.home');
+                });
         };
 
-        $interval(loadChat, 15000 );
+        $scope.closeSideMenu = function() {
+            $ionicSideMenuDelegate.toggleRight($scope.$$childHead);
+        };
+
+        $scope.$on('$destroy', function() {
+            if (angular.isDefined(stopTime)) {
+                $interval.cancel(stopTime);
+                stopTime = undefined;    
+            };
+        });
+
+        function init(){ //init
+            $scope.closeSideMenu();
+            $scope.show();
+            loadChat();
+            $scope.hide();
+            if (angular.isDefined(stopTime)) return;
+            stopTime = $interval(loadChat, 20000);
+        };
+
+        init();
+    })
+
+    .controller('RegisterPicturerCtrl', function($scope, $state, $http, $ionicLoading, $location){
+        $scope.data = {};
+
+        $scope.show = function() {
+            $scope.loading = $ionicLoading.show({
+                content: 'Loading...'
+            });
+        };
+
+        $scope.hide = function(){
+            $scope.loading.hide();
+        };
+        $scope.cancel = function(){
+            $location.path("/app/mypictures");
+        };
+        $scope.onSuccess = function(imageURI) {
+            $scope.show();
+            var image = document.getElementById('imageId');
+            image.src = imageURI;
+            $scope.picData = imageURI;
+            $scope.hide();
+        };
+
+        $scope.onFail = function(message) {
+            alert('Failed because: ' + message);
+        };
+
+        $scope.captureImage = function(){
+            var options = { quality : 80,
+                          destinationType : Camera.DestinationType.FILE_URI,
+                          sourceType : Camera.PictureSourceType.CAMERA,
+                          allowEdit : false,
+                          encodingType: Camera.EncodingType.JPEG,
+                          targetWidth: 200,
+                          targetHeight: 280,
+                          saveToPhotoAlbum: true };
+            navigator.camera.getPicture($scope.onSuccess,$scope.onFail, options);
+        };
+
+
+        $scope.onUploadSucess = function(){
+            var picJson = {
+                'picture.id': $scope.ActualPicId,
+                'picture.photoURL': "http://192.168.0.120/upload/pictures/"+$scope.ActualPicId+".jpg"
+            };
+            $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/user/post/picture/add', params: picJson}).
+                success(function(data, status, headers, config){
+                    $scope.hide();
+                    alert("Figurinha enviada com success");
+                    $location.path('/app/mypictures');
+                })
+                .error(function (data){
+                    $scope.hide();
+                    alert("Upload error");
+                });
+            delete $scope.ActualPicId;
+        };
+
+        $scope.onUploadFail = function(evt){
+            $scope.hide();
+            alert('Falha no Upload: ' + evt);
+        };
+        
+        // upload
+        $scope.send = function(){
+            $scope.show();
+            var number = $scope.data;
+            var picJson = {
+                'user.id': window.localStorage["sessao.userId"],
+                'picture.title': number.pictureNumber
+            };
+            $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/user/post/picture/add', params: picJson}).
+                success(function(data, status, headers, config) {
+                    var image = $scope.picData;
+                    $scope.ActualPicId = data.id;
+                    var options = new FileUploadOptions();
+                    options.fileKey = "file";
+                    options.mineType = "image/jpeg"
+                    options.fileName =  data.id + ".jpg";
+                    options.chunckedMode = false;
+                    var params = new Object();
+                    options.params = params;
+                    var ft = new FileTransfer();
+                    ft.upload( image , "http://192.168.0.120/upload/upload.php", $scope.onUploadSucess, $scope.onUploadFail, options);
+            }).error(function(){
+                $scope.hide();
+                alert("Upload error");
+            });
+            
+        };//end upload file
+    })
+
+    .controller('searchResultCtrl', function ($scope, $rootScope, $http) {
+        $scope.show = function() {
+            $scope.loading = $ionicLoading.show({
+                content: 'Loading...'
+            });
+        };
+
+        $scope.hide = function(){
+            $scope.loading.hide();
+        };
+
+        //alert("Num: "+$rootScope.numfigurinha);
+        //alert("User: "+window.localStorage["sessao.userId"]);
+
+        $scope.ownerName = $rootScope.userReqName;
+
+        var userJson = {'title':$rootScope.numfigurinha,'currentUser.id':window.localStorage["sessao.userId"]};
+
+        $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/search', params: userJson}).
+        success(function(data, status, headers, config) {
+           //alert(JSON.stringify(data[0])); 
+          $scope.items = data;
+          
+        }).
+        error(function(data, status, headers, config) {
+          alert("Erro!!!");
+        });
+
+
+        $scope.match = function(pictureId, ownerId){
+            var pId = pictureId;
+            var oId = ownerId;
+
+            //alert("P.Id: "+pictureId);
+            //alert("OW.id: "+ownerId);
+
+            var picJson = {
+                'trade.pictureOffering.id': pictureId,
+                'trade.userOffering.id': ownerId,
+                'trade.userRequiring.id': window.localStorage["sessao.userId"]
+            };
+
+            $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/trade/post/new', params: picJson}).
+                success(function(data, status, headers, config){
+                    alert("Trade Lançado");
+                    $state.go('app.home');
+                }).
+                error(function(data, status, headers, config) {
+                    alert("Erro ao lançar trade!!!");
+                });
+        }
+    })
+
+    .controller('userPicturesCtrl', function ($scope, $rootScope, $http, $state) {
+        $scope.show = function() {
+            $scope.loading = $ionicLoading.show({
+                content: 'Loading...'
+            });
+        };
+
+        $scope.hide = function(){
+            $scope.loading.hide();
+        };
+
+        $scope.ownerName = $rootScope.userReqName;
+        var userJson = {'user.id':$rootScope.userReqId};
+
+        $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/user/post/mypictures', params: userJson}).
+        success(function(data, status, headers, config) {
+          //alert("Certo!!!!!!");
+          $scope.items = data;
+          
+        }).
+        error(function(data, status, headers, config) {
+          alert("Erro!!!");
+        });
+
+
+        $scope.match = function(pictureId){
+
+            //alert("P.Id: "+pictureId);
+            //alert("T.Id: "+$rootScope.tradeId);
+
+            var picJson = {
+                'trade.id': $rootScope.tradeId,
+                'trade.pictureRequiring.id': pictureId
+            };
+
+            $http({method: 'GET', url: 'http://192.168.0.120:8080/barterserver/trade/post/update', params: picJson}).
+                success(function(data, status, headers, config){
+                    //alert("Lançado trade!!!");
+                    $state.go('app.home');
+                }).
+                error(function(data, status, headers, config) {
+                    alert("Erro ao dar match!!!");
+                });
+        }
     })
 
     .controller('ProfileCtrl', function ($scope, OpenFB) {
@@ -555,195 +774,6 @@ angular.module('sociogram.controllers', [])
         $scope.doRefresh = loadFeed;
 
         loadFeed();
-    })
-
-    .controller('RegisterPicturerCtrl', function($scope, $state, $http, $ionicLoading, $location){
-        $scope.data = {};
-
-        $scope.show = function() {
-            $scope.loading = $ionicLoading.show({
-                content: 'Loading...'
-            });
-        };
-
-        $scope.hide = function(){
-            $scope.loading.hide();
-        };
-        $scope.cancel = function(){
-            $location.path("/app/mypictures");
-        };
-        $scope.onSuccess = function(imageURI) {
-            $scope.show();
-            var image = document.getElementById('imageId');
-            image.src = imageURI;
-            $scope.picData = imageURI;
-            $scope.hide();
-        };
-
-        $scope.onFail = function(message) {
-            alert('Failed because: ' + message);
-        };
-
-        $scope.captureImage = function(){
-            var options = { quality : 80,
-                          destinationType : Camera.DestinationType.FILE_URI,
-                          sourceType : Camera.PictureSourceType.CAMERA,
-                          allowEdit : false,
-                          encodingType: Camera.EncodingType.JPEG,
-                          targetWidth: 200,
-                          targetHeight: 280,
-                          saveToPhotoAlbum: true };
-            navigator.camera.getPicture($scope.onSuccess,$scope.onFail, options);
-        };
-
-
-        $scope.onUploadSucess = function(){
-            var picJson = {
-                'picture.id': $scope.ActualPicId,
-                'picture.photoURL': "http://192.168.0.110/upload/pictures/"+$scope.ActualPicId+".jpg"
-            };
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/picture/add', params: picJson}).
-                success(function(data, status, headers, config){
-                    $scope.hide();
-                    alert("Figurinha enviada com success");
-                    $location.path('/app/mypictures');
-                })
-                .error(function (data){
-                    $scope.hide();
-                    alert("Upload error");
-                });
-            delete $scope.ActualPicId;
-        };
-
-        $scope.onUploadFail = function(evt){
-            $scope.hide();
-            alert('Falha no Upload: ' + evt);
-        };
-        
-        // upload
-        $scope.send = function(){
-            $scope.show();
-            var number = $scope.data;
-            var picJson = {
-                'user.id': window.localStorage["sessao.userId"],
-                'picture.title': number.pictureNumber
-            };
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/picture/add', params: picJson}).
-                success(function(data, status, headers, config) {
-                    var image = $scope.picData;
-                    $scope.ActualPicId = data.id;
-                    var options = new FileUploadOptions();
-                    options.fileKey = "file";
-                    options.mineType = "image/jpeg"
-                    options.fileName =  data.id + ".jpg";
-                    options.chunckedMode = false;
-                    var params = new Object();
-                    options.params = params;
-                    var ft = new FileTransfer();
-                    ft.upload( image , "http://192.168.0.110/upload/upload.php", $scope.onUploadSucess, $scope.onUploadFail, options);
-            }).error(function(){
-                $scope.hide();
-                alert("Upload error");
-            });
-            
-        };//end upload file
-    })
-
-    .controller('searchResultCtrl', function ($scope, $rootScope, $http) {
-        $scope.show = function() {
-            $scope.loading = $ionicLoading.show({
-                content: 'Loading...'
-            });
-        };
-
-        $scope.hide = function(){
-            $scope.loading.hide();
-        };
-
-        //alert("Num: "+$rootScope.numfigurinha);
-        //alert("User: "+window.localStorage["sessao.userId"]);
-
-        var userJson = {'title':$rootScope.numfigurinha,'currentUser.id':window.localStorage["sessao.userId"]};
-
-        $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/search', params: userJson}).
-        success(function(data, status, headers, config) {
-          $scope.items = data;
-          
-        }).
-        error(function(data, status, headers, config) {
-          alert("Erro!!!");
-        });
-
-
-        $scope.match = function(pictureId, ownerId){
-            var pId = pictureId;
-            var oId = ownerId;
-
-            alert("P.Id: "+pictureId);
-            alert("OW.id: "+ownerId);
-
-            var picJson = {
-                'trade.pictureOffering.id': pictureId,
-                'trade.userOffering.id': ownerId,
-                'trade.userRequiring.id': window.localStorage["sessao.userId"]
-            };
-
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/trade/post/new', params: picJson}).
-                success(function(data, status, headers, config){
-                    alert("Lançado trade");
-                    var btntrade = element('trade'+pictureId);
-                    expect(btntrade.isDisplayed()).toBeFalsy();
-                }).
-                error(function(data, status, headers, config) {
-                    alert("Erro ao lançar trade!!!");
-                });
-        }
-    })
-
-    .controller('userPicturesCtrl', function ($scope, $rootScope, $http, $state) {
-        $scope.show = function() {
-            $scope.loading = $ionicLoading.show({
-                content: 'Loading...'
-            });
-        };
-
-        $scope.hide = function(){
-            $scope.loading.hide();
-        };
-
-
-        var userJson = {'user.id':$rootScope.userReqId};
-
-        $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/user/post/mypictures', params: userJson}).
-        success(function(data, status, headers, config) {
-          alert("Certo!!!!!!");
-          $scope.items = data;
-          
-        }).
-        error(function(data, status, headers, config) {
-          alert("Erro!!!");
-        });
-
-
-        $scope.match = function(pictureId){
-
-            alert("P.Id: "+pictureId);
-            alert("T.Id: "+$rootScope.tradeId);
-
-            var picJson = {
-                'trade.id': $rootScope.tradeId,
-                'trade.pictureRequiring.id': pictureId
-            };
-
-            $http({method: 'GET', url: 'http://192.168.0.110:8080/barterserver/trade/post/update', params: picJson}).
-                success(function(data, status, headers, config){
-                    alert("Lançado trade!!!");
-                    $state.go('app.home');
-                }).
-                error(function(data, status, headers, config) {
-                    alert("Erro ao dar match!!!");
-                });
-        }
     });
 
     

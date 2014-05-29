@@ -83,7 +83,6 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                     }
                 }
             })
-
             .state('app.profile', {
                 url: "/profile",
                 views: {
@@ -157,11 +156,11 @@ angular.module('sociogram', ['ionic', 'openfb', 'sociogram.controllers'])
                 }
             })
             .state('app.chat', {
-                url: '/chat/:trade',
+                url: '/chat',
                 views: {
                     'menuContent':{
                         templateUrl: "templates/chat.html",
-                        controller: 'ChatCrtl'
+                        controller: 'ChatCtrl'
                     }
                 }
             })

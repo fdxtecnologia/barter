@@ -88,9 +88,9 @@ public class UsersController {
         List<Trade> trades = tradeDAO.listMyTrades(currentUser);
         
         for(Picture p: pics ){
-            SearchJSON s = new SearchJSON(p.getId(), p.getTitle(), p.getPhotoURL(), p.getOwner().getId(), p.getOwner().getName(), p.getOwner().getEmail(), this.distance(p.getOwner().getLoc_lat(), p.getOwner().getLoc_long(), currentUser.getLoc_lat(), currentUser.getLoc_long()));
             for(Trade t: trades){
                 if(t.getPictureOffering().getId() != p.getId() && p.getOwner().getId() != currentUser.getId()){
+                    SearchJSON s = new SearchJSON(p.getId(), p.getTitle(), p.getPhotoURL(), p.getOwner().getId(), p.getOwner().getName(), p.getOwner().getEmail(), this.distance(p.getOwner().getLoc_lat(), p.getOwner().getLoc_long(), currentUser.getLoc_lat(), currentUser.getLoc_long()));
                     searchs.add(s);
                 }
             }

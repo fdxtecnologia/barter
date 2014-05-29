@@ -611,3 +611,42 @@
     0
   ]
 ]
+2014-05-26 16:21:01.376 Boa Troca[37408:70b] Multi-tasking -> Device: YES, App: YES
+2014-05-26 16:21:01.420 Boa Troca[37408:70b] Unlimited access to network resources
+2014-05-26 16:21:01.428 Boa Troca[37408:70b] Fix applied for database locations?: YES
+2014-05-26 16:21:01.751 Boa Troca[37408:70b] [CDVTimer][statusbar] 80.260038ms
+2014-05-26 16:21:01.751 Boa Troca[37408:70b] [CDVTimer][TotalPluginStartup] 80.774009ms
+2014-05-26 16:21:01.983 Boa Troca[37408:70b] Resetting plugins due to page load.
+2014-05-26 16:21:02.890 Boa Troca[37408:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/4FC6849A-5040-4A7C-8436-3A53270156C7/Boa%20Troca.app/www/index.html#/app/login
+2014-05-26 16:21:02.967 Boa Troca[37408:70b] ERROR: Plugin 'NetworkStatus' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-05-26 16:21:02.968 Boa Troca[37408:70b] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "NetworkStatus755485186",
+  "NetworkStatus",
+  "getConnectionInfo",
+  [
+
+  ]
+]
+2014-05-26 16:21:08.558 Boa Troca[37408:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-05-26 16:21:08.575 Boa Troca[37408:70b] THREAD WARNING: ['InAppBrowser'] took '75.043213' ms. Plugin should use a background thread.
+2014-05-26 16:21:47.483 Boa Troca[37408:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-05-26 16:24:09.095 Boa Troca[37408:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-05-26 16:31:54.721 Boa Troca[37641:70b] Multi-tasking -> Device: YES, App: YES
+2014-05-26 16:31:54.743 Boa Troca[37641:70b] Unlimited access to network resources
+2014-05-26 16:31:54.818 Boa Troca[37641:70b] [CDVTimer][statusbar] 48.345029ms
+2014-05-26 16:31:54.818 Boa Troca[37641:70b] [CDVTimer][TotalPluginStartup] 48.878968ms
+2014-05-26 16:31:55.113 Boa Troca[37641:70b] Resetting plugins due to page load.
+2014-05-26 16:31:55.553 Boa Troca[37641:70b] Finished load of: file:///Users/guilherme/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/9717BA4B-BCDC-4970-BB39-48C03B17911F/Boa%20Troca.app/www/index.html#/app/login
+2014-05-26 16:31:55.633 Boa Troca[37641:70b] ERROR: Plugin 'NetworkStatus' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-05-26 16:31:55.634 Boa Troca[37641:70b] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "NetworkStatus1394915304",
+  "NetworkStatus",
+  "getConnectionInfo",
+  [
+
+  ]
+]
+2014-05-26 16:32:00.944 Boa Troca[37641:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-05-26 16:32:00.947 Boa Troca[37641:70b] THREAD WARNING: ['InAppBrowser'] took '30.549805' ms. Plugin should use a background thread.
+2014-05-26 16:37:33.029 Boa Troca[37641:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-05-26 16:38:22.800 Boa Troca[37641:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}

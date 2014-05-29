@@ -1,11 +1,12 @@
 <ion-view title="Boa Troca" hide-back-button="true">
-
+    
     <ion-nav-buttons side="left">
-        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        <button menu-toggle="'left'" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-        <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+        <button menu-toggle="'right'" ng-if="oldNewTrades == 0" class="button button-icon icon ion-loop"></button>
+        <button menu-toggle="'right'" ng-if="oldNewTrades == 1" class="button button-icon icon ion-looping" style="color: #f59c00"></button>
     </ion-nav-buttons>
 
     <ion-content has-header="true" padding="true">
@@ -15,8 +16,9 @@
             <div class="item item-image img-home">
                 <img src="img/logoCopa.png" style="width: 65%"/>
             </div>
+            
             <label class="back-collor item item-input">
-                <input type="text" placeholder="Numero da figurinha" ng-model="data.numfigurinha">
+                <input type="tel" placeholder="Numero da figurinha" id="buscaHome" ng-model="data.numfigurinha" style="color: #fff">
                 <i class="icon ion-search placeholder-icon"></i>
             </label>
             <div class="item">

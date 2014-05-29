@@ -99,7 +99,10 @@
   animation-timing-function: steps(8, start); }
 
 
-
+.ion-looping {
+  color: #f59c00;
+  background-color: #f59c00;
+}
 
 
 
