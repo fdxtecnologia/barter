@@ -2,9 +2,9 @@
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/com/ionicframework/starter/R.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/com/ionicframework/starter/R$attr.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/com/ionicframework/starter/R$xml.class \
-/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/com/ionicframework/starter/HelloCordova.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/com/ionicframework/starter/R$drawable.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/com/ionicframework/starter/R$string.class \
+/home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/com/ionicframework/starter/BoaTroca.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/com/ionicframework/starter/BuildConfig.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/filetransfer/FileProgressResult.class \
 /home/fdxdiogo/Development/barter/BoaTroca-IonicFileTransfer/platforms/android/ant-build/classes/org/apache/cordova/filetransfer/FileTransfer$3.class \
