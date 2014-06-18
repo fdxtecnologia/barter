@@ -1,21 +1,17 @@
 <!-- mypictures.html -->
-<ion-view title="Minhas Figurinhas" hide-back-button="true">
-
+<ion-view title="Minhas Figurinhas" hide-back-button="false">
     <ion-content has-header="true" padding="true">
 
-        <a href="#/app/registerpicture" class="button button-block button-dark">Nova</a>
-        
-        <ion-refresher
-            pulling-text="Pull to refresh..."
-            on-refresh="doRefresh()">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
         </ion-refresher>
-
-        <div class="list card" ng-repeat="item in items | orderBy: predicate='title'">
-            <a  href="#/app/showpicture/{{item.id}}" class="item item-thumbnail-left">
-                <img ng-src="{{ item.photoURL }}" />
-                <h2>{{ item.title }}</h2>
-            </a>
+        <div class="list">
+            <a href="#/app/registerpicture" class="item card button button-block button-positive">Nova</a>
+            <div class="list card" ng-repeat="item in items | orderBy: predicate='title'">
+                <a ng-href="#/app/showpicture/{{item.id}}" class="item item-thumbnail-left">
+                    <img ng-src="{{ item.photoURL }}" />
+                    <h2>{{ item.title }}</h2>
+                </a>
+            </div>
         </div>
     </ion-content>
 </ion-view>
-
