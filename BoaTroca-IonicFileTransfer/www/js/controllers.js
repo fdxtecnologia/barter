@@ -175,17 +175,10 @@ angular.module('sociogram.controllers', [])
             d[b] = e[b] ^ 1549556828;
         }
         var g = binl_md5(a.concat(rstr2binl(f)), 512 + f.length * 8);
-<<<<<<< HEAD
 
         return binl2rstr(binl_md5(d.concat(g), 512 + 128));
     }
 
-=======
-
-        return binl2rstr(binl_md5(d.concat(g), 512 + 128));
-    }
-
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
     function rstr2hex(c) {
         try {
             hexcase;
@@ -403,30 +396,17 @@ angular.module('sociogram.controllers', [])
         $rootScope.numfigurinha = $scope.data.numfigurinha;
 
         if ($rootScope.numfigurinha) {
-<<<<<<< HEAD
             $state.go('app.searchresult');
         } else {
             alert("Entre com o numero da figurinha");
         };
-=======
-            $scope.pesquisar = function() {
-                $state.go('app.searchresult');
-            };
-        } else {
-            alert("Entre com o numero da figurinha");
-        }
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
-    }
+    };
 })
 
 .controller('MyPicturesCtrl', function($scope, $state, $http, $ionicLoading, $rootScope, $timeout) {
     if (!angular.isDefined(window.localStorage['pictures'])) {
         window.localStorage['pictures'] = angular.toJson([]);
-<<<<<<< HEAD
     };
-=======
-    }
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
 
     $scope.items = angular.fromJson(window.localStorage['pictures']);
 
@@ -465,10 +445,6 @@ angular.module('sociogram.controllers', [])
     };
 
     $scope.doRefresh = loadPictures;
-<<<<<<< HEAD
-=======
-
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
 })
 
 .controller('ShowPictureCtrl', function($scope, $state, $stateParams, $http, $rootScope, $ionicLoading, $location) {
@@ -488,19 +464,11 @@ angular.module('sociogram.controllers', [])
             content: 'Loading...'
         });
     };
-<<<<<<< HEAD
 
     $scope.hide = function() {
         $scope.loading.hide();
     };
 
-=======
-
-    $scope.hide = function() {
-        $scope.loading.hide();
-    };
-
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
     $scope.removeItem = function() {
         $scope.show();
         // remover figurinha do banco
@@ -622,7 +590,7 @@ angular.module('sociogram.controllers', [])
 })
 
 .controller('RegisterPicturerCtrl', function($scope, $rootScope, $state, $http, $ionicLoading, $location) {
-    $scope.data = {}; // iniciaçizaçõ
+    $scope.data = {}; // inicialização
 
     $scope.show = function() {
         $scope.loading = $ionicLoading.show({
@@ -661,13 +629,7 @@ angular.module('sociogram.controllers', [])
         };
         navigator.camera.getPicture($scope.onSuccess, $scope.onFail, options);
     };
-<<<<<<< HEAD
 
-
-=======
-
-
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
     $scope.onUploadSucess = function() {
         var picJson = {
             'picture.id': $scope.ActualPicId,
@@ -697,7 +659,6 @@ angular.module('sociogram.controllers', [])
 
     // upload picture
     $scope.send = function() {
-<<<<<<< HEAD
         var tmp = document.getElementById('imageId');
         if (tmp.src) {
             $scope.show();
@@ -759,81 +720,15 @@ angular.module('sociogram.controllers', [])
         method: 'GET',
         url: 'http://ec2-54-187-242-58.us-west-2.compute.amazonaws.com:8080/barterserver/search',
         params: userJson
-    }).
-    success(function(data, status, headers, config) {
-        //alert(JSON.stringify(data[0])); 
-        $scope.items = data;
+    })
+        .success(function(data, status, headers, config) {
+            //alert(JSON.stringify(data[0])); 
+            $scope.items = data;
 
-    }).
-    error(function(data, status, headers, config) {
-        alert("Erro!!!");
-    });
-=======
-        $scope.show();
-        var number = $scope.data;
-        var picJson = {
-            'user.id': window.localStorage["sessao.userId"],
-            'picture.title': number.pictureNumber
-        };
-        $http({
-            method: 'GET',
-            url: 'http://ec2-54-187-242-58.us-west-2.compute.amazonaws.com:8080/barterserver/user/post/picture/add',
-            params: picJson
-        }).
-        success(function(data, status, headers, config) {
-            var image = $scope.picData;
-            $scope.ActualPicId = data.id;
-            var options = new FileUploadOptions();
-            options.fileKey = "file";
-            options.mineType = "image/jpeg"
-            options.fileName = data.id + ".jpg";
-            options.chunckedMode = false;
-            var params = new Object();
-            options.params = params;
-            var ft = new FileTransfer();
-            ft.upload(image, "http://ec2-54-187-242-58.us-west-2.compute.amazonaws.com/index.php", $scope.onUploadSucess, $scope.onUploadFail, options);
-        }).error(function() {
-            $scope.hide();
-            alert("Upload error");
+        })
+        .error(function(data, status, headers, config) {
+            alert("Erro!!!");
         });
-
-    }; //end upload file
-})
-
-.controller('searchResultCtrl', function($scope, $rootScope, $http) {
-    $scope.show = function() {
-        $scope.loading = $ionicLoading.show({
-            content: 'Loading...'
-        });
-    };
-
-    $scope.hide = function() {
-        $scope.loading.hide();
-    };
-
-    //alert("Num: "+$rootScope.numfigurinha);
-    //alert("User: "+window.localStorage["sessao.userId"]);
-
-    $scope.ownerName = $rootScope.userReqName;
-
-    var userJson = {
-        'title': $rootScope.numfigurinha,
-        'currentUser.id': window.localStorage["sessao.userId"]
-    };
-
-    $http({
-        method: 'GET',
-        url: 'http://ec2-54-187-242-58.us-west-2.compute.amazonaws.com:8080/barterserver/search',
-        params: userJson
-    }).
-    success(function(data, status, headers, config) {
-        //alert(JSON.stringify(data[0])); 
-        $scope.items = data;
-
-    }).
-    error(function(data, status, headers, config) {
-        alert("Erro!!!");
-    });
 
 
     $scope.match = function(pictureId, ownerId) {
@@ -855,99 +750,15 @@ angular.module('sociogram.controllers', [])
             params: picJson
         }).
         success(function(data, status, headers, config) {
-            alert("Trade Lançado");
+            //alert("Trade Lançado");
             $state.go('app.home');
         }).
         error(function(data, status, headers, config) {
-            alert("Erro ao lançar trade!!!");
-        });
-    }
-})
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
-
-.controller('userPicturesCtrl', function($scope, $rootScope, $http, $state) {
-    $scope.show = function() {
-        $scope.loading = $ionicLoading.show({
-            content: 'Loading...'
-        });
-    };
-
-    $scope.hide = function() {
-        $scope.loading.hide();
-    };
-
-    $scope.ownerName = $rootScope.userReqName;
-    var userJson = {
-        'user.id': $rootScope.userReqId
-    };
-
-    $http({
-        method: 'GET',
-        url: 'http://ec2-54-187-242-58.us-west-2.compute.amazonaws.com:8080/barterserver/user/post/mypictures',
-        params: userJson
-    }).
-    success(function(data, status, headers, config) {
-        //alert("Certo!!!!!!");
-        $scope.items = data;
-
-    }).
-    error(function(data, status, headers, config) {
-        alert("Erro!!!");
-    });
-
-<<<<<<< HEAD
-    $scope.match = function(pictureId, ownerId) {
-        var pId = pictureId;
-        var oId = ownerId;
-
-        //alert("P.Id: "+pictureId);
-        //alert("OW.id: "+ownerId);
-
-        var picJson = {
-            'trade.pictureOffering.id': pictureId,
-            'trade.userOffering.id': ownerId,
-            'trade.userRequiring.id': window.localStorage["sessao.userId"]
-=======
-
-    $scope.match = function(pictureId) {
-
-        //alert("P.Id: "+pictureId);
-        //alert("T.Id: "+$rootScope.tradeId);
-
-        var picJson = {
-            'trade.id': $rootScope.tradeId,
-            'trade.pictureRequiring.id': pictureId
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
-        };
-
-        $http({
-            method: 'GET',
-<<<<<<< HEAD
-            url: 'http://ec2-54-187-242-58.us-west-2.compute.amazonaws.com:8080/barterserver/trade/post/new',
-            params: picJson
-        }).
-        success(function(data, status, headers, config) {
-            alert("Trade Lançado");
-            $state.go('app.home');
-        }).
-        error(function(data, status, headers, config) {
-            alert("Erro ao lançar trade!!!");
-=======
-            url: 'http://ec2-54-187-242-58.us-west-2.compute.amazonaws.com:8080/barterserver/trade/post/update',
-            params: picJson
-        }).
-        success(function(data, status, headers, config) {
-            //alert("Lançado trade!!!");
-            $state.go('app.home');
-        }).
-        error(function(data, status, headers, config) {
-            alert("Erro ao dar match!!!");
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
+            alert("Erro ao dar match!");
         });
     }
 })
 
-<<<<<<< HEAD
 .controller('userPicturesCtrl', function($scope, $rootScope, $http, $state) {
     $scope.show = function() {
         $scope.loading = $ionicLoading.show({
@@ -1001,74 +812,4 @@ angular.module('sociogram.controllers', [])
             alert("Erro ao dar match!!!");
         });
     }
-})
-=======
-.controller('ProfileCtrl', function($scope, OpenFB) {
-    OpenFB.get('/me').success(function(user) {
-        $scope.user = user;
-    });
-})
-
-.controller('PersonCtrl', function($scope, $stateParams, OpenFB) {
-    OpenFB.get('/' + $stateParams.personId).success(function(user) {
-        $scope.user = user;
-    });
-})
-
-.controller('FriendsCtrl', function($scope, $stateParams, OpenFB) {
-    OpenFB.get('/' + $stateParams.personId + '/friends', {
-        limit: 50
-    })
-        .success(function(result) {
-            $scope.friends = result.data;
-        })
-        .error(function(data) {
-            alert(data.error.message);
-        });
-})
-
-.controller('MutualFriendsCtrl', function($scope, $stateParams, OpenFB) {
-    OpenFB.get('/' + $stateParams.personId + '/mutualfriends', {
-        limit: 50
-    })
-        .success(function(result) {
-            $scope.friends = result.data;
-        })
-        .error(function(data) {
-            alert(data.error.message);
-        });
-})
-
-.controller('FeedCtrl', function($scope, $stateParams, OpenFB, $ionicLoading) {
-
-    $scope.show = function() {
-        $scope.loading = $ionicLoading.show({
-            content: 'Loading feed...'
-        });
-    };
-    $scope.hide = function() {
-        $scope.loading.hide();
-    };
-
-    function loadFeed() {
-        $scope.show();
-        OpenFB.get('/' + $stateParams.personId + '/home', {
-            limit: 30
-        })
-            .success(function(result) {
-                $scope.hide();
-                $scope.items = result.data;
-                // Used with pull-to-refresh
-                $scope.$broadcast('scroll.refreshComplete');
-            })
-            .error(function(data) {
-                $scope.hide();
-                alert(data.error.message);
-            });
-    }
-
-    $scope.doRefresh = loadFeed;
-
-    loadFeed();
 });
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d

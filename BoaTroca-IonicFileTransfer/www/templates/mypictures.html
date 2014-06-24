@@ -1,6 +1,5 @@
 <!-- mypictures.html -->
-<<<<<<< HEAD
-<ion-view title="Minhas Figurinhas" hide-back-button="false">
+<ion-view title="Minhas Figurinhas" hide-back-button="true">
     <ion-content has-header="true" padding="true">
 
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
@@ -13,22 +12,6 @@
                     <h2>{{ item.title }}</h2>
                 </a>
             </div>
-=======
-<ion-view title="Minhas Figurinhas" hide-back-button="true">
-    <ion-content has-header="true" padding="true">
-
-        <ion-refresher
-            pulling-text="Pull to refresh..."
-            on-refresh="doRefresh()">
-        </ion-refresher>
-
-        <a href="#/app/registerpicture" class="button button-block button-dark">Nova</a>
-        <div class="list card" ng-repeat="item in items | orderBy: predicate='title'">
-            <a  ng-href="#/app/showpicture/{{item.id}}" class="item item-thumbnail-left">
-                <img ng-src="{{ item.photoURL }}" />
-                <h2>{{ item.title }}</h2>
-            </a>
->>>>>>> 8ddd828b20b57c13776ca0b5a198b2238d781f8d
         </div>
     </ion-content>
 </ion-view>
